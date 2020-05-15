@@ -1,11 +1,14 @@
 import React from 'react'
-import { useMyHook } from 'react-highlight-within-textarea'
+import { HighlightWithinTextarea }  from 'react-highlight-within-textarea'
 
 const App = () => {
-  const example = useMyHook()
   return (
     <div>
-      {example}
+      <HighlightWithinTextarea
+        height='240px'
+        width='520px'
+        customStyles={{ border: '1px solid black' }}
+      />
     </div>
   )
 }

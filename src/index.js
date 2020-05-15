@@ -1,21 +1,6 @@
 import * as React from 'react'
 
-export const useMyHook = () => {
-  let [{
-    counter
-  }, setState] = React.useState({
-    counter: 0
-  })
+import { HighlightWithinTextarea } from './HighlightWithinTextarea'
 
-  React.useEffect(() => {
-    let interval = window.setInterval(() => {
-      counter++
-      setState({counter})
-    }, 1000)
-    return () => {
-      window.clearInterval(interval)
-    }
-  }, [])
+export { HighlightWithinTextarea }
 
-  return counter
-}
