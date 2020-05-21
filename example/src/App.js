@@ -19,7 +19,7 @@ const Example = ({title, text, initialValue, highlight}) => {
   const [value, setValue] = useState(initialValue);
   return (
     <div>
-      <h1>{title}</h1>
+      <h2>{title}</h2>
       <p>{text}</p>
       <HighlightWithinTextarea
         value={value}
