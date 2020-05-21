@@ -1,15 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { HighlightWithinTextarea }  from 'react-highlight-within-textarea'
 
 const App = () => {
+
   return (
     <div>
-      <HighlightWithinTextarea
-        height='240px'
-        width='520px'
-        customStyles={{ border: '1px solid black' }}
+      <Example
+        title="String"
+        text="Note that this is case-insensitive."
+        initialValue="Potato potato tomato potato."
+        highlight= '"potato"'
       />
     </div>
   )
 }
+
+const Example = ({title, text, initialValue, highlight}) => {
+  const [value, setValue] = useState(initialValue);
+  return (
+    <div>
+      <h1>{title}</h1>
+      <p>{text}</p>
+      <HighlightWithinTextarea
+        value={value}
+        highlight={JSON.parse(highlight)}
+        onChange= {event => setValue(event.target.value)}
+        cols="40"
+        rows="4"
+      />
+    </div>
+  )
+}
+
 export default App
