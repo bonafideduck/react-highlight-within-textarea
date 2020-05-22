@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles/styles.css';
 import getRanges from './getRanges';
+import HighlighedContents from './HighlighedContents';
 
 export const HighlightWithinTextarea = (props) => {
   let newProps = {...props};
@@ -26,8 +27,8 @@ export const HighlightWithinTextarea = (props) => {
   return (
     <div className={styles.container} onScroll={blockContainerScroll}>
       <div className={styles.backdrop} >
-        <div className={`${styles.highlights} ${styles.content}`} >
-        </div>
+        <HighlighedContents value={newProps.value} highlight={newProps.highlight}>
+        </HighlighedContents>
       </div>
       <textarea {...newProps} onScroll={handleScroll} >
       </textarea>
