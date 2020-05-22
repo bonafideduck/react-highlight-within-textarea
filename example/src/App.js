@@ -88,40 +88,21 @@ let data = [[
   ]
 ]];
 
-const App = () => {
-  return (
-    <div>
-      {
-        data.map( (d) =>
-          <Example
-            key={d[0]}
-            title={d[0]}
-            text={d[1]}
-            initialValue={d[2]}
-            highlightText={d[3]}
-            highlight={d[4]}
-          />
-        )
-      }
-    </div>
-  )
-}
 
 const crToBR = (text) => {
   let split = text.split("\n");
-  let arr = [split.shift()];
+  let arr = [];
 
-  for (const item of split) {
-    arr.push(<br />);
-    arr.push(item);
+  for (const index in split) {
+    arr.push(<span key={index}>{split[index]}</span>);
+    arr.push(<br key={"b" + index} />);
   }
-  console.log(arr);
+  arr.pop();
   return arr;
 }
 
 const Example = ({title, text, initialValue, highlightText, highlight}) => {
   const [value, setValue] = useState(initialValue);
-  console.log(highlightText);
 
   return (
     <div>
@@ -141,6 +122,25 @@ const Example = ({title, text, initialValue, highlightText, highlight}) => {
         {"}"}
       </pre>
   </div>
+  )
+}
+
+const App = () => {
+  return (
+    <div>
+      {
+        data.map( (d) =>
+          <Example
+            key={d[0]}
+            title={d[0]}
+            text={d[1]}
+            initialValue={d[2]}
+            highlightText={d[3]}
+            highlight={d[4]}
+          />
+        )
+      }
+    </div>
   )
 }
 
