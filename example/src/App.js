@@ -6,8 +6,7 @@ let data = [[
   "Note that this is case-insensitive.",
   "Potato potato tomato potato.",
   `'potato'`,
-  'potato',
-  false
+  'potato'
 ],[
   "RegExp",
   <span>Don't forget the <code>g</code> (find all) and <code>i</code> (case-insensitive) flags if you need them.</span>,

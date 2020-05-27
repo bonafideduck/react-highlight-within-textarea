@@ -3,7 +3,7 @@ import styles from './styles/styles.css';
 import getRanges from './getRanges';
 import HighlighedContents from './HighlighedContents';
 
-export const HighlightWithinTextarea = (props) => {
+export const HighlightWithinTextarea = props => {
   let newProps = {...props};
   let highlight = props.highlight || {};
   delete newProps.highlight;
@@ -27,7 +27,7 @@ export const HighlightWithinTextarea = (props) => {
   return (
     <div className={styles.container} onScroll={blockContainerScroll}>
       <div className={styles.backdrop} >
-        <HighlighedContents value={newProps.value} highlight={newProps.highlight}>
+        <HighlighedContents value={newProps.value} highlight={highlight}>
         </HighlighedContents>
       </div>
       <textarea {...newProps} onScroll={handleScroll} >
