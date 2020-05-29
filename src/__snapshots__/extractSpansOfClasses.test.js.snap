@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`extractSpansOfClasses.span.render mark noclass 1`] = `
+<mark>
+  BBBBBBBB
+</mark>
+`;
+
+exports[`extractSpansOfClasses.span.render mark withclass 1`] = `
+<mark
+  className="c"
+>
+  CCCCCCCC
+</mark>
+`;
+
+exports[`extractSpansOfClasses.span.render span 1`] = `
+<span>
+  AAAAAAAA
+</span>
+`;

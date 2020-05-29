@@ -12,7 +12,9 @@ class Span {
     setMark(className) {
         this.isMark = true;
         if (className) {
-            this.markClasses.add(className);
+            for (let c of className.split(' ')) {
+                this.markClasses.add(c);
+            }
         }
     }
 

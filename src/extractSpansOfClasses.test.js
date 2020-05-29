@@ -1,3 +1,5 @@
+import React from 'react';
+import renderer from 'react-test-renderer';
 import extractSpansOfClasses from './extractSpansOfClasses.js';
 
 describe('extractSpansOfClasses', () => {
@@ -20,7 +22,7 @@ describe('extractSpansOfClasses', () => {
     expect(result[1]).toHaveProperty('className', "");
     expect(result[0]).toHaveProperty('isMark', true);
     expect(result[1]).toHaveProperty('isMark', false);
-  })
+  });
 
   it('range: [aNoClass]', () => {
     let result = extractSpansOfClasses(value, [aNoClass]);
@@ -31,7 +33,7 @@ describe('extractSpansOfClasses', () => {
     expect(result[1]).toHaveProperty('className', '');
     expect(result[0]).toHaveProperty('isMark', true);
     expect(result[1]).toHaveProperty('isMark', false);
-  })
+  });
 
   it('range: [b]', () => {
     let result = extractSpansOfClasses(value, [b]);
@@ -45,7 +47,7 @@ describe('extractSpansOfClasses', () => {
     expect(result[0]).toHaveProperty('isMark', false);
     expect(result[1]).toHaveProperty('isMark', true);
     expect(result[2]).toHaveProperty('isMark', false);
-  })
+  });
 
   it('range: [ab, bc]', () => {
     let result = extractSpansOfClasses(value, [ab, bc]);
@@ -59,7 +61,7 @@ describe('extractSpansOfClasses', () => {
     expect(result[0]).toHaveProperty('isMark', true);
     expect(result[1]).toHaveProperty('isMark', true);
     expect(result[2]).toHaveProperty('isMark', true);
-  })
+  });
 
   it('range: [c]', () => {
     let result = extractSpansOfClasses(value, [c]);
@@ -69,9 +71,7 @@ describe('extractSpansOfClasses', () => {
     expect(result[1]).toHaveProperty('className', "c");
     expect(result[0]).toHaveProperty('isMark', false);
     expect(result[1]).toHaveProperty('isMark', true);
-  })
-
-  [ 'a', 'aNoClass', 'a_b_c', 'ab', 'abc', 'b', 'bc', 'c' ]
+  });
 
   it('range: [a, b, abc, c, ab, bc, a_b_c, aNoClass]', () => {
     let result = extractSpansOfClasses(value, [a, b, abc, c, ab, bc, a_b_c, aNoClass]);
@@ -79,11 +79,38 @@ describe('extractSpansOfClasses', () => {
     expect(result[0]).toHaveProperty('text', 'AAAAAAAA');
     expect(result[1]).toHaveProperty('text', 'BBBBBBBB');
     expect(result[2]).toHaveProperty('text', 'CCCCCCCC');
-    expect(result[0]).toHaveProperty('className', 'a a_b_c ab abc');
-    expect(result[1]).toHaveProperty('className', 'a_b_c ab abc b bc');
-    expect(result[2]).toHaveProperty('className', 'a_b_c abc bc c');
+    expect(result[0]).toHaveProperty('className', 'a ab abc b c');
+    expect(result[1]).toHaveProperty('className', 'a ab abc b bc c');
+    expect(result[2]).toHaveProperty('className', 'a abc b bc c');
     expect(result[0]).toHaveProperty('isMark', true);
     expect(result[1]).toHaveProperty('isMark', true);
     expect(result[2]).toHaveProperty('isMark', true);
-  })
-})
+  });
+});
+
+describe('extractSpansOfClasses.span.render', () => {
+  const bNoClass = [8, 16];
+  const c = [16, 24]; c.className = 'c';
+  const value = "AAAAAAAABBBBBBBBCCCCCCCC";
+
+  it('span', () => {
+    let result = extractSpansOfClasses(value, [bNoClass, c]);
+    const component = renderer.create(result[0].render());
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('mark noclass', () => {
+    let result = extractSpansOfClasses(value, [bNoClass, c]);
+    const component = renderer.create(result[1].render());
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it('mark withclass', () => {
+    let result = extractSpansOfClasses(value, [bNoClass, c]);
+    const component = renderer.create(result[2].render());
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+ });
+});
