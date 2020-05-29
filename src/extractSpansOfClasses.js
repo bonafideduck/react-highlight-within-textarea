@@ -1,53 +1,5 @@
 import React from 'react';
 
-const decoratedParts = (value, ranges) => {
-    // Break value into an array.
-    var values = [...value];
-    for (let range of ranges) {
-        for (let index = range[0]; index <= range[1]; index++) {
-            values[index].mark = values[index].mark || new Set();
-            if (range.className) {
-                range.className.split(' ').foreach(c => values[index].mark.add(c));
-            }
-        }
-    }
-    return values;
-}
-
-const sameMarkClass = (prev, part) => {
-    if (part.mark == undefined) {
-        return (prev.mark == undefined);
-    }
-    if (part.mark.size != prev.mark.size) {
-        return false;
-    }
-    for (c of part.mark) {
-        if (!prev.mark.has(c)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-const mergeSimilarParts = (parts) => {
-    if (parts.size == 0) {
-        return [];
-    }
-    let result = [parts[0]];
-    let prev = parts[0];
-
-    for (let i = 1; i < parts.size; i++) {
-        let part = parts[i];
-        if (sameMarkClass(prev, part)) {
-            prev += part;
-        } else {
-            result.append(part);
-            prev = part;
-        }
-    }
-    return result;
-}
-
 class Span {
     constructor(text, beginIndex) {
         this.beginIndex = beginIndex;
