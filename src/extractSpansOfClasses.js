@@ -7,7 +7,7 @@ const decoratedParts = (value, ranges) => {
         for (let index = range[0]; index <= range[1]; index++) {
             values[index].mark = values[index].mark || new Set();
             if (range.className) {
-                values[index].mark.add(range.className)
+                range.className.split(' ').foreach(c => values[index].mark.add(c));
             }
         }
     }
@@ -66,8 +66,8 @@ class Span {
 
     carve(beginIndex2) {
         // Carves self to take a bit off the right and returns that carving.
-        let rightText = this.text.slice(beginIndex2);
-        this.text = this.text.slice(0, beginIndex2);
+        let rightText = this.text.slice(beginIndex2 - this.beginIndex);
+        this.text = this.text.slice(0, beginIndex2 - this.beginIndex);
         this.endIndex = beginIndex2;
 
         let right = new Span(rightText, beginIndex2);
@@ -150,8 +150,8 @@ export default function extractSpansOfClasses(value, ranges) {
                         // [s p a n]       [span]
                         let span2 = span.carve(beginIndex);
                         span2.setMark(className);
-                        spans.splice(i, 0, span2);
-                        beginIndex = span.endIndex;
+                        spans.splice(i + 1, 0, span2);
+                        beginIndex = span2.endIndex;
                         i += 1;
                     }
                 }
