@@ -5,11 +5,13 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "bootstrap": "3",
     "prop-types": "^15.6.2",
     "react": "link:../node_modules/react",
+    "react-bootstrap": "^1.0.1",
     "react-dom": "^16.9.0",
-    "react-scripts": "^3.0.1",
-    "react-highlight-within-textarea": "link:.."
+    "react-highlight-within-textarea": "link:..",
+    "react-scripts": "^3.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

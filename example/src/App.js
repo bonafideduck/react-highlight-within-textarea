@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { HighlightWithinTextarea }  from 'react-highlight-within-textarea'
 
 let data = [[
@@ -104,29 +107,32 @@ const Example = ({title, text, initialValue, highlightText, highlight}) => {
   const [value, setValue] = useState(initialValue);
 
   return (
-    <div>
-      <h2>{title}</h2>
-      <p>{text}</p>
-      <HighlightWithinTextarea
-        value={value}
-        highlight={highlight}
-        onChange= {event => setValue(event.target.value)}
-        cols="50"
-        rows="4"
-      />
-      <pre>
-        function Demo() {"{"}<br />
-        {"  "}const highlight = {crToBR(highlightText)};<br /><br />
-        {"  "}{"return <HighlightWithinTextarea highlight={highlight} />;"}<br />
-        {"}"}
-      </pre>
-  </div>
+    <Row>
+      <Col>
+        <h2>{title}</h2>
+        <p>{text}</p>
+        <HighlightWithinTextarea
+          value={value}
+          highlight={highlight}
+          onChange= {event => setValue(event.target.value)}
+          rows="4"
+          containerStyle={{width: "100%"}}
+          style={{width: "100%"}}
+        />
+        <pre>
+          function Demo() {"{"}<br />
+          {"  "}const highlight = {crToBR(highlightText)};<br /><br />
+          {"  "}{"return <HighlightWithinTextarea highlight={highlight} />;"}<br />
+          {"}"}
+        </pre>
+      </Col>
+  </Row>
   )
 }
 
 const App = () => {
   return (
-    <div>
+    <Container style={{maxWidth: 800, border: 20, margin: 'auto'}}>
       {
         data.map( (d) =>
           <Example
@@ -139,7 +145,7 @@ const App = () => {
           />
         )
       }
-    </div>
+    </Container>
   )
 }
 
