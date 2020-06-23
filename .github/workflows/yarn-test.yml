@@ -1,6 +1,6 @@
 # This workflow will run tests using node
 
-name: Node.js Package
+name: Yarn Test
 
 on:
   push:
