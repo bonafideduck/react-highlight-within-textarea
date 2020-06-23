@@ -38,9 +38,9 @@ along with example code, on the
 ## Properties
 
 There are two notable elements within this component.  These are the
-textarea and a background textarea that adds highlighting.  Most
-properties sent are directly applied to the textarea.  Some styling
-(like widths) has to be applied to both.
+textarea and its surrounding container which facilitates the highlighting.
+Unless otherwise specified below, properties will be applied to the textarea.
+Some customization (like width) will need to be applied to both.
 
 **value**: In React, you must supply a value and update it within the textarea.
 
@@ -49,10 +49,17 @@ properties sent are directly applied to the textarea.  Some styling
 **highlight**: This specifies what to highlght.  For more info, see the
 [demo page](https://bonafideduck.github.io/react-highlight-within-textarea/).
 
-**containerStyle**: Some textarea styles will also have to be applied to the underlying 
+**containerStyle**: Some textarea styles will also have to be applied to the surrounding
 container.  This directly applies to the container.
 
-**containerClassName**: This adds classes to the underlying container.
+**containerClassName**: This adds classes to the surrounding container.
+
+**all-other-properties**: All other properties will be directly applied to the textarea.
+
+## Known Bug
+
+If the textarea scrolls, the underlying highlighting does not scroll.  The hooks to 
+fix this are there, but have not yet been implemented.
 
 ## License
 

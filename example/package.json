@@ -1,7 +1,7 @@
 {
   "name": "react-highlight-within-textarea-example",
   "homepage": "https://bonafideduck.github.io/react-highlight-within-textarea",
-  "version": "1.0.0",
+  "version": "0.9.9",
   "license": "MIT",
   "private": false,
   "dependencies": {
