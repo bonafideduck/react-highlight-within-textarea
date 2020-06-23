@@ -2,13 +2,10 @@
 
 > React component for highlighting bits of text within a textarea
 
-> Warning: This is a pre-release with little to nothing implemented.
-
 [![NPM](https://img.shields.io/npm/v/react-highlight-within-textarea.svg)](https://www.npmjs.com/package/react-highlight-within-textarea) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) ![Yarn Test](https://github.com/bonafideduck/react-highlight-within-textarea/workflows/Yarn%20Test/badge.svg)
 
-## Install
 
-> Warning: This is a pre-release with little to nothing implemented.
+## Install
 
 ```bash
 npm install --save react-highlight-within-textarea
@@ -16,18 +13,46 @@ npm install --save react-highlight-within-textarea
 
 ## Usage
 
-> Warning: This is a pre-release with little to nothing implemented.
-
 ```jsx
-import React, { Component } from 'react'
+import React from 'react';
+import { useState } from 'react';
+import { HighlightWithinTextarea } from 'react-highlight-within-textarea'
 
 const Example = () => {
-  const example = useMyHook()
+  const [value, setValue] = useState("X Y Z and then XYZ");
   return (
-    <HighlightWithinTextarea />
-  )
-}
+    <HighlightWithinTextarea
+      value={value}
+      highlight={/[XYZ]/g}
+      onChange= {event => setValue(event.target.value)}
+    />
+  );
+};
 ```
+
+The highlight property accepts several different types of values to describe 
+what will be highlighted.  You can see the various ways to highlight things, 
+along with example code, on the 
+[demo page](https://bonafideduck.github.io/react-highlight-within-textarea/).
+
+## Properties
+
+There are two notable elements within this component.  These are the
+textarea and a background textarea that adds highlighting.  Most
+properties sent are directly applied to the textarea.  Some styling
+(like widths) has to be applied to both.
+
+**value**: In React, you must supply a value and update it within the textarea.
+
+**onChange**: In React, you must supply an onChange function that updates the value.
+
+**highlight**: This specifies what to highlght.  For more info, see the
+[demo page](https://bonafideduck.github.io/react-highlight-within-textarea/).
+
+**containerStyle**: Some textarea styles will also have to be applied to the underlying 
+container.  This directly applies to the container.
+
+**containerClassName**: This adds classes to the underlying container.
 
 ## License
 
