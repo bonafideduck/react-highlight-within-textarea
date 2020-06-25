@@ -2,26 +2,21 @@
 
 ## Install and run the app and sample app locally.
 
-**TBD**
+```
+yarn install
+(cd example && yarn install && yarn run)
+``
 
 ## Create the Demo Page
 
 **This doesn't actually work yet.**
 
 The (demo page)[https://bonafideduck.github.io/react-highlight-within-textarea/]
-app is published to the github pages branch. Currently it is a manual process.
+app is published to the github pages branch. Do these steps to publish.
 
 ```
 cd example
-git clone git clone -b gh-pages git@github.com:bonafideduck/react-highlight-within-textarea.git doc
-yarn build
-(cd doc && git rm -rf *)
-cp -r dist/* doc
-cp public/* doc
-cd doc 
-git add .
-git commit -m 'updated pages'
-git push
+yarn dist
 ```
 
 ## Running Tests
