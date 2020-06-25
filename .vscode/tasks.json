@@ -3,14 +3,11 @@
 	"tasks": [
 		{
 			"type": "npm",
-			"script": "build",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
+			"script": "start",
+			"path": "example/",
 			"problemMatcher": [],
-			"label": "npm: build",
-			"detail": "rollup -c"
+			"label": "npm: start - example",
+			"detail": "react-scripts start"
 		}
 	]
 }
