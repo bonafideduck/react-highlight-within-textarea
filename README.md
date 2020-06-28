@@ -56,10 +56,9 @@ container.  This directly applies to the container.
 
 **all-other-properties**: All other properties will be directly applied to the textarea.
 
-## Known Bug
+## Known Issues
 
-If the textarea scrolls, the underlying highlighting does not scroll.  The hooks to 
-fix this are there, but have not yet been implemented.
+Currently, textarea resizing is not supported.
 
 ## License
 
