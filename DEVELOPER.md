@@ -31,8 +31,14 @@ and [publish-to-npm action](https://github.com/marketplace/actions/publish-to-np
     git commit...
     ```
 2. Update CHANGES.md with all significant changes.
-3. Set a new version tag in git
+3. Bump the version and commit.
     ```
     yarn version --patch
     ```
-4. Commit and push that.  This will trigger a github action to release.
+    Note that this creates a RC-Vmajor.minor.patch version tag.  You may
+    optionally 'git commit --follow-tags' so you can reference to it in
+    your repository.  If this is a forked repository, the main repository
+    will not inherit this tag.
+    system.
+4. Commit and push that.  This will trigger (by the comment) a github 
+    action to release when pushed to master.
