@@ -1,6 +1,6 @@
 {
   "name": "react-highlight-within-textarea",
-  "version": "0.9.10",
+  "version": "0.9.9",
   "description": "React component for highlighting bits of text within a textarea",
   "author": "bonafideduck",
   "license": "MIT",
@@ -69,5 +69,6 @@
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^3.1.1",
     "rollup-plugin-url": "^2.1.0"
-  }
+  },
+  "dependencies": {}
 }
