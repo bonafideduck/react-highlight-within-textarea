@@ -33,6 +33,6 @@ and [publish-to-npm action](https://github.com/marketplace/actions/publish-to-np
 2. Update CHANGES.md with all significant changes.
 3. Set a new version tag in git
     ```
-    yarn version --minor
+    yarn version --patch
     ```
 4. Commit and push that.  This will trigger a github action to release.
