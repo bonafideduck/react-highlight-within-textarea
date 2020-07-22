@@ -1,0 +1,32 @@
+#!/bin/bash
+
+htag=$(grep '^## V[0-9.]* -' HISTORY.md | cut -f2 -d' ' | tr V v | head -1)
+ptag=v$(grep '^ *"version": "[0-9.]*",' package.json | cut -f4 -d'"' | head -1)
+
+if git tag | grep "$ptag" >/dev/null ; then
+    echo "Error: version ($ptag) in package.json exists in tags." >&2
+    echo "Bump the version in package.json." >&2
+    exit 1
+fi
+
+if [ "$htag" != "$ptag" ] ; then
+    echo "Error: version in HISTORY.md ($htag) is not the same as package.json ($ptag)" >&2
+    echo "Make these consistent manually."
+    exit 1
+fi
+
+message="Release candidate for $(echo $ptag | sed -e 's/v//')"
+
+if [ ! git status -s -uno ] ; then
+    echo "Error: nothing to commit, and thus no way to make a commit message." >&2
+    echo "To fix, do one of these:" >&2
+    echo "1. Make a change to a file and run 'yarn rc' again." >&2
+    echo "2. `git commit --amend` and add this as a line: '$message'" >&2
+fi
+
+git commit -m "$message" -a || exit 1
+
+echo Committed the current code with this commit message:
+echo "$message"
+echo
+echo After a '"git push"' is done to master, the release will be attempted.

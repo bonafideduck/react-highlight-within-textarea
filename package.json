@@ -1,6 +1,6 @@
 {
   "name": "react-highlight-within-textarea",
-  "version": "0.9.10",
+  "version": "0.9.11",
   "description": "React component for highlighting bits of text within a textarea",
   "author": "bonafideduck",
   "license": "MIT",
@@ -20,7 +20,8 @@
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "rc": "./bin/rc"
   },
   "peerDependencies": {
     "react": "^16.9.0"

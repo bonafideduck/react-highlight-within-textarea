@@ -1,5 +1,10 @@
 # HISTORY
 
+## V0.9.11 - 22-July-2020
+
+- Update yarn.lock due to lodash security issues.
+- Improve release tooling and documentation.
+
 ## V0.9.10 - 29-June-2020
 
 - Fixes scrolling.
