@@ -8706,7 +8706,7 @@ react-transition-group@^4.4.1:
     prop-types "^15.6.2"
 
 "react@link:../node_modules/react":
-  version "0.0.0"
+  version "16.12.0"
   uid ""
 
 read-pkg-up@^2.0.0:
