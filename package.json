@@ -64,12 +64,12 @@
     "react-test-renderer": "^16.9.0",
     "rewire": "^5.0.0",
     "rollup": "^1.1.2",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-resolve": "^4.0.0",
+    "@rollup/plugin-babel": "^4.3.2",
+    "@rollup/plugin-commonjs": "^9.2.0",
+    "@rollup/plugin-node-resolve": "^4.0.0",
+    "@rollup/plugin-url": "^2.1.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-postcss": "^3.1.1",
-    "rollup-plugin-url": "^2.1.0"
+    "rollup-plugin-postcss": "^3.1.1"
   },
   "dependencies": {}
 }

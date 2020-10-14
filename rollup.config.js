@@ -1,9 +1,10 @@
-import babel from 'rollup-plugin-babel'
-import commonjs from 'rollup-plugin-commonjs'
+import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs'
 import external from 'rollup-plugin-peer-deps-external'
-import resolve from 'rollup-plugin-node-resolve'
-import url from 'rollup-plugin-url'
+import resolve from '@rollup/plugin-node-resolve'
+import url from '@rollup/plugin-url'
 import postcss from 'rollup-plugin-postcss'
+
 
 
 import pkg from './package.json'
