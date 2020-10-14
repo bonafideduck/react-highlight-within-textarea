@@ -1,5 +1,9 @@
 # HISTORY
 
+## V0.9.12 - 13-Oct-2020
+
+- Update package.json due to dependabot alerts for react.
+
 ## V0.9.11 - 22-July-2020
 
 - Update yarn.lock due to lodash security issues.
