@@ -69,3 +69,4 @@ MIT © [bonafideduck](https://github.com/bonafideduck)
 * This component was created using [create-react-hook](https://github.com/hermanya/create-react-hook).
 * This component is a port of the [highlight-within-textarea](https://www.npmjs.com/package/highlight-within-textarea) jquery plugin to React.
 * Special thanks to Joe Previte for [How to Release a Custom React Component, Hook, or Effect as an npm Package](https://www.twilio.com/blog/release-custom-react-component-hook-effect-npm-package).
+
