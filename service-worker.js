@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-highlight-within-textarea/precache-manifest.0ca3991bd168c827d5509d8f76a29560.js"
+  "/react-highlight-within-textarea/precache-manifest.53fc102ecab4c8861056b777a8735c1e.js"
 );
 
 self.addEventListener('message', (event) => {
