@@ -14,7 +14,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: yarn dev add react@^16.14.0
+      - run: yarn add --dev react@^16.14.0
+        working-directory: react-highlight-within-textarea
       - run: yarn install
         working-directory: react-highlight-within-textarea
       - run: yarn test
