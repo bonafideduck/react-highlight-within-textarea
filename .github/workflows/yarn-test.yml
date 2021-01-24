@@ -14,6 +14,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: yarn global add react@^16.14.0
       - run: yarn install --frozen-lockfile
         working-directory: react-highlight-within-textarea
       - run: yarn test
