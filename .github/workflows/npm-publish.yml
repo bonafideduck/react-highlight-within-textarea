@@ -22,7 +22,7 @@ jobs:
         tag_name: "v%s"
         tag_message: "v%s"
         commit_pattern: "^Release candidate for (\\S+)"
-        working-directory: react-highlight-within-textarea
       env: # More info about the environment variables in the README
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # You need to set this in your repo settings
+        INPUT_WORKING-DIRECTORY: react-highlight-within-textarea
