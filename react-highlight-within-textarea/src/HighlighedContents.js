@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './styles/styles.css'
 import getRanges from './getRanges'
 import extractSpansOfClasses from './extractSpansOfClasses'
+import PropTypes from 'prop-types'
 
 const HighlighedContents = ({ value, highlight }) => {
   const ranges = getRanges(value, highlight)
@@ -17,8 +18,8 @@ const HighlighedContents = ({ value, highlight }) => {
 }
 
 HighlighedContents.propTypes = {
-  value: React.PropTypes.string.isRequired,
-  highlight: React.PropTypes.any.isRequired,
+  value: PropTypes.string.isRequired,
+  highlight: PropTypes.any.isRequired,
 }
 
 export default HighlighedContents

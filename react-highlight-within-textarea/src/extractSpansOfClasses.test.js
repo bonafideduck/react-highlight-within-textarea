@@ -74,6 +74,7 @@ describe('extractSpansOfClasses', () => {
   })
 
   it('range: [a, b, abc, c, ab, bc, a_b_c, aNoClass]', () => {
+    // eslint-disable-next-line camelcase
     const result = extractSpansOfClasses(value, [a, b, abc, c, ab, bc, a_b_c, aNoClass])
     expect(result).toHaveLength(3)
     expect(result[0]).toHaveProperty('text', 'AAAAAAAA')
