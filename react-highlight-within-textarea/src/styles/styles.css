@@ -46,4 +46,15 @@
 .content mark {
 	padding: 0 !important;
 	color: inherit;
+	position: relative;
+}
+
+.content mark div {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	color: black;
+	line-height: 1em;
 }

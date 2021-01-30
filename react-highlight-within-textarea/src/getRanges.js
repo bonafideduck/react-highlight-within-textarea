@@ -66,13 +66,22 @@ function getRangeRanges(input, range) {
 
 function getCustomRanges(input, custom) {
   const ranges = getRanges(input, custom.highlight)
-  if (custom.className) {
+  if (custom.className || custom.enhancement) {
     ranges.forEach(function (range) {
       // persist class name as a property of the array
-      if (range.className) {
-        range.className = custom.className + ' ' + range.className
-      } else {
-        range.className = custom.className
+      if (custom.className) {
+        if (range.className) {
+          range.className = custom.className + ' ' + range.className
+        } else {
+          range.className = custom.className
+        }
+      }
+      if (custom.enhancement) {
+        if (range.enhancements) {
+          range.enhancements.unshift(custom.enhancement)
+        } else {
+          range.enhancements = [custom.enhancement]
+        }
       }
     })
   }

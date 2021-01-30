@@ -5,17 +5,21 @@ class Span {
     this.beginIndex = beginIndex
     this.endIndex = beginIndex + text.length // Like String.slice, it is inclusive.
     this.text = text
+    this.fullText = text
+
     this.isMark = false
+    this.ranges = []
     this.markClasses = new Set()
   }
 
-  setMark(className) {
+  addRange(range) {
     this.isMark = true
-    if (className) {
-      for (const c of className.split(' ')) {
+    if (range.className) {
+      for (const c of range.className.split(' ')) {
         this.markClasses.add(c)
       }
     }
+    this.ranges.push(range)
   }
 
   carve(beginIndex2) {
@@ -27,6 +31,8 @@ class Span {
     const right = new Span(rightText, beginIndex2)
     right.isMark = this.isMark
     right.markClasses = new Set([...this.markClasses])
+    right.ranges = [...this.ranges]
+    right.fullText = this.fullText
 
     return right
   }
@@ -39,18 +45,48 @@ class Span {
     }
   }
 
+  extractEnhancementViews() {
+    const enhancementViews = []
+    const enhancedRanges = this.ranges.filter(s => s.enhancements)
+    if (enhancedRanges.length === 0) {
+      return enhancementViews
+    }
+
+    const spanProps = {
+      text: this.text,
+      fullText: this.fullText,
+      beginIndex: this.beginIndex,
+      endIndex: this.endIndex,
+    }
+
+    let key = 0
+    for (const range of enhancedRanges) {
+      for (const Enhancement of range.enhancements) {
+        enhancementViews.push(
+          <div key={key}>
+            <Enhancement range={range} {...spanProps} />
+          </div>
+        )
+      }
+      key += 1
+    }
+    return enhancementViews
+  }
+
   render() {
     if (this.isMark) {
-      const className = this.className
-      if (className) {
-        return (
-          <mark key={this.beginIndex} className={className}>
-            {this.text}
-          </mark>
-        );
-      } else {
-        return <mark key={this.beginIndex}>{this.text}</mark>
+      const props = {}
+      if (this.className) {
+        props.className = this.className
       }
+      const enhancementViews = this.extractEnhancementViews()
+
+      return (
+        <mark key={this.beginIndex} {...props}>
+          {this.text}
+          {enhancementViews}
+        </mark>
+      )
     } else {
       return <span key={this.beginIndex}>{this.text}</span>
     }
@@ -62,12 +98,11 @@ export default function extractSpansOfClasses(value, ranges) {
    * can be converted to JSX via the render command.
    */
 
-  const spans = [new Span(value, 0)];
+  const spans = [new Span(value, 0)]
 
   for (const range of ranges) {
-    let beginIndex = range[0];
-    const endIndex = range[1];
-    const className = range.className;
+    let beginIndex = range[0]
+    const endIndex = range[1]
 
     for (let i = 0; i < spans.length; i++) {
       const span = spans[i]
@@ -79,14 +114,14 @@ export default function extractSpansOfClasses(value, ranges) {
             // [range]
             // [s  p  a  n]
             const span2 = span.carve(endIndex)
-            span.setMark(className)
+            span.addRange(range)
             spans.splice(i + 1, 0, span2)
             beginIndex = endIndex
             i += 1
           } else {
             // [range]   or   [r a n g e]
             // [span-]        [span]
-            span.setMark(className)
+            span.addRange(range)
             beginIndex = span.endIndex
           }
         } else {
@@ -95,15 +130,15 @@ export default function extractSpansOfClasses(value, ranges) {
             // [s  p  a  n]
             const span2 = span.carve(beginIndex)
             const span3 = span2.carve(endIndex)
-            span2.setMark(className)
+            span2.addRange(range)
             spans.splice(i + 1, 0, span2, span3)
             beginIndex = endIndex
-            i += 2;
+            i += 2
           } else {
             //   [range]  or     [range]
             // [s p a n]       [span]
             const span2 = span.carve(beginIndex)
-            span2.setMark(className)
+            span2.addRange(range)
             spans.splice(i + 1, 0, span2)
             beginIndex = span2.endIndex
             i += 1

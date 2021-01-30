@@ -1,8 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { HighlightWithinTextarea }  from 'react-highlight-within-textarea'
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
+
+function ToolTip(props) {
+  const content = (
+    <div style={{whiteSpace: "pre"}}>
+      {JSON.stringify(props, 0, 1)}
+    </div>
+  )
+  //{<div style={{whiteSpace: "pre", backgroundColor: "white", textColor: "black"}}>{JSON.stringify(props, 0, 1)}</div>}>
+  return (
+    <Tippy content={content} maxHeight="800px" maxWidth="800px">
+      <div style={{zIndex: 1, backgroundColor: "transparent"}}></div>
+    </Tippy>
+  )
+}
+
+function MultiColor(props) {
+  const [color, setColor] = useState(0xff8800);
+  // const border = `4px solid #${color.toString(16)}`
+  const colorText = `#${color.toString(16)}`
+
+  useEffect(() => {
+    const timer = setInterval(() => setColor(0x808080 | (color + 0x102030) % 0xFFFFFF), 200)
+    return () => clearInterval(timer)
+  })
+  return <div style={{width: "100%", height: "100%", backgroundColor: colorText}} />
+}
 
 let data = [[
   "String",
@@ -59,7 +87,7 @@ let data = [[
 ], [
   "Custom Object (with Class Name)",
   <span>Any type mentioned here can be put in an object wrapper with <code>highlight</code> and <code>className</code> properties. This lets you set CSS classes in the highlight markup for custom styling, such as changing the highlight color.</span>,
-  `Here's a blueberry. There's a strawberry. Surprise, it's a banananana! <h1>hello</h1>`,
+  `Here's a blueberry. There's a strawberry. Surprise, it's a banananana!`,
   `[
     {
       highlight: 'strawberry',
@@ -87,6 +115,34 @@ let data = [[
       highlight: /ba(na)*/gi,
       className: 'yellow'
     }
+  ],
+], [
+  "Custom Object (with Enhancements)",
+  <span>Something</span>,
+  `Here's a blueberry. There's a strawberry. Surprise, it's a banananana!`,
+  `[
+    {
+      highlight: 'berry',
+      enhancement: ToolTip,
+      className: 'yellow',
+    },
+    {
+      highlight: 'blueberry',
+      enhancement: MultiColor,
+      className: 'blue',
+    },
+  ]`,
+  [
+    {
+      highlight: 'berry',
+      enhancement: ToolTip,
+      className: 'yellow',
+    },
+    {
+      highlight: 'blueberry',
+      enhancement: MultiColor,
+      className: 'blue',
+    },
   ]
 ]];
 
