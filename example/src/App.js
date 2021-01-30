@@ -12,7 +12,6 @@ function ToolTip(props) {
       {JSON.stringify(props, 0, 1)}
     </div>
   )
-  //{<div style={{whiteSpace: "pre", backgroundColor: "white", textColor: "black"}}>{JSON.stringify(props, 0, 1)}</div>}>
   return (
     <Tippy content={content} maxHeight="800px" maxWidth="800px">
       <div style={{zIndex: 1, backgroundColor: "transparent"}}></div>
@@ -22,7 +21,6 @@ function ToolTip(props) {
 
 function MultiColor(props) {
   const [color, setColor] = useState(0xff8800);
-  // const border = `4px solid #${color.toString(16)}`
   const colorText = `#${color.toString(16)}`
 
   useEffect(() => {
@@ -117,29 +115,53 @@ let data = [[
     }
   ],
 ], [
-  "Custom Object (with Enhancements)",
-  <span>Something</span>,
-  `Here's a blueberry. There's a strawberry. Surprise, it's a banananana!`,
+  "Coming Soon: Custom Object (with Enhancements)",
+  <span>The div behind the highlighted span can have enhancement javascript injected.</span>,
+  `Here's a blueberry. There's a strawberry.`,
   `[
     {
-      highlight: 'berry',
+      highlight: /[^ ]*berry/gi,
       enhancement: ToolTip,
       className: 'yellow',
     },
     {
-      highlight: 'blueberry',
+      highlight: 'blue',
       enhancement: MultiColor,
       className: 'blue',
     },
-  ]`,
+  ]
+
+  function ToolTip(props) {
+    const content = (
+      <div style={{whiteSpace: "pre"}}>
+        {JSON.stringify(props, 0, 1)}
+      </div>
+    )
+    return (
+      <Tippy content={content} maxHeight="800px" maxWidth="800px">
+        <div style={{zIndex: 1, backgroundColor: "transparent"}}></div>
+      </Tippy>
+    )
+  }
+
+  function MultiColor(props) {
+    const [color, setColor] = useState(0xff8800);
+    const colorText = \`#\${color.toString(16)}\`
+
+    useEffect(() => {
+      const timer = setInterval(() => setColor(0x808080 | (color + 0x102030) % 0xFFFFFF), 200)
+      return () => clearInterval(timer)
+    })
+    return <div style={{width: "100%", height: "100%", backgroundColor: colorText}} />
+  }`,
   [
     {
-      highlight: 'berry',
+      highlight: /[^ ]*berry/gi,
       enhancement: ToolTip,
       className: 'yellow',
     },
     {
-      highlight: 'blueberry',
+      highlight: 'blue',
       enhancement: MultiColor,
       className: 'blue',
     },
