@@ -40,6 +40,7 @@
 .content {
 	border: 1px solid;
 	background: none transparent !important;
+  pointer-events: none;
 }
 
 .content mark {
