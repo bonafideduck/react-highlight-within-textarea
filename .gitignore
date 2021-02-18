@@ -25,5 +25,5 @@ coverage
 
 example/doc
 
-*..swp
+*.swp
 .vscode/

@@ -3,8 +3,8 @@
 ## Install and run the app and sample app locally.
 
 ```
-yarn install
-(cd example && yarn install && yarn run)
+(cd react-highlight-within-textarea && yarn install && yarn watch &)
+(cd example && yarn install && yarn start)
 ```
 
 ## Create the Demo Page

@@ -16,6 +16,7 @@
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "test:debug": "cross-env CI=1 react-scripts --inspect --inspect-brk test --env=jsdom",
+    "watch": "watch 'yarn build' src",
     "build": "rollup -c",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
@@ -67,7 +68,8 @@
     "rewire": "^5.0.0",
     "rollup": "^2.30.0",
     "rollup-plugin-peer-deps-external": "^2.2.3",
-    "rollup-plugin-postcss": "^3.1.8"
+    "rollup-plugin-postcss": "^3.1.8",
+    "watch": "^1.0.2"
   },
   "dependencies": {}
 }
