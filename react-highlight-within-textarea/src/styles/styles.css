@@ -46,15 +46,16 @@
 	padding: 0 !important;
 	color: inherit;
 	position: relative;
-  overflow: visible;
 }
 
-.content mark div {
+.content .enhanced {
 	position: absolute;
 	left: 0;
+	right: 0;
 	top: 0;
-	width: 100%;
-	height: 100%;
-	color: red;
-	line-height: 1em;
+	bottom: 0;
+	width: auto;
+	height: auto;
+	/* color: red; */
+	/* line-height: 1em; */
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -14,21 +14,22 @@ function ToolTip(props) {
   )
   return (
     <Tippy content={content} maxHeight="800px" maxWidth="800px">
-      <div style={{zIndex: 1, backgroundColor: "transparent"}}></div>
+      <mark key={props.key} className={props.className} style={{zIndex: 1, backgroundColor: "transparent"}}></mark>
     </Tippy>
   )
 }
 
-function MultiColor(props) {
-  const [color, setColor] = useState(0xff8800);
-  const colorText = `#${color.toString(16)}`
 
-  useEffect(() => {
-    const timer = setInterval(() => setColor(0x808080 | (color + 0x102030) % 0xFFFFFF), 200)
-    return () => clearInterval(timer)
-  })
-  return <div style={{width: "100%", height: "100%", backgroundColor: colorText}} />
-}
+// function MultiColor(props) {
+//   const [color, setColor] = useState(0xff8800);
+//   const colorText = `#${color.toString(16)}`
+// 
+//   useEffect(() => {
+//     const timer = setInterval(() => setColor(0x808080 | (color + 0x102030) % 0xFFFFFF), 200)
+//     return () => clearInterval(timer)
+//   })
+//   return <mark style={{width: "100%", height: "100%", backgroundColor: colorText}} />
+// }
 
 let data = [[
   "String",
@@ -121,13 +122,8 @@ let data = [[
   `[
     {
       highlight: /[^ ]*berry/gi,
-      enhancement: ToolTip,
+      enhancement: undefined && ToolTip,
       className: 'yellow',
-    },
-    {
-      highlight: 'blue',
-      enhancement: MultiColor,
-      className: 'blue',
     },
   ]
 
@@ -139,7 +135,7 @@ let data = [[
     )
     return (
       <Tippy content={content} maxHeight="800px" maxWidth="800px">
-        <div style={{zIndex: 1, backgroundColor: "transparent"}}></div>
+        <mark style={{zIndex: 1, backgroundColor: "transparent"}}></mark>
       </Tippy>
     )
   }
@@ -152,17 +148,16 @@ let data = [[
       const timer = setInterval(() => setColor(0x808080 | (color + 0x102030) % 0xFFFFFF), 200)
       return () => clearInterval(timer)
     })
-    return <div style={{width: "100%", height: "100%", backgroundColor: colorText}} />
+    return <span style={{width: "100%", height: "100%", backgroundColor: colorText}} />
   }`,
   [
     {
       highlight: /[^ ]*berry/gi,
-      enhancement: ToolTip,
+      enhancement: undefined && ToolTip,
       className: 'yellow',
     },
     {
       highlight: 'blue',
-      enhancement: MultiColor,
       className: 'blue',
     },
   ]

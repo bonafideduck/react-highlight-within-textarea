@@ -1,4 +1,5 @@
 import React from 'react'
+import styles from './styles/styles.css';
 
 class Span {
   constructor(text, beginIndex) {
@@ -53,6 +54,7 @@ class Span {
     }
 
     const spanProps = {
+      className: styles.enhanced,
       text: this.text,
       fullText: this.fullText,
       beginIndex: this.beginIndex,
@@ -63,9 +65,7 @@ class Span {
     for (const range of enhancedRanges) {
       for (const Enhancement of range.enhancements) {
         enhancementViews.push(
-          <div key={key}>
-            <Enhancement range={range} {...spanProps} />
-          </div>
+          <Enhancement key={key} range={range} {...spanProps} />
         )
       }
       key += 1
@@ -83,8 +83,8 @@ class Span {
 
       return (
         <mark key={this.beginIndex} {...props}>
-          {this.text}
           {enhancementViews}
+          <mark>{this.text}</mark>
         </mark>
       )
     } else {
