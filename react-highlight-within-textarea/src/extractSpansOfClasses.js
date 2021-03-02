@@ -11,6 +11,7 @@ class Span {
     this.isMark = false
     this.ranges = []
     this.markClasses = new Set()
+    this.MarkView = this.MarkView.bind(this)
   }
 
   addRange(range) {
@@ -46,11 +47,11 @@ class Span {
     }
   }
 
-  extractEnhancementViews() {
+  EnhancedMarkView(MarkView) {
     const enhancementViews = []
     const enhancedRanges = this.ranges.filter(s => s.enhancements)
     if (enhancedRanges.length === 0) {
-      return enhancementViews
+      return MarkView;
     }
 
     const spanProps = {
@@ -61,31 +62,38 @@ class Span {
       endIndex: this.endIndex,
     }
 
-    let key = 0
+    function wrapMarkView(Enhancement, range, spanProps, MarkView) {
+      return React.forwardRef((props, ref) => {
+        return <Enhancement {...props} range={range} {...spanProps} MarkView={MarkView} />
+      })
+    }
+
     for (const range of enhancedRanges) {
       for (const Enhancement of range.enhancements) {
-        enhancementViews.push(
-          <Enhancement key={key} range={range} {...spanProps} />
-        )
+        MarkView = wrapMarkView(Enhancement, range, spanProps, MarkView);
       }
-      key += 1
     }
-    return enhancementViews
+    return MarkView
+  }
+
+  MarkView(props, ref) {
+    props = {...props};
+    if (props.className) {
+      props.className = `${this.className} ${props.className}`;
+    } else {
+      props.className = this.className;
+    }
+
+    return (
+      <mark {...props}>{this.text}</mark>
+    )
   }
 
   render() {
     if (this.isMark) {
-      const props = {}
-      if (this.className) {
-        props.className = this.className
-      }
-      const enhancementViews = this.extractEnhancementViews()
-
+      const EnhancedMarkView = this.EnhancedMarkView(this.MarkView);
       return (
-        <mark key={this.beginIndex} {...props}>
-          {enhancementViews}
-          <mark>{this.text}</mark>
-        </mark>
+        <EnhancedMarkView key={this.beginIndex} />
       )
     } else {
       return <span key={this.beginIndex}>{this.text}</span>

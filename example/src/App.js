@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -12,24 +12,37 @@ function ToolTip(props) {
       {JSON.stringify(props, 0, 1)}
     </div>
   )
+  const overlayStyle = {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left:0,
+    right:0,
+    background: "transparent",
+    zIndex: 1,
+  }
+
   return (
-    <Tippy content={content} maxHeight="800px" maxWidth="800px">
-      <mark key={props.key} className={props.className} style={{zIndex: 1, backgroundColor: "transparent"}}></mark>
-    </Tippy>
+    <mark style={{position: "relative"}}>
+      <Tippy content={content} maxWidth="800px">
+        <mark style={overlayStyle}></mark>
+      </Tippy>
+      <props.MarkView />
+    </mark>
   )
 }
 
 
-// function MultiColor(props) {
-//   const [color, setColor] = useState(0xff8800);
-//   const colorText = `#${color.toString(16)}`
-// 
-//   useEffect(() => {
-//     const timer = setInterval(() => setColor(0x808080 | (color + 0x102030) % 0xFFFFFF), 200)
-//     return () => clearInterval(timer)
-//   })
-//   return <mark style={{width: "100%", height: "100%", backgroundColor: colorText}} />
-// }
+function MultiColor(props) {
+  const [color, setColor] = useState(0xff8800);
+  const colorText = `#${color.toString(16)}`
+
+  useEffect(() => {
+    const timer = setInterval(() => setColor(0x808080 | (color + 0x102030) % 0xFFFFFF), 200)
+    return () => clearInterval(timer)
+  })
+  return <props.MarkView style={{width: "100%", height: "100%", backgroundColor: colorText}} />
+}
 
 let data = [[
   "String",
@@ -152,13 +165,14 @@ let data = [[
   }`,
   [
     {
-      highlight: /[^ ]*berry/gi,
-      enhancement: undefined && ToolTip,
-      className: 'yellow',
+      highlight: 'blue',
+      enhancement: MultiColor,
+      className: 'blue',
     },
     {
-      highlight: 'blue',
-      className: 'blue',
+      highlight: /[^ ]*berry/gi,
+      enhancement: ToolTip,
+      className: 'yellow',
     },
   ]
 ]];
