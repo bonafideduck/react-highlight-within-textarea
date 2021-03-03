@@ -9,7 +9,7 @@ import 'tippy.js/dist/tippy.css';
 function ToolTip(props) {
   const content = (
     <div style={{whiteSpace: "pre"}}>
-      {JSON.stringify(props, 0, 1)}
+      {JSON.stringify(props.data, 0, 1)}
     </div>
   )
   const overlayStyle = {
@@ -127,10 +127,10 @@ let data = [[
     }
   ],
 ], [
-  "Coming Soon: Custom Object (with Enhancements)",
-  <span>The div behind the highlighted span can have enhancement javascript injected.</span>,
+  "Custom Object with Enhancements",
+  <span>The div behind the highlighted span can be wrapped in an enhancement.</span>,
   `Here's a blueberry. There's a strawberry.  I'm a little blue because there is a highlight bug where a blueberry's highlight gets split over line breaks incorrectly.  This makes me berry sad.
-But the blues go away when a newline is forced.`,
+But the blues go away after a newline is forced.`,
   `[
     {
       highlight: 'blue',
@@ -147,7 +147,7 @@ But the blues go away when a newline is forced.`,
   function ToolTip(props) {
     const content = (
       <div style={{whiteSpace: "pre"}}>
-        {JSON.stringify(props, 0, 1)}
+        {JSON.stringify(props.data, 0, 1)}
       </div>
     )
     const overlayStyle = {

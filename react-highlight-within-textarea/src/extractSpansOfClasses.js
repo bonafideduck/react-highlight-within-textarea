@@ -63,8 +63,19 @@ class Span {
     }
 
     function wrapMarkView(Enhancement, range, spanProps, MarkView) {
+      console.log("slice");
+      console.log(range);
+      console.log(MarkView);
+      const data = {
+        ...spanProps,
+        rangeBeginIndex: range[0],
+        rangeEndIndex: range[1]
+      }
+      if (range.className) {
+        data.className = range.className
+      }
       return React.forwardRef((props, ref) => {
-        return <Enhancement {...props} range={range} {...spanProps} MarkView={MarkView} />
+        return <Enhancement {...props} data={data} MarkView={MarkView} />
       })
     }
 
