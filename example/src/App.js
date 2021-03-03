@@ -129,7 +129,7 @@ let data = [[
 ], [
   "Custom Object with Enhancements",
   <span>The div behind the highlighted span can be wrapped in an enhancement.</span>,
-  `Here's a blueberry. There's a strawberry.  I'm a little blue because there is a highlight bug where a blueberry's highlight gets split over line breaks incorrectly.  This makes me berry sad.
+  `Here's a blueberry. There's a strawberry.  I'm a little blue because there is a highlight bug where a blueberry's highlight gets split over line breaks in Chrome incorrectly.  This makes me berry sad.
 But the blues go away after a newline is forced.`,
   `[
     {
