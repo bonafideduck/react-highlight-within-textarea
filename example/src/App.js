@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { HighlightWithinTextarea }  from './react-highlight-within-textarea'
+import NavBar from './NavBar.js'
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
@@ -243,7 +244,10 @@ const Example = ({title, text, initialValue, highlightText, highlight}) => {
 
 const App = () => {
   return (
+    <div>
+    <NavBar />
     <Container style={{maxWidth: 800, border: 20, margin: 'auto'}}>
+      <br />
       {
         data.map( (d) =>
           <Example
@@ -257,6 +261,7 @@ const App = () => {
         )
       }
     </Container>
+    </div>
   )
 }
 
