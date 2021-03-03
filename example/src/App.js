@@ -14,10 +14,8 @@ function ToolTip(props) {
   )
   const overlayStyle = {
     position: "absolute",
-    top: 0,
-    bottom: 0,
-    left:0,
-    right:0,
+    height: "50%",
+    width: "100%",
     background: "transparent",
     zIndex: 1,
   }
@@ -38,10 +36,10 @@ function MultiColor(props) {
   const colorText = `#${color.toString(16)}`
 
   useEffect(() => {
-    const timer = setInterval(() => setColor(0x808080 | (color + 0x102030) % 0xFFFFFF), 200)
+    const timer = setInterval(() => setColor(0x808080 | (color + 0x081018) % 0xFFFFFF), 200)
     return () => clearInterval(timer)
   })
-  return <props.MarkView style={{width: "100%", height: "100%", backgroundColor: colorText}} />
+  return <props.MarkView style={{backgroundColor: colorText}} />
 }
 
 let data = [[
@@ -131,37 +129,54 @@ let data = [[
 ], [
   "Coming Soon: Custom Object (with Enhancements)",
   <span>The div behind the highlighted span can have enhancement javascript injected.</span>,
-  `Here's a blueberry. There's a strawberry.`,
+  `Here's a blueberry. There's a strawberry.  I'm a little blue because there is a highlight bug where a blueberry's highlight gets split over line breaks incorrectly.  This makes me berry sad.
+But the blues go away when a newline is forced.`,
   `[
     {
+      highlight: 'blue',
+      enhancement: MultiColor,
+      className: 'blue',
+    },
+    {
       highlight: /[^ ]*berry/gi,
-      enhancement: undefined && ToolTip,
+      enhancement: ToolTip,
       className: 'yellow',
     },
   ]
-
+  
   function ToolTip(props) {
     const content = (
       <div style={{whiteSpace: "pre"}}>
         {JSON.stringify(props, 0, 1)}
       </div>
     )
+    const overlayStyle = {
+      position: "absolute",
+      height: "50%",
+      width: "100%",
+      background: "transparent",
+      zIndex: 1,
+    }
+  
     return (
-      <Tippy content={content} maxHeight="800px" maxWidth="800px">
-        <mark style={{zIndex: 1, backgroundColor: "transparent"}}></mark>
-      </Tippy>
+      <mark style={{position: "relative"}}>
+        <Tippy content={content} maxWidth="800px">
+          <mark style={overlayStyle}></mark>
+        </Tippy>
+        <props.MarkView />
+      </mark>
     )
   }
-
+  
   function MultiColor(props) {
     const [color, setColor] = useState(0xff8800);
     const colorText = \`#\${color.toString(16)}\`
-
+  
     useEffect(() => {
-      const timer = setInterval(() => setColor(0x808080 | (color + 0x102030) % 0xFFFFFF), 200)
+      const timer = setInterval(() => setColor(0x808080 | (color + 0x081018) % 0xFFFFFF), 200)
       return () => clearInterval(timer)
     })
-    return <span style={{width: "100%", height: "100%", backgroundColor: colorText}} />
+    return <props.MarkView style={{backgroundColor: colorText}} />
   }`,
   [
     {
