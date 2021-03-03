@@ -63,9 +63,6 @@ class Span {
     }
 
     function wrapMarkView(Enhancement, range, spanProps, MarkView) {
-      console.log("slice");
-      console.log(range);
-      console.log(MarkView);
       const data = {
         ...spanProps,
         rangeBeginIndex: range[0],
@@ -89,9 +86,9 @@ class Span {
 
   MarkView(props, ref) {
     props = {...props};
-    if (props.className) {
+    if (this.className && props.className) {
       props.className = `${this.className} ${props.className}`;
-    } else {
+    } else if (this.className) {
       props.className = this.className;
     }
 

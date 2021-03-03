@@ -24,9 +24,8 @@ export const HighlightWithinTextarea = ({value, onChange, highlight={}, classNam
   const handleScroll = event => {
     backdropRef.current.scrollTop = textareaRef.current.scrollTop;
     backdropRef.current.scrollLeft = textareaRef.current.scrollLeft;
-    console.log('handleScroll')
   };
-  const blockContainerScroll = event => { console.log('blockContainerScroll')};
+  const blockContainerScroll = handleScroll;
 
   return (
     <div className={containerClassName} style={containerStyle} onScroll={blockContainerScroll} >
