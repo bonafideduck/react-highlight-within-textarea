@@ -1,25 +1,26 @@
 {
   "files": {
     "main.css": "/react-highlight-within-textarea/static/css/main.28e3081b.chunk.css",
-    "main.js": "/react-highlight-within-textarea/static/js/main.139a843b.chunk.js",
-    "main.js.map": "/react-highlight-within-textarea/static/js/main.139a843b.chunk.js.map",
+    "main.js": "/react-highlight-within-textarea/static/js/main.bd9565d7.chunk.js",
+    "main.js.map": "/react-highlight-within-textarea/static/js/main.bd9565d7.chunk.js.map",
     "runtime-main.js": "/react-highlight-within-textarea/static/js/runtime-main.93255d8e.js",
     "runtime-main.js.map": "/react-highlight-within-textarea/static/js/runtime-main.93255d8e.js.map",
     "static/css/2.aafcb6fd.chunk.css": "/react-highlight-within-textarea/static/css/2.aafcb6fd.chunk.css",
-    "static/js/2.d41b0b88.chunk.js": "/react-highlight-within-textarea/static/js/2.d41b0b88.chunk.js",
-    "static/js/2.d41b0b88.chunk.js.map": "/react-highlight-within-textarea/static/js/2.d41b0b88.chunk.js.map",
+    "static/js/2.1527dbdb.chunk.js": "/react-highlight-within-textarea/static/js/2.1527dbdb.chunk.js",
+    "static/js/2.1527dbdb.chunk.js.map": "/react-highlight-within-textarea/static/js/2.1527dbdb.chunk.js.map",
     "index.html": "/react-highlight-within-textarea/index.html",
-    "precache-manifest.2ecf24baf333da2c27428fccbdfcde4d.js": "/react-highlight-within-textarea/precache-manifest.2ecf24baf333da2c27428fccbdfcde4d.js",
+    "precache-manifest.6e01bcfeb76d8d5d50bfc03081eb68b8.js": "/react-highlight-within-textarea/precache-manifest.6e01bcfeb76d8d5d50bfc03081eb68b8.js",
     "service-worker.js": "/react-highlight-within-textarea/service-worker.js",
     "static/css/2.aafcb6fd.chunk.css.map": "/react-highlight-within-textarea/static/css/2.aafcb6fd.chunk.css.map",
     "static/css/main.28e3081b.chunk.css.map": "/react-highlight-within-textarea/static/css/main.28e3081b.chunk.css.map",
-    "static/js/2.d41b0b88.chunk.js.LICENSE.txt": "/react-highlight-within-textarea/static/js/2.d41b0b88.chunk.js.LICENSE.txt"
+    "static/js/2.1527dbdb.chunk.js.LICENSE.txt": "/react-highlight-within-textarea/static/js/2.1527dbdb.chunk.js.LICENSE.txt",
+    "static/js/main.bd9565d7.chunk.js.LICENSE.txt": "/react-highlight-within-textarea/static/js/main.bd9565d7.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.93255d8e.js",
     "static/css/2.aafcb6fd.chunk.css",
-    "static/js/2.d41b0b88.chunk.js",
+    "static/js/2.1527dbdb.chunk.js",
     "static/css/main.28e3081b.chunk.css",
-    "static/js/main.139a843b.chunk.js"
+    "static/js/main.bd9565d7.chunk.js"
   ]
 }
