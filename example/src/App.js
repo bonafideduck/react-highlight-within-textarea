@@ -132,7 +132,7 @@ let data = [[
     }
   ],
 ], [
-  "Custom Object with Enhancements (coming soon)",
+  "Custom Object with Enhancements",
   <span>
   The div behind the highlighted span can be wrapped in an enhancement.
   This React view receives properties, <code>data</code> which contains 

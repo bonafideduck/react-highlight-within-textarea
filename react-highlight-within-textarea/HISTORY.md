@@ -1,5 +1,10 @@
 # HISTORY
 
+## V1.0.0 - 6-Mar-2021
+
+- Added the "enhancement" parameter to highlight to allow 
+    wrapping with decorators of the spans.
+
 ## V0.9.12 - 13-Oct-2020
 
 - Update package.json due to dependabot alerts for react.
