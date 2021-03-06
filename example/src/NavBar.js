@@ -13,21 +13,20 @@ export default function NavBar() {
   const npmjs="https://www.npmjs.com/package/react-highlight-within-textarea"
   
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand>
-        <div  className="h2">React Highlight Within Textarea</div>
-        
-      </Navbar.Brand>
-      <Nav>
+    <Navbar collapseOnSelect className="justify-content-between" expand="lg" bg="dark" variant="dark">
+      <div>
         <Nav.Link href={npmjs}>
           <i className="fab fa-npm" style={{color: "white", fontSize: "2em"}} />
         </Nav.Link>
-      </Nav>
-      <Nav>
+      </div>
+      <div>
+        <div  className="h2" style={{color: "white"}}>React Highlight Within Textarea</div>
+      </div>
+      <div>
         <Nav.Link href={github}>
           <i className="fab fa-github" style={{color: "white", fontSize: "2em"}} />
         </Nav.Link>
-      </Nav>
+      </div>
     </Navbar>
   )
 }

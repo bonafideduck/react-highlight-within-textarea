@@ -245,7 +245,7 @@ const Example = ({title, text, initialValue, highlightText, highlight}) => {
 const App = () => {
   return (
     <div style={{background: "gray"}}>
-    <Container style={{background: "white", maxWidth: 800, border: 20, margin: 'auto'}}>
+    <Container style={{background: "white", maxWidth: 800, padding: 20, border: "solid 20px gray", margin: 'auto'}}>
       <NavBar />
       <br />
       {
