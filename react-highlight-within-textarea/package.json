@@ -61,7 +61,7 @@
     "eslint-plugin-react": "^7.21.4",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^3.1.0",
-    "react-scripts": "^3.4.3",
+    "react-scripts": "^4.0.3",
     "react-test-renderer": "^16.14.0",
     "rewire": "^5.0.0",
     "rollup": "^2.30.0",

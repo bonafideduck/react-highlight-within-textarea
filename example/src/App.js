@@ -9,7 +9,11 @@ import 'tippy.js/dist/tippy.css';
 
 function ToolTip(props) {
   const content = (
-    <div style={{whiteSpace: "pre"}}>
+    <div style={{
+      whiteSpace: "pre", 
+      overflow: "hidden", 
+      textOverflow: "ellipsis"
+    }}>
       {JSON.stringify(props.data, 0, 1)}
     </div>
   )
@@ -23,7 +27,7 @@ function ToolTip(props) {
 
   return (
     <mark style={{position: "relative"}}>
-      <Tippy content={content} maxWidth="800px">
+      <Tippy content={content} maxWidth="400px">
         <mark style={overlayStyle}></mark>
       </Tippy>
       <props.MarkView />
@@ -156,9 +160,13 @@ But the blues go away after a newline is forced.`,
   
   function ToolTip(props) {
     const content = (
-      <div style={{whiteSpace: "pre"}}>
+      < style={{
+        whiteSpace: "pre", 
+        overflow: "hidden", 
+        textOverflow: "ellipsis"
+      }}>
         {JSON.stringify(props.data, 0, 1)}
-      </div>
+      </>
     )
     const overlayStyle = {
       position: "absolute",
@@ -170,7 +178,7 @@ But the blues go away after a newline is forced.`,
   
     return (
       <mark style={{position: "relative"}}>
-        <Tippy content={content} maxWidth="800px">
+        <Tippy content={content} maxWidth="400px">
           <mark style={overlayStyle}></mark>
         </Tippy>
         <props.MarkView />
