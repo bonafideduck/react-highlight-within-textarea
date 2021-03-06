@@ -244,9 +244,9 @@ const Example = ({title, text, initialValue, highlightText, highlight}) => {
 
 const App = () => {
   return (
-    <div>
-    <NavBar />
-    <Container style={{maxWidth: 800, border: 20, margin: 'auto'}}>
+    <div style={{background: "gray"}}>
+    <Container style={{background: "white", maxWidth: 800, border: 20, margin: 'auto'}}>
+      <NavBar />
       <br />
       {
         data.map( (d) =>
