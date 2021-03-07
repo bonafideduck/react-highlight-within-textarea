@@ -1,5 +1,8 @@
 # HISTORY
 
+## V1.0.1 - 6-Mar-2021
+- Fixed README.md to be included in distribution.
+
 ## V1.0.0 - 6-Mar-2021
 
 - Added the "enhancement" parameter to highlight to allow 
