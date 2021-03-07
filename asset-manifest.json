@@ -1,26 +1,24 @@
 {
   "files": {
-    "main.css": "/react-highlight-within-textarea/static/css/main.28e3081b.chunk.css",
-    "main.js": "/react-highlight-within-textarea/static/js/main.d720c05f.chunk.js",
-    "main.js.map": "/react-highlight-within-textarea/static/js/main.d720c05f.chunk.js.map",
-    "runtime-main.js": "/react-highlight-within-textarea/static/js/runtime-main.93255d8e.js",
-    "runtime-main.js.map": "/react-highlight-within-textarea/static/js/runtime-main.93255d8e.js.map",
-    "static/css/2.aafcb6fd.chunk.css": "/react-highlight-within-textarea/static/css/2.aafcb6fd.chunk.css",
-    "static/js/2.d3494f48.chunk.js": "/react-highlight-within-textarea/static/js/2.d3494f48.chunk.js",
-    "static/js/2.d3494f48.chunk.js.map": "/react-highlight-within-textarea/static/js/2.d3494f48.chunk.js.map",
+    "main.css": "/react-highlight-within-textarea/static/css/main.c068bbfa.chunk.css",
+    "main.js": "/react-highlight-within-textarea/static/js/main.36495bcc.chunk.js",
+    "main.js.map": "/react-highlight-within-textarea/static/js/main.36495bcc.chunk.js.map",
+    "runtime-main.js": "/react-highlight-within-textarea/static/js/runtime-main.43d276c2.js",
+    "runtime-main.js.map": "/react-highlight-within-textarea/static/js/runtime-main.43d276c2.js.map",
+    "static/css/2.2bebcbbf.chunk.css": "/react-highlight-within-textarea/static/css/2.2bebcbbf.chunk.css",
+    "static/js/2.e3f42e98.chunk.js": "/react-highlight-within-textarea/static/js/2.e3f42e98.chunk.js",
+    "static/js/2.e3f42e98.chunk.js.map": "/react-highlight-within-textarea/static/js/2.e3f42e98.chunk.js.map",
     "index.html": "/react-highlight-within-textarea/index.html",
-    "precache-manifest.d0e4acc1e85998815a80d6cf19c27203.js": "/react-highlight-within-textarea/precache-manifest.d0e4acc1e85998815a80d6cf19c27203.js",
-    "service-worker.js": "/react-highlight-within-textarea/service-worker.js",
-    "static/css/2.aafcb6fd.chunk.css.map": "/react-highlight-within-textarea/static/css/2.aafcb6fd.chunk.css.map",
-    "static/css/main.28e3081b.chunk.css.map": "/react-highlight-within-textarea/static/css/main.28e3081b.chunk.css.map",
-    "static/js/2.d3494f48.chunk.js.LICENSE.txt": "/react-highlight-within-textarea/static/js/2.d3494f48.chunk.js.LICENSE.txt",
-    "static/js/main.d720c05f.chunk.js.LICENSE.txt": "/react-highlight-within-textarea/static/js/main.d720c05f.chunk.js.LICENSE.txt"
+    "static/css/2.2bebcbbf.chunk.css.map": "/react-highlight-within-textarea/static/css/2.2bebcbbf.chunk.css.map",
+    "static/css/main.c068bbfa.chunk.css.map": "/react-highlight-within-textarea/static/css/main.c068bbfa.chunk.css.map",
+    "static/js/2.e3f42e98.chunk.js.LICENSE.txt": "/react-highlight-within-textarea/static/js/2.e3f42e98.chunk.js.LICENSE.txt",
+    "static/js/main.36495bcc.chunk.js.LICENSE.txt": "/react-highlight-within-textarea/static/js/main.36495bcc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.93255d8e.js",
-    "static/css/2.aafcb6fd.chunk.css",
-    "static/js/2.d3494f48.chunk.js",
-    "static/css/main.28e3081b.chunk.css",
-    "static/js/main.d720c05f.chunk.js"
+    "static/js/runtime-main.43d276c2.js",
+    "static/css/2.2bebcbbf.chunk.css",
+    "static/js/2.e3f42e98.chunk.js",
+    "static/css/main.c068bbfa.chunk.css",
+    "static/js/main.36495bcc.chunk.js"
   ]
 }
