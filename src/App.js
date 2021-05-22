@@ -1,22 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import HighlightWithinTextArea from './components/HighlightWithinTextarea'
 
 function App() {
+  const [value, setValue] = useState("The movie Bubba Gump was sad and happy");
+  const onChange = (value) => setValue(value);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <HighlightWithinTextArea highlight="bubba" value={value} onChange={onChange} />
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
