@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import HighlightWithinTextArea from './components/HighlightWithinTextarea'
+import HighlightWithinTextArea from './components/index'
 
 function App() {
   const [value, setValue] = useState("The movie Bubba Gump was sad and happy");
