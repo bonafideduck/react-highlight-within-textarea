@@ -1,8 +1,8 @@
-import React from 'react';
-import { useState, forwardRef, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import { Editor, EditorState, ContentState } from 'draft-js';
-import highlightToCompositeDecorator from './highlightToCompositeDecorator.js';
+import React from "react";
+import { useState, forwardRef, useMemo } from "react";
+import PropTypes from "prop-types";
+import { Editor, EditorState, ContentState } from "draft-js";
+import highlightToCompositeDecorator from "./highlightToCompositeDecorator.js";
 
 const HighlightWithinTextarea = forwardRef((props, ref) => {
   const { placeholder, highlight, onChange, value } = props;
@@ -21,10 +21,9 @@ const HighlightWithinTextarea = forwardRef((props, ref) => {
     editorState = EditorState.createWithContent(contentState);
   }
 
-  const decorator = useMemo(
-    () => highlightToCompositeDecorator(highlight),
-    [highlight],
-  );
+  const decorator = useMemo(() => highlightToCompositeDecorator(highlight), [
+    highlight,
+  ]);
   if (decorator !== editorState.decorator) {
     editorState = EditorState.set(editorState, {
       decorator: decorator,
@@ -63,7 +62,7 @@ HighlightWithinTextarea.propTypes = {
 
 HighlightWithinTextarea.defaultProps = {
   highlight: null,
-  placeholder: 'Enter some text...',
+  placeholder: "Enter some text...",
 };
 
 export default HighlightWithinTextarea;
