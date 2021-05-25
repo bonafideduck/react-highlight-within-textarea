@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState, forwardRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Editor, EditorState, ContentState } from 'draft-js';
