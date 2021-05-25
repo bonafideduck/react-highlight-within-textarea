@@ -1,3 +1,3 @@
-import HighlightWithinTextarea from './HighlightWithinTextarea';
+import HighlightWithinTextarea from "./HighlightWithinTextarea";
 
-export { HighlightWithinTextarea as default,  HighlightWithinTextarea };
+export { HighlightWithinTextarea as default, HighlightWithinTextarea };

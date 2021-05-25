@@ -1,13 +1,9 @@
-import React from 'react';
-import { CompositeDecorator } from 'draft-js';
-import getType from './getType.js';
+import React from "react";
+import { CompositeDecorator } from "draft-js";
+import getType from "./getType.js";
 
 const highlightToCompositeDecorator = (highlight) => {
-  let decorators = highlightToDecorator(
-    highlight,
-    undefined,
-    undefined,
-  );
+  let decorators = highlightToDecorator(highlight, undefined, undefined);
   const compositeDecorator = new CompositeDecorator(decorators);
   return compositeDecorator;
 };
@@ -16,23 +12,23 @@ const highlightToDecorator = (highlight, className, component) => {
   const type = getType(highlight);
 
   switch (type) {
-    case 'array':
+    case "array":
       return arrayToDecorator(highlight, className, component);
-    case 'function':
+    case "function":
       return functionToDecorator(highlight, className, component);
-    case 'regexp':
+    case "regexp":
       return regExpToDecorator(highlight, className, component);
-    case 'string':
+    case "string":
       return stringToDecorator(highlight, className, component);
-    case 'range':
+    case "range":
       return rangeToDecorator(highlight, className, component);
-    case 'custom':
+    case "custom":
       return customToDecorator(highlight);
     default:
       if (!highlight) {
         // do nothing for falsey values
       } else {
-        console.error('unrecognized highlight type');
+        console.error("unrecognized highlight type");
       }
       return [];
   }
@@ -40,7 +36,7 @@ const highlightToDecorator = (highlight, className, component) => {
 
 function arrayToDecorator(highlight, className, component) {
   const decorators = highlight.map((h) =>
-    highlightToDecorator(h, className, component),
+    highlightToDecorator(h, className, component)
   );
   return Array.prototype.concat.apply([], decorators);
 }
@@ -79,9 +75,7 @@ function stringToDecorator(highlight, className, component) {
     const textLower = text.toLowerCase();
     const strLower = highlight.toLowerCase();
     let index = 0;
-    while (
-      ((index = textLower.indexOf(strLower, index)), index !== -1)
-    ) {
+    while (((index = textLower.indexOf(strLower, index)), index !== -1)) {
       callback(index, index + strLower.length);
       index += strLower.length;
     }
@@ -124,9 +118,7 @@ const hwtComponent = (className, Component) => {
   if (Component) {
     return (props) => <Component className={className} {...props} />;
   } else {
-    return (props) => (
-      <mark className={className}>{props.children}</mark>
-    );
+    return (props) => <mark className={className}>{props.children}</mark>;
   }
 };
 
