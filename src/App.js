@@ -1,6 +1,7 @@
+import React from 'react';
 import './App.css';
 import { useState } from 'react';
-import HighlightWithinTextArea from './components/index'
+import HighlightWithinTextarea from './components/index'
 
 function App() {
   const [value, setValue] = useState("The movie Bubba Gump was sad and happy");
@@ -10,7 +11,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <p>
-          <HighlightWithinTextArea highlight="bubba" value={value} onChange={onChange} />
+          <HighlightWithinTextarea highlight="bubba" value={value} onChange={onChange} />
         </p>
       </header>
     </div>

@@ -2,6 +2,16 @@
 
 > React component for highlighting bits of text within a textarea
 
+## Coming soon:  A complete re-write using draft.js
+
+The current react-hightlight-within-textarea uses a trick of placing the 
+highlights behind a true textarea.  This has many issues with wrapping
+and font sizes getting the hightlight and textarea out of sync.
+This complete rewrite is a simple wrapper of draft-js to accomplish
+the same end result, but **much** less buggy.  Preview it
+with the 2.0.0-alpha series.
+
+
 [![NPM](https://img.shields.io/npm/v/react-highlight-within-textarea.svg)](https://www.npmjs.com/package/react-highlight-within-textarea) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) ![Yarn Test](https://github.com/bonafideduck/react-highlight-within-textarea/workflows/Yarn%20Test/badge.svg)
 
 
