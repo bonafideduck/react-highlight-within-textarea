@@ -1,7 +1,16 @@
 //import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Container from "react-bootstrap/Container";
 import NavBar from "./NavBar.js";
 import Example from "./Example.js";
+import Text from "./Text.js";
+import Regexp from "./Regexp.js";
+import Range from "./Range.js";
+import Array from "./Array.js";
+import Function from "./Function.js";
+import Object from "./Object.js";
+import Decorator from "./Decorator.js";
+
 //import Tippy from '@tippyjs/react';
 //import 'tippy.js/dist/tippy.css';
 
@@ -45,23 +54,6 @@ import Example from "./Example.js";
 // }
 
 let data = [
-  [
-    "String",
-    "Note that this is case-insensitive.",
-    "Potato potato tomato potato.",
-    `'potato'`,
-    "potato",
-  ],
-  [
-    "RegExp",
-    <span>
-      Don't forget the <code>g</code> (find all) and <code>i</code>{" "}
-      (case-insensitive) flags if you need them.
-    </span>,
-    "Dog, cat, chicken, goose. Dogs, cats, chickens, geese.",
-    `/dogs?|cats?|g(oo|ee)se/gi`,
-    /dogs?|cats?|g(oo|ee)se/gi,
-  ],
   [
     "Array of Two Numbers (Range)",
     "An array of exactly two numbers is treated as a range. Highlighting starts at the first character index (inclusive) and ends at the second character index (exclusive).",
@@ -229,6 +221,14 @@ const App = () => {
       >
         <NavBar />
         <br />
+        <Text />
+        <Regexp />
+        <Range />
+        <Array />
+        <Function />
+        <Object />
+        <Decorator />
+        <hr />
         {data.map((d) => (
           <Example
             key={d[0]}

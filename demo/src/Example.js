@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { HighlightWithinTextarea } from "./components";
+import { HighlightWithinTextarea } from "../../src";
 
 const crToBR = (text) => {
   let split = text.split("\n");
@@ -16,14 +16,13 @@ const crToBR = (text) => {
   return arr;
 };
 
-const Example = ({ title, text, initialValue, highlightText, highlight }) => {
+const Example = ({ children, initialValue, highlightText, highlight }) => {
   const [value, setValue] = useState(initialValue);
 
   return (
     <Row>
       <Col>
-        <h2>{title}</h2>
-        <p>{text}</p>
+        <p>{children}</p>
         <HighlightWithinTextarea
           value={value}
           highlight={highlight}
