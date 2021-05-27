@@ -1,60 +1,27 @@
 import React from "react";
-import { useState } from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import { HighlightWithinTextarea } from "./components";
+import Example from "./Example.js";
 
-const crToBR = (text) => {
-  let split = text.split("\n");
-  let arr = [];
-
-  for (const index in split) {
-    arr.push(<span key={index}>{split[index]}</span>);
-    arr.push(<br key={"b" + index} />);
-  }
-  arr.pop();
-  return arr;
-};
-
-const Example = ({ title, text, initialValue, highlightText, highlight }) => {
-  const [value, setValue] = useState(initialValue);
-
+const Paragraph = () => {
   return (
-    <Row>
-      <Col>
-        <h2>{title}</h2>
-        <p>{text}</p>
-        <HighlightWithinTextarea
-          value={value}
-          highlight={highlight}
-          onChange={(value) => setValue(value)}
-          rows="4"
-          containerStyle={{ width: "100%" }}
-          style={{ width: "100%" }}
-        />
-        <pre>
-          function Demo() {"{"}
-          <br />
-          {"  "}const highlight = {crToBR(highlightText)};<br />
-          <br />
-          {"  "}
-          {"return <HighlightWithinTextarea highlight={highlight} />;"}
-          <br />
-          {"}"}
-        </pre>
-      </Col>
-    </Row>
+    <span>
+      Don't forget the <code>g</code> (find all) and <code>i</code>{" "}
+      (case-insensitive) flags if you need them.
+    </span>
   );
 };
 
-const Text = () => {
-  return <Example
-    title="String"
-    text="Note that this is case-insensitive."
-    initialValue="Potato potato tomato potato."
-    highlightText={'"potato"'}
-    highlight="potato"
-  />
-}
+const Regexp = () => {
+  return (
+    <>
+      <Example
+        title="RegExp"
+        text={<Paragraph />}
+        initialValue="Dog, cat, chicken, goose. Dogs, cats, chickens, geese."
+        highlightText={`/dogs?|cats?|g(oo|ee)se/gi`}
+        highlight={/dogs?|cats?|g(oo|ee)se/gi}
+      />
+    </>
+  );
+};
 
-export default Text;
+export default Regexp;

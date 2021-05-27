@@ -54,16 +54,6 @@ import Decorator from "./Decorator.js";
 
 let data = [
   [
-    "RegExp",
-    <span>
-      Don't forget the <code>g</code> (find all) and <code>i</code>{" "}
-      (case-insensitive) flags if you need them.
-    </span>,
-    "Dog, cat, chicken, goose. Dogs, cats, chickens, geese.",
-    `/dogs?|cats?|g(oo|ee)se/gi`,
-    /dogs?|cats?|g(oo|ee)se/gi,
-  ],
-  [
     "Array of Two Numbers (Range)",
     "An array of exactly two numbers is treated as a range. Highlighting starts at the first character index (inclusive) and ends at the second character index (exclusive).",
     "abcdefgh",
