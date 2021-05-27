@@ -2,6 +2,14 @@
 import Container from "react-bootstrap/Container";
 import NavBar from "./NavBar.js";
 import Example from "./Example.js";
+import Text from "./Text.js";
+import Regexp from "./Regexp.js";
+import Range from "./Range.js";
+import Array from "./Array.js";
+import Function from "./Function.js";
+import Object from "./Object.js";
+import Decorator from "./Decorator.js";
+
 //import Tippy from '@tippyjs/react';
 //import 'tippy.js/dist/tippy.css';
 
@@ -45,13 +53,6 @@ import Example from "./Example.js";
 // }
 
 let data = [
-  [
-    "String",
-    "Note that this is case-insensitive.",
-    "Potato potato tomato potato.",
-    `'potato'`,
-    "potato",
-  ],
   [
     "RegExp",
     <span>
@@ -229,6 +230,14 @@ const App = () => {
       >
         <NavBar />
         <br />
+        <Text />
+        <Regexp />
+        <Range />
+        <Array />
+        <Function />
+        <Object />
+        <Decorator />
+        <hr />
         {data.map((d) => (
           <Example
             key={d[0]}
