@@ -1,90 +1,37 @@
 {
   "name": "react-highlight-within-textarea",
-  "description": "React component for highlighting bits of text within a textarea",
-  "author": "bonafideduck",
-  "license": "MIT",
-  "version": "2.0.0-alpha.5",
-  "private": false,
-  "dependencies": {
-    "draft-js": "^0.11.7"
-  },
-  "main": "dist/index.js",
+  "version": "1.0.0",
+  "description": "react-highlight-within-textarea React component",
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "files": [
-    "dist",
-    "README.md"
+    "css",
+    "es",
+    "lib",
+    "umd"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bonafideduck/react-highlight-within-textarea"
+  "scripts": {
+    "build": "nwb build-react-component",
+    "clean": "nwb clean-module && nwb clean-demo",
+    "prepublishOnly": "npm run build",
+    "start": "nwb serve-react-demo",
+    "test": "nwb test-react",
+    "test:coverage": "nwb test-react --coverage",
+    "test:watch": "nwb test-react --server"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "clean": "rimraf dist",
-    "compile": "npm run clean && cross-env NODE_ENV=production babel src/components --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,stories.js,__snapshots__"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ],
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "react": "^17.0.2"
   },
   "devDependencies": {
-    "@babel/cli": "^7.14.3",
-    "@babel/preset-env": "^7.14.2",
-    "@babel/preset-react": "^7.13.13",
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-essentials": "^6.2.9",
-    "@storybook/addon-links": "^6.2.9",
-    "@storybook/addon-storyshots": "^6.2.9",
-    "@storybook/node-logger": "^6.2.9",
-    "@storybook/preset-create-react-app": "^3.1.7",
-    "@storybook/react": "^6.2.9",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "@tippyjs/react": "^4.2.0",
-    "bootstrap": ">=4.3.1",
-    "cross-env": "^7.0.3",
-    "eslint": "^7.27.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-prettier": "^3.4.0",
-    "react": "^17.0.2",
-    "react-bootstrap": "^1.3.0",
-    "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
-    "react-test-renderer": "^17.0.2",
-    "web-vitals": "^1.0.1"
-  }
+    "nwb": "0.25.x",
+    "react": "*",
+    "react-dom": "^17.0.2"
+  },
+  "author": "",
+  "homepage": "",
+  "license": "MIT",
+  "repository": "",
+  "keywords": [
+    "react-component"
+  ]
 }
