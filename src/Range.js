@@ -1,19 +1,19 @@
 import React from "react";
 import Example from "./Example.js";
 
-const Text = () => {
+const Range = () => {
   return (
     <>
-      <h2>String</h2>
-      <span>Note that this is case-insensitive.</span>
+      <h2>Range</h2>
+      <span>Array of Two Numbers (Range)</span>
 
       <Example
         initialValue="Potato potato tomato potato."
-        highlightText={'"potato"'}
-        highlight="potato"
+        highlightText={"[2, 6]]"}
+        highlight={[2, 6]}
       />
     </>
   );
 };
 
-export default Text;
+export default Range;
