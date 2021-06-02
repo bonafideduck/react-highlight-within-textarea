@@ -5,7 +5,9 @@ module.exports = {
     umd: {
       global: 'HighlightWithinTextarea',
       externals: {
-        react: 'React'
+        react: 'React',
+        "draft-js": 'Draft',
+        "prop-types": 'PropTypes',
       }
     }
   }
