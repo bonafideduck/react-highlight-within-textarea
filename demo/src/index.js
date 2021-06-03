@@ -8,7 +8,7 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.querySelector('#demo')
+  document.querySelector("#demo")
 );
 
 // If you want to start measuring performance in your app, pass a function
