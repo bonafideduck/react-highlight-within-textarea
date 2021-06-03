@@ -1,4 +1,5 @@
 //import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Container from "react-bootstrap/Container";
 import NavBar from "./NavBar.js";
 import Example from "./Example.js";

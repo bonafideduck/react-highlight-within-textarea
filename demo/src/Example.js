@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { HighlightWithinTextarea } from "./components";
+import { HighlightWithinTextarea } from "../../src";
 
 const crToBR = (text) => {
   let split = text.split("\n");
