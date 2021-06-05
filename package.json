@@ -26,6 +26,7 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@tippyjs/react": "^4.2.5",
     "bootstrap": ">=4.3.1",
     "draft-js": "^0.11.7",
     "eslint": "^7.27.0",
@@ -35,7 +36,8 @@
     "prop-types": "^15.7.2",
     "react": "*",
     "react-bootstrap": "^1.3.0",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-syntax-highlighter": "^15.4.3"
   },
   "author": "bonafideduck",
   "homepage": "",

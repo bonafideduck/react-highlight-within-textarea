@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Editor, EditorState, ContentState } from "draft-js";
 import highlightToCompositeDecorator from "./highlightToCompositeDecorator.js";
 
-const HighlightWithinTextarea = forwardRef((props, ref) => {
+const HighlightWithinTextareaFunc = forwardRef((props, ref) => {
   const { placeholder, highlight, onChange, value } = props;
   let [onChangeState, setOnChangeState] = useState({
     prev: { value: null, editorState: null },
@@ -21,9 +21,10 @@ const HighlightWithinTextarea = forwardRef((props, ref) => {
     editorState = EditorState.createWithContent(contentState);
   }
 
-  const decorator = useMemo(() => highlightToCompositeDecorator(highlight), [
-    highlight,
-  ]);
+  const decorator = useMemo(
+    () => highlightToCompositeDecorator(highlight),
+    [highlight]
+  );
   if (decorator !== editorState.decorator) {
     editorState = EditorState.set(editorState, {
       decorator: decorator,
@@ -49,6 +50,22 @@ const HighlightWithinTextarea = forwardRef((props, ref) => {
   );
 });
 
+/*
+ * For some reason, exporting a FunctionComponent
+ * doesn't work when importing in codepen.io, so wrap
+ * it in a class component.
+ */
+class HighlightWithinTextarea extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
+
+  render() {
+    return <HighlightWithinTextareaFunc {...this.props} />;
+  }
+}
+
 HighlightWithinTextarea.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.string.isRequired,
@@ -56,6 +73,8 @@ HighlightWithinTextarea.propTypes = {
     PropTypes.string,
     PropTypes.array,
     PropTypes.instanceOf(RegExp),
+    PropTypes.object,
+    PropTypes.func,
   ]),
   placeholder: PropTypes.string,
 };

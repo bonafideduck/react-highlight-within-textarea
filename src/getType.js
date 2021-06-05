@@ -19,7 +19,9 @@ export default function getType(instance) {
     } else if (instance.hasOwnProperty("highlight")) {
       return "custom";
     }
-  } else if (type === "function" || type === "string") {
+  } else if (type === "function") {
+    return "strategy"
+  } else if (type === "string") {
     return type;
   }
 
