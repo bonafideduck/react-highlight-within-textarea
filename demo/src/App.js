@@ -53,24 +53,9 @@ import Decorator from "./Decorator.js";
 //   return <props.MarkView style={{backgroundColor: colorText}} />
 // }
 
-let data = [
-  [
-    "Array of Two Numbers (Range)",
-    "An array of exactly two numbers is treated as a range. Highlighting starts at the first character index (inclusive) and ends at the second character index (exclusive).",
-    "abcdefgh",
-    "[2, 6]",
-    [2, 6],
-  ],
-  [
-    "Array of Other Things",
-    "You can highlight multiple things, using any types mentioned here, with an array.",
-    "apple watermelon banana orange mango",
-    `[
-    'orange',
-    /ba(na)*/gi,
-    [0, 5]
-  ]`,
-    ["orange", /ba(na)*/gi, [0, 5]],
+// let data = [
+ 
+//     ["orange", /ba(na)*/gi, [0, 5]],
     // ], [
     //   "Function",
     //   <span>You can use a function for custom logic. It can return any of the types mentioned here. Return anything falsey (<code>false</code>, <code>undefined</code>, etc.) to indicate no highlighting. The current textarea input is provided to it for convenience.</span>,
@@ -204,8 +189,8 @@ let data = [
     //       className: 'yellow',
     //     },
     //   ]
-  ],
-];
+//   ],
+// ];
 
 const App = () => {
   return (
@@ -228,17 +213,6 @@ const App = () => {
         <Function />
         <Object />
         <Decorator />
-        <hr />
-        {data.map((d) => (
-          <Example
-            key={d[0]}
-            title={d[0]}
-            text={d[1]}
-            initialValue={d[2]}
-            highlightText={d[3]}
-            highlight={d[4]}
-          />
-        ))}
       </Container>
     </div>
   );
