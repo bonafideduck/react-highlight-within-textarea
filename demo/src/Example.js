@@ -3,26 +3,16 @@ import { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { HighlightWithinTextarea } from "../../src";
+import Code from "./Code";
 
-const crToBR = (text) => {
-  let split = text.split("\n");
-  let arr = [];
-
-  for (const index in split) {
-    arr.push(<span key={index}>{split[index]}</span>);
-    arr.push(<br key={"b" + index} />);
-  }
-  arr.pop();
-  return arr;
-};
-
-const Example = ({ children, initialValue, highlightText, highlight }) => {
+const Example = ({ title, text, initialValue, highlight, code }) => {
   const [value, setValue] = useState(initialValue);
-
+  code=code || "undefined";
   return (
     <Row>
       <Col>
-        <p>{children}</p>
+        <h2>{title}</h2>
+        {text}
         <HighlightWithinTextarea
           value={value}
           highlight={highlight}
@@ -31,16 +21,7 @@ const Example = ({ children, initialValue, highlightText, highlight }) => {
           containerStyle={{ width: "100%" }}
           style={{ width: "100%" }}
         />
-        <pre>
-          function Demo() {"{"}
-          <br />
-          {"  "}const highlight = {crToBR(highlightText)};<br />
-          <br />
-          {"  "}
-          {"return <HighlightWithinTextarea highlight={highlight} />;"}
-          <br />
-          {"}"}
-        </pre>
+        <Code code={code} />
       </Col>
     </Row>
   );

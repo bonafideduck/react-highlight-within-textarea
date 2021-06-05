@@ -4,12 +4,11 @@ import Example from "./Example.js";
 const Range = () => {
   return (
     <>
-      <h2>Range</h2>
-      <span>Array of Two Numbers (Range)</span>
-
       <Example
+        title="Range"
+        text="Array of two numbers (Range)"
         initialValue="Potato potato tomato potato."
-        highlightText={"[2, 6]]"}
+        code={`highlight={[2, 6]]}`}
         highlight={[2, 6]}
       />
     </>

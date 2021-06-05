@@ -3,7 +3,7 @@ import React from 'react';
 import Container from "react-bootstrap/Container";
 import NavBar from "./NavBar.js";
 import Example from "./Example.js";
-import Text from "./Text.js";
+import String from "./String.js";
 import Regexp from "./Regexp.js";
 import Range from "./Range.js";
 import Array from "./Array.js";
@@ -221,7 +221,7 @@ const App = () => {
       >
         <NavBar />
         <br />
-        <Text />
+        <String />
         <Regexp />
         <Range />
         <Array />
