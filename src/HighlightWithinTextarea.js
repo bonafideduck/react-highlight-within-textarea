@@ -21,9 +21,10 @@ const HighlightWithinTextareaFunc = forwardRef((props, ref) => {
     editorState = EditorState.createWithContent(contentState);
   }
 
-  const decorator = useMemo(() => highlightToCompositeDecorator(highlight), [
-    highlight,
-  ]);
+  const decorator = useMemo(
+    () => highlightToCompositeDecorator(highlight),
+    [highlight]
+  );
   if (decorator !== editorState.decorator) {
     editorState = EditorState.set(editorState, {
       decorator: decorator,
@@ -57,11 +58,11 @@ const HighlightWithinTextareaFunc = forwardRef((props, ref) => {
 class HighlightWithinTextarea extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {date: new Date()};
+    this.state = { date: new Date() };
   }
 
   render() {
-    return <HighlightWithinTextareaFunc {...this.props} />
+    return <HighlightWithinTextareaFunc {...this.props} />;
   }
 }
 
@@ -72,6 +73,8 @@ HighlightWithinTextarea.propTypes = {
     PropTypes.string,
     PropTypes.array,
     PropTypes.instanceOf(RegExp),
+    PropTypes.object,
+    PropTypes.func,
   ]),
   placeholder: PropTypes.string,
 };

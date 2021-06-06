@@ -108,7 +108,7 @@ function rangeToDecorator(highlight, className, component) {
 }
 
 function customToDecorator(highlight) {
-  let className = highlight.class;
+  let className = highlight.className;
   let component = highlight.component;
   let hl = highlight.highlight;
   return highlightToDecorator(hl, className, component);
