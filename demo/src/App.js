@@ -7,7 +7,7 @@ import String from "./String.js";
 import Regexp from "./Regexp.js";
 import Range from "./Range.js";
 import Array from "./Array.js";
-import Strategy from "./Function.js";
+import Strategy from "./Strategy.js";
 import Object from "./Object.js";
 import Decorator from "./Decorator.js";
 

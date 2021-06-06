@@ -14,8 +14,8 @@ const highlightToDecorator = (highlight, className, component) => {
   switch (type) {
     case "array":
       return arrayToDecorator(highlight, className, component);
-    case "function":
-      return functionToDecorator(highlight, className, component);
+    case "strategy":
+      return strategyToDecorator(highlight, className, component);
     case "regexp":
       return regExpToDecorator(highlight, className, component);
     case "string":
@@ -41,7 +41,7 @@ function arrayToDecorator(highlight, className, component) {
   return Array.prototype.concat.apply([], decorators);
 }
 
-function functionToDecorator(highlight, className, component) {
+function strategyToDecorator(highlight, className, component) {
   return [
     {
       strategy: highlight,

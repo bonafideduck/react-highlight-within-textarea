@@ -42,7 +42,7 @@ let text = (
   <span>
     You can use a strategy for custom logic. It exposes the underlying draft.js{" "}
     <a href="https://draftjs.org/docs/advanced-topics-decorators/">
-      compositDecorator
+      compositeDecorator
     </a>{" "}
     strategy.
   </span>
