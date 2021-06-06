@@ -5,9 +5,9 @@ const code = `function String() {
   const [value, setValue] = useState("Potato potato tomato potato.");
   return (
     <HighlightWithinTextarea 
+      highlight={"potato"}
       value={value}
       onChange={(value) => setValue(value)}
-      highlight={"potato"}
     />
   );
 }`;
@@ -16,7 +16,6 @@ const Text = () => {
   return (
     <>
       <h2></h2>
-      
 
       <Example
         title="String"

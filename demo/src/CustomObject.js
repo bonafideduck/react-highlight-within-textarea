@@ -10,20 +10,23 @@ const text = (
   </span>
 );
 
-const code = `highlight={[
-  {
-    highlight: 'strawberry',
-    className: 'red'
-  },
-  {
-    highlight: 'blueberry',
-    className: 'blue'
-  },
-  {
-    highlight: /ba(na)*/gi,
-    className: 'yellow'
-  }
-]}`;
+const code = `<HighlightWithinTextarea
+  highlight={[
+    {
+      highlight: 'strawberry',
+      className: 'red'
+    },
+    {
+      highlight: 'blueberry',
+      className: 'blue'
+    },
+    {
+      highlight: /ba(na)*/gi,
+      className: 'yellow'
+    }
+  ]}
+  ...
+/>`;
 
 const highlight = [
   {

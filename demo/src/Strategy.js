@@ -40,7 +40,8 @@ const getSmileyDayString = (contentBlock, callback, contentStat) => {
 
 let text = (
   <span>
-    You can use a strategy for custom logic. It exposes the underlying draft.js{" "}
+    You can use a strategy for custom logic. It exposes the underlying{" "}
+    <a href="https://draftjs.org/">Draft.js</a>{" "}
     <a href="https://draftjs.org/docs/advanced-topics-decorators/">
       compositeDecorator
     </a>{" "}

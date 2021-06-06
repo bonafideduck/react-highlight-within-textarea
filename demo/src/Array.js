@@ -1,11 +1,15 @@
 import React from "react";
 import Example from "./Example.js";
 
-let code = `highlight={[
-  'orange',
-  /ba(na)*/gi,
-  [0, 5]
-]}`;
+const code = `<HighlightWithinTextarea
+  highlight={[
+    'orange',
+    /ba(na)*/gi,
+    [0, 5]
+  ]}
+  ...
+/>`;
+
 const Array = () => {
   return (
     <>

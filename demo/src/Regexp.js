@@ -1,6 +1,11 @@
 import React from "react";
 import Example from "./Example.js";
 
+const code = `<HighlightWithinTextarea
+  highlight={/dogs?|cats?|g(oo|ee)se/gi}
+  ...
+/>`;
+
 const Regexp = () => {
   return (
     <Example
@@ -13,7 +18,7 @@ const Regexp = () => {
       }
       initialValue="Dog, cat, chicken, goose. Dogs, cats, chickens, geese."
       highlight={/dogs?|cats?|g(oo|ee)se/gi}
-      code={`highlight={/dogs?|cats?|g(oo|ee)se/gi}`}
+      code={code}
     />
   );
 };
