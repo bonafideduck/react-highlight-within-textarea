@@ -1,7 +1,7 @@
 import React from "react";
 import Example from "./Example.js";
 
-const code = `function Demo() {
+const code = `function String() {
   const [value, setValue] = useState("Potato potato tomato potato.");
   return (
     <HighlightWithinTextarea 
