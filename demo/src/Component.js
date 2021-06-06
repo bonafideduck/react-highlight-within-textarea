@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import Example from "./Example.js";
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 const text = (
   <span>
@@ -82,8 +84,6 @@ const code = `TBD`;
 //   ],
 // ];
 
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
 
 function ToolTip(props) {
   const content = (
@@ -113,7 +113,7 @@ function ToolTip(props) {
   )
 }
 
-function MultiColor(props) {
+const MultiColor = (props) => {
   const [color, setColor] = useState(0xff8800);
   const colorText = `#${color.toString(16)}`
 
@@ -121,13 +121,22 @@ function MultiColor(props) {
     const timer = setInterval(() => setColor(0x808080 | (color + 0x081018) % 0xFFFFFF), 200)
     return () => clearInterval(timer)
   })
+  return (
+    <mark {...props} style={{backgroundColor: colorText}}>
+      {props.children}
+    </mark>
+  );
   return <props.MarkView style={{backgroundColor: colorText}} />
 }
+
 
 const initialValue = `Here's a blueberry. There's a strawberry.  I'm a little blue because there is a highlight bug where a blueberry's highlight gets split over line breaks in Chrome incorrectly.  This makes me berry sad.
 But the blues go away after a newline is forced.`;
 
-const highlight = "rr";
+const highlight = [{
+  component: MultiColor,
+  highlight: "blue",
+}];
 
 const Decorator = () => {
   return (

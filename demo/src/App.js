@@ -2,14 +2,13 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import NavBar from "./NavBar.js";
-import Example from "./Example.js";
 import String from "./String.js";
 import Regexp from "./Regexp.js";
 import Range from "./Range.js";
 import Array from "./Array.js";
 import Strategy from "./Strategy.js";
 import CustomObject from "./CustomObject.js";
-import Decorator from "./Decorator.js";
+import Component from "./Component.js";
 import "./App.css";
 
 //import Tippy from '@tippyjs/react';
@@ -213,7 +212,7 @@ const App = () => {
         <Array />
         <Strategy />
         <CustomObject />
-        <Decorator />
+        <Component />
       </Container>
     </div>
   );
