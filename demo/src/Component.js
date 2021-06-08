@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Example from "./Example.js";
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 
 const text = (
   <span>
@@ -15,133 +15,90 @@ const text = (
   </span>
 );
 
-const code = `TBD`;
-//   `Here's a blueberry. There's a strawberry.  I'm a little blue because there is a highlight bug where a blueberry's highlight gets split over line breaks in Chrome incorrectly.  This makes me berry sad.
-// But the blues go away after a newline is forced.`,
-//   `[
-//     {
-//       highlight: 'blue',
-//       enhancement: MultiColor,
-//       className: 'blue',
-//     },
-//     {
-//       highlight: /[^ ]*berry/gi,
-//       enhancement: ToolTip,
-//       className: 'yellow',
-//     },
-//   ]
+const initialValue = `Here's a blueberry. There's a strawberry.  I'm a little blue because there is a highlight bug where a blueberry's highlight gets split over line breaks in Chrome incorrectly.  This makes me berry sad.
+But the blues go away after a newline is forced.`;
 
-//   function ToolTip(props) {
-//     const content = (
-//       < style={{
-//         whiteSpace: "pre",
-//         overflow: "hidden",
-//         textOverflow: "ellipsis"
-//       }}>
-//         {JSON.stringify(props.data, 0, 1)}
-//       </>
-//     )
-//     const overlayStyle = {
-//       position: "absolute",
-//       height: "50%",
-//       width: "100%",
-//       background: "transparent",
-//       zIndex: 1,
-//     }
-
-//     return (
-//       <mark style={{position: "relative"}}>
-//         <Tippy content={content} maxWidth="400px">
-//           <mark style={overlayStyle}></mark>
-//         </Tippy>
-//         <props.MarkView />
-//       </mark>
-//     )
-//   }
-
-//   function MultiColor(props) {
-//     const [color, setColor] = useState(0xff8800);
-//     const colorText = \`#\${color.toString(16)}\`
-
-//     useEffect(() => {
-//       const timer = setInterval(() => setColor(0x808080 | (color + 0x081018) % 0xFFFFFF), 200)
-//       return () => clearInterval(timer)
-//     })
-//     return <props.MarkView style={{backgroundColor: colorText}} />
-//   }`,
-//   [
-//     {
-//       highlight: 'blue',
-//       enhancement: MultiColor,
-//       className: 'blue',
-//     },
-//     {
-//       highlight: /[^ ]*berry/gi,
-//       enhancement: ToolTip,
-//       className: 'yellow',
-//     },
-//   ]
-//   ],
-// ];
-
-
-function ToolTip(props) {
-  const content = (
-    <div style={{
-      whiteSpace: "pre",
-      overflow: "hidden",
-      textOverflow: "ellipsis"
-    }}>
-      {JSON.stringify(props.data, 0, 1)}
-    </div>
-  )
-  const overlayStyle = {
-    position: "absolute",
-    height: "50%",
-    width: "100%",
-    background: "transparent",
-    zIndex: 1,
-  }
-
+const code = `const ToolTip = (props) => {
+  const objects = { contentState: "(...)", children: "(...)" };
+  const content = <pre>{JSON.stringify({ ...props, ...objects }, 0, 1)}</pre>;
   return (
-    <mark style={{position: "relative"}}>
-      <Tippy content={content} maxWidth="400px">
-        <mark style={overlayStyle}></mark>
-      </Tippy>
-      <props.MarkView />
-    </mark>
-  )
+    <Tippy content={content}>
+      <mark>{props.children}</mark>
+    </Tippy>
+  );
 }
 
 const MultiColor = (props) => {
   const [color, setColor] = useState(0xff8800);
-  const colorText = `#${color.toString(16)}`
+  const colorText = \`#\${color.toString(16)}\`;
 
   useEffect(() => {
-    const timer = setInterval(() => setColor(0x808080 | (color + 0x081018) % 0xFFFFFF), 200)
-    return () => clearInterval(timer)
-  })
+    const recolor = () => setColor(0x808080 | (color + 0x081018) % 0xffffff);
+    const timer = setInterval(recolor, 200);
+    return () => clearInterval(timer);
+  });
+  return <mark style={{ backgroundColor: colorText }}>{props.children}</mark>;
+};
+
+const highlight = [
+  {
+    component: MultiColor,
+    highlight: "blue",
+  },
+  {
+    highlight: /[^ ]*berry/gi,
+    component: ToolTip,
+    className: "yellow",
+  },
+];
+
+const ComponentDemo = (props) => {
   return (
-    <mark {...props} style={{backgroundColor: colorText}}>
-      {props.children}
-    </mark>
+    <HighlightWithinTextarea
+      highlight={highlight}
+      ...
+    />
   );
-  return <props.MarkView style={{backgroundColor: colorText}} />
-}
+};`;
 
+const ToolTip = (props) => {
+  const objects = { contentState: "(...)", children: "(...)" };
+  const content = <pre>{JSON.stringify({ ...props, ...objects }, 0, 1)}</pre>;
+  return (
+    <Tippy content={content}>
+      <mark>{props.children}</mark>
+    </Tippy>
+  );
+};
 
-const initialValue = `Here's a blueberry. There's a strawberry.  I'm a little blue because there is a highlight bug where a blueberry's highlight gets split over line breaks in Chrome incorrectly.  This makes me berry sad.
-But the blues go away after a newline is forced.`;
+const MultiColor = (props) => {
+  const [color, setColor] = useState(0xff8800);
+  const colorText = `#${color.toString(16)}`;
 
-const highlight = [{
-  component: MultiColor,
-  highlight: "blue",
-}];
+  useEffect(() => {
+    const recolor = () => setColor(0x808080 | (color + 0x081018) % 0xffffff);
+    const timer = setInterval(recolor, 200);
+    return () => clearInterval(timer);
+  });
+  return <mark style={{ backgroundColor: colorText }}>{props.children}</mark>;
+};
+
+const highlight = [
+  {
+    component: MultiColor,
+    highlight: "blue",
+  },
+  {
+    highlight: /[^ ]*berry/gi,
+    component: ToolTip,
+    className: "yellow",
+  },
+];
 
 const Decorator = () => {
   return (
     <Example
-      title={"Custom Object with Decorators"}
+      title={"Custom Object with Decorators Components"}
       text={text}
       initialValue={initialValue}
       highlight={highlight}
