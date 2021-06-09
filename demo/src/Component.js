@@ -5,13 +5,13 @@ import "tippy.js/dist/tippy.css";
 
 const text = (
   <span>
-    The div behind the highlighted span can be wrapped in an enhancement. This
-    React view receives properties, <code>data</code> which contains information
-    about the particular span and <code>MarkView</code> which is the highlight
-    that contains the text. If there are multiple enhancements, they will wrap
-    around each other. Also note that a single highlight may be broken into two
-    MarkViews if it overlaps two highlights. This effect can be seen below with
-    the two pairs of indexes.
+    You can use a component to wrap each highlighted span. 
+    This exposes the underlying{" "}
+    <a href="https://draftjs.org/">Draft.js</a>{" "}
+    <a href="https://draftjs.org/docs/advanced-topics-decorators/#decorator-components">
+      compositeDecorator
+    </a>{" "}
+    strategy. 
   </span>
 );
 
@@ -95,10 +95,10 @@ const highlight = [
   },
 ];
 
-const Decorator = () => {
+const Component = () => {
   return (
     <Example
-      title={"Custom Object with Decorators Components"}
+      title={"Custom Object with Decorator Components"}
       text={text}
       initialValue={initialValue}
       highlight={highlight}
@@ -107,4 +107,4 @@ const Decorator = () => {
   );
 };
 
-export default Decorator;
+export default Component;
