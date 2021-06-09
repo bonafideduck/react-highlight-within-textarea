@@ -1,5 +1,8 @@
 # HISTORY
 
+## 1.0.2 - 9-June-2021
+- Documentation changes to introduce 2.0 Alpha
+
 ## V1.0.1 - 6-Mar-2021
 - Fixed README.md to be included in distribution.
 
