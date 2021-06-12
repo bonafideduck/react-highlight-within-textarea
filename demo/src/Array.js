@@ -19,6 +19,7 @@ const Array = () => {
         initialValue="apple watermelon banana orange mango"
         code={code}
         highlight={["orange", /ba(na)*/gi, [0, 5]]}
+        codeSandbox="rhwta-regexp-5ois8"
       />
     </>
   );

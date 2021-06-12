@@ -8,19 +8,20 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-mark {
-  background-color: #d0bfff;
+.DraftEditor-editorContainer mark {
+  padding: 0;
+  background: #d0bfff;
 }
 
-mark.blue {
+.DraftEditor-editorContainer .blue {
   background-color: #a3daff;
 }
 
-mark.red {
+.DraftEditor-editorContainer .red {
   background-color: #ffc9c9;
 }
 
-mark.yellow {
+.DraftEditor-editorContainer .yellow {
   background-color: #ffec99;
 }
 

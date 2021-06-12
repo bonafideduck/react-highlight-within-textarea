@@ -15,6 +15,7 @@ const Range = () => {
         initialValue="apple watermelon banana orange mango"
         code={code}
         highlight={[2, 5]}
+        codeSandbox="rhwta-range-l85l2"
       />
     </>
   );

@@ -11,7 +11,8 @@ const code = `const getSmileyDayString = (contentBlock, callback, contentStat) =
     const textLower = text.toLowerCase();
     const dayString = dayStrings[new Date().getDay()];
     let index;
-    while (((index = textLower.indexOf(dayString, index)), index !== -1)) {
+    // eslint-disable-next-line no-cond-assign
+    while ((index = textLower.indexOf(dayString, index)) !== -1) {
       callback(index, index + dayString.length);
       index += dayString.length;
     }
@@ -20,7 +21,10 @@ const code = `const getSmileyDayString = (contentBlock, callback, contentStat) =
 
 const StrategyDemo(props) {
   ...
-  return <HighlightWithinTextarea highlight={getSmileyDayString} .../>;
+  return <HighlightWithinTextarea
+    highlight={getSmileyDayString}
+    ...
+  />;
 }`;
 
 const getSmileyDayString = (contentBlock, callback, contentStat) => {
@@ -31,7 +35,8 @@ const getSmileyDayString = (contentBlock, callback, contentStat) => {
     const textLower = text.toLowerCase();
     const dayString = dayStrings[new Date().getDay()];
     let index;
-    while (((index = textLower.indexOf(dayString, index)), index !== -1)) {
+    // eslint-disable-next-line no-cond-assign
+    while ((index = textLower.indexOf(dayString, index)) !== -1) {
       callback(index, index + dayString.length);
       index += dayString.length;
     }
@@ -59,6 +64,7 @@ const Strategy = () => {
         highlightText={'"potato"'}
         highlight={getSmileyDayString}
         code={code}
+        codeSandbox="rhwta-strategy-y1965"
       />
     </>
   );

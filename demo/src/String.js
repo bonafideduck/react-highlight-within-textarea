@@ -24,6 +24,7 @@ const Text = () => {
         highlightText={'"potato"'}
         highlight="potato"
         code={code}
+        codeSandbox="rhwta-string-cg4y9"
       />
     </>
   );

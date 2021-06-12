@@ -2,15 +2,13 @@
 
 > React component for highlighting bits of text within a textarea
 
-## Coming soon:  A complete re-write using draft.js
+## Version 2: A complete re-write using draft.js
 
-The current react-hightlight-within-textarea uses a trick of placing the 
-highlights behind a true textarea.  This has many issues with wrapping
+Version 1 of react-hightlight-within-textarea used a trick of placing the 
+highlights behind a true textarea.  This had many issues with wrapping
 and font sizes getting the hightlight and textarea out of sync.
 This complete rewrite is a simple wrapper of draft-js to accomplish
-the same end result, but **much** less buggy.  Preview it
-with the 2.0.0-alpha series.
-
+the same end result, but **much** less buggy.
 
 [![NPM](https://img.shields.io/npm/v/react-highlight-within-textarea.svg)](https://www.npmjs.com/package/react-highlight-within-textarea) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) ![Yarn Test](https://github.com/bonafideduck/react-highlight-within-textarea/workflows/Yarn%20Test/badge.svg)
 
@@ -19,6 +17,9 @@ with the 2.0.0-alpha series.
 
 ```bash
 npm install --save react-highlight-within-textarea
+```
+```
+yarn add react-highlight-within-textarea
 ```
 
 ## Usage
@@ -47,28 +48,28 @@ along with example code, on the
 
 ## Properties
 
-There are two notable elements within this component.  These are the
-textarea and its surrounding container which facilitates the highlighting.
-Unless otherwise specified below, properties will be applied to the textarea.
-Some customization (like width) will need to be applied to both.
+placeholder, highlight, onChange, value
 
 **value**: In React, you must supply a value and update it within the textarea.
 
 **onChange**: In React, you must supply an onChange function that updates the value.
 
+**ref**: Standard React ref.
+
+**placeholder**: The placeholder text to print when no value is set.
+
 **highlight**: This specifies what to highlght.  For more info, see the
 [demo page](https://bonafideduck.github.io/react-highlight-within-textarea/).
 
-**containerStyle**: Some textarea styles will also have to be applied to the surrounding
-container.  This directly applies to the container.
 
-**containerClassName**: This adds classes to the surrounding container.
+## Known and Potential Issues
 
-**all-other-properties**: All other properties will be directly applied to the textarea.
+The removal of a real textarea from this code and the switch to use a draft-js div may introduce issues that have not yet been validated.  But the improvements that version 2.0 outweights the potentiall issues and thus 2.0 has been released.  Below is a list of potential issues that still need to be explored.
 
-## Known Issues
-
-Currently, textarea resizing is not supported.
+* Form submit might not work.  To be honest, I don't even know how React works with form submit buttons.
+* Accessible Rich Internet Applications [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) may not be supported.
+* Reference forwarding probably works, but it hasn't been tested.
+* Tab between form elements may not work. I haven't looked into this at all.
 
 ## License
 
@@ -76,7 +77,5 @@ MIT © [bonafideduck](https://github.com/bonafideduck)
 
 ---
 
-* This component was created using [create-react-hook](https://github.com/hermanya/create-react-hook).
+* The 2.0 component was created using [nwb](https://github.com/insin/nwb)
 * This component is a port of the [highlight-within-textarea](https://www.npmjs.com/package/highlight-within-textarea) jquery plugin to React.
-* Special thanks to Joe Previte for [How to Release a Custom React Component, Hook, or Effect as an npm Package](https://www.twilio.com/blog/release-custom-react-component-hook-effect-npm-package).
-

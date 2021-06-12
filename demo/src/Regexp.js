@@ -19,6 +19,7 @@ const Regexp = () => {
       initialValue="Dog, cat, chicken, goose. Dogs, cats, chickens, geese."
       highlight={/dogs?|cats?|g(oo|ee)se/gi}
       code={code}
+      codeSandbox="rhwta-regexp-5ois8"
     />
   );
 };

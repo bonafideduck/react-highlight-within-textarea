@@ -1,0 +1,23 @@
+# This workflow will run tests using node
+
+name: Yarn Test
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12
+      - run: yarn add --dev react@^16.14.0
+        working-directory: react-highlight-within-textarea
+      - run: yarn install
+        working-directory: react-highlight-within-textarea
+      - run: yarn test
+        working-directory: react-highlight-within-textarea
+

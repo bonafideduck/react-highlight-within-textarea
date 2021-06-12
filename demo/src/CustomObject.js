@@ -50,9 +50,9 @@ const Text = () => {
       title="Custom Object with Class Name"
       text={text}
       initialValue="Here's a blueberry. There's a strawberry. Surprise, it's a banananana!"
-      highlightText={'"potato"'}
       highlight={highlight}
       code={code}
+      codeSandbox="rhwta-customobject-plw96"
     />
   );
 };

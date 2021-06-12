@@ -1,10 +1,9 @@
 import React from "react";
 import Navbar from "react-bootstrap/NavBar";
-// eslint-disable-next-line
 import Nav from "react-bootstrap/Nav";
-// eslint-disable-next-line
-import NavDropdown from "react-bootstrap/NavDropdown";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faNpm, faGithub } from "@fortawesome/free-brands-svg-icons";
 
 export default function NavBar() {
   // eslint-disable-next-line
@@ -23,8 +22,8 @@ export default function NavBar() {
     >
       <div>
         <Nav.Link href={npmjs}>
-          <i
-            className="fab fa-npm"
+          <FontAwesomeIcon
+            icon={faNpm}
             style={{ color: "white", fontSize: "2em" }}
           />
         </Nav.Link>
@@ -36,8 +35,8 @@ export default function NavBar() {
       </div>
       <div>
         <Nav.Link href={github}>
-          <i
-            className="fab fa-github"
+          <FontAwesomeIcon
+            icon={faGithub}
             style={{ color: "white", fontSize: "2em" }}
           />
         </Nav.Link>
