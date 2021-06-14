@@ -4,7 +4,7 @@ name: Yarn Test
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
