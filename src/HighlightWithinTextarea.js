@@ -2,40 +2,53 @@ import React from "react";
 import { useState, forwardRef, useMemo } from "react";
 import PropTypes from "prop-types";
 import { Editor, EditorState, ContentState } from "draft-js";
-import highlightToCompositeDecorator from "./highlightToCompositeDecorator.js";
+import createDecorator from "./createDecorator.js";
 
 const HighlightWithinTextareaFunc = forwardRef((props, ref) => {
   const { placeholder, highlight, onChange, value } = props;
   let [onChangeState, setOnChangeState] = useState({
     prev: { value: null, editorState: null },
-    next: { value: null, editorState: null },
+    next: {
+      value: value,
+      editorState: EditorState.createWithContent(
+        ContentState.createFromText(value)
+      ),
+    },
   });
 
   let editorState;
+
   if (value === onChangeState.next.value) {
+    // Initial call or the parent onChange accepted this new value.
     editorState = onChangeState.next.editorState;
   } else if (value === onChangeState.prev.value) {
+    // The parent onChange refused or hasn't yet gotten the new value.
     editorState = onChangeState.prev.editorState;
   } else {
+    // The parent chose an entirely new value. Update previous.
     const contentState = ContentState.createFromText(value);
-    editorState = EditorState.createWithContent(contentState);
+    editorState = EditorState.push(
+      onChangeState.prev.editorState,
+      ContentState,
+      "change-block-data"
+    );
   }
+  let contentState = editorState.getCurrentContent();
 
   const decorator = useMemo(
-    () => highlightToCompositeDecorator(highlight),
-    [highlight]
+    () => createDecorator(contentState, highlight, value),
+    [contentState, highlight, value]
   );
-  if (decorator !== editorState.decorator) {
-    editorState = EditorState.set(editorState, {
-      decorator: decorator,
-    });
-  }
 
-  const onDraftChange = (editorState) => {
-    const value = editorState.getCurrentContent().getPlainText();
+  editorState = EditorState.set(editorState, {
+    decorator: decorator,
+  });
+
+  const onDraftChange = (nextEditorState) => {
+    const nextValue = editorState.getCurrentContent().getPlainText();
     setOnChangeState({
-      prev: onChangeState.next,
-      next: { value: value, editorState: editorState },
+      prev: { value: value, editorState: editorState },
+      next: { value: nextValue, editorState: nextEditorState },
     });
     onChange(value);
   };
