@@ -51,12 +51,9 @@ const extractBlockData = (contentState, text) => {
     let blockStart = text.indexOf(blockText[0], blockEnd);
     blockEnd = blockStart + blockLength;
     blockData.push({
-      text: text,
-      blockText: text.slice(blockStart, blockEnd),
       blockStart: blockStart,
       blockEnd: blockEnd,
-      blockLength: blockLength,
-      blockNumber: blockNumber,
+      blockText: text.slice(blockStart, blockEnd),
       block: block,
     });
   }
@@ -74,11 +71,12 @@ const breakSpansByBlocks = (contentState, matches, text) => {
       if (block.blockEnd < match.matchStart) {
         continue;
       }
-      const spanStart= Math.max(match.matchStart, block.blockStart)
-      const spanEnd= Math.min(match.matchEnd, block.blockEnd)
-      const spanText= text.slice(spanStart, spanEnd)
+      const spanStart = Math.max(match.matchStart, block.blockStart);
+      const spanEnd = Math.min(match.matchEnd, block.blockEnd);
+      const spanText = text.slice(spanStart, spanEnd);
 
       newSpans.push({
+        text: text,
         ...match,
         ...block,
         spanStart: spanStart,

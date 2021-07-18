@@ -4,18 +4,6 @@ import PropTypes from "prop-types";
 import { Editor, EditorState, ContentState } from "draft-js";
 import createDecorator from "./createDecorator.js";
 
-let uid = (() => {
-  let map = new Map();
-  return (value) => {
-    let retval = map.get(value);
-    if (retval == undefined) {
-      retval = map.size
-      map.set(value, retval);
-    }
-    return retval;
-  };
-})();
-
 const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
   const { placeholder, highlight, onChange, value } = props;
   const [, forceUpdate] = React.useState();
@@ -24,13 +12,20 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
   if (!ref.current) {
     // First time
     ref.current = EditorState.createWithContent(
-      ContentState.createFromText(value))
+      ContentState.createFromText(value)
+    );
     ref.pending = null;
-  } else if (ref.pending && value === ref.pending.getCurrentContent().getPlainText()) {
+  } else if (
+    ref.pending &&
+    value === ref.pending.getCurrentContent().getPlainText()
+  ) {
     // The pending value was accepted by parent.
     ref.current = ref.pending;
     ref.pending = null;
-  } else if (ref.current && value === ref.current.getCurrentContent().getPlainText()) {
+  } else if (
+    ref.current &&
+    value === ref.current.getCurrentContent().getPlainText()
+  ) {
     // The parent blocked the onChange()
     ref.pending = null;
   } else {
@@ -44,7 +39,7 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
     ref.pending = null;
   }
 
-  const contentState = ref.current.getCurrentContent()
+  const contentState = ref.current.getCurrentContent();
   const decorator = useMemo(
     () => createDecorator(contentState, highlight, value),
     [contentState, highlight, value]
@@ -55,12 +50,12 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
   });
 
   const onDraftChange = (nextEditorState) => {
-    const changeType = nextEditorState.getLastChangeType()
+    const changeType = nextEditorState.getLastChangeType();
     if (changeType === null) {
       // This is a non-textual change.  Just save the new state.
-      ref.current = nextEditorState
+      ref.current = nextEditorState;
       forceUpdate({});
-      return
+      return;
     }
 
     const nextValue = nextEditorState.getCurrentContent().getPlainText();
