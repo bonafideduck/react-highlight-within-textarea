@@ -1,5 +1,10 @@
 # HISTORY
 
+## 2.1.0 - 18-July-2021
+- Fixed #39, Array of Two Numbers (Range) highlights on multiple rows, when new lines are used in the text
+- [Not backwards compatible] Changed strategy function profile to receive the text and not the draftJS ContentState
+- [Not backwards compatible] Changed parameters supplied to the Decorator Components to not expose draftJS data
+
 ## 2.0.0 - 14-June-2021
 - Draft-js based rewrite
 

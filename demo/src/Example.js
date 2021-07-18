@@ -21,6 +21,7 @@ const Example = ({
     height: "60px",
     overflow: "scroll",
   };
+
   return (
     <Row>
       <Col>
@@ -30,7 +31,7 @@ const Example = ({
           <HighlightWithinTextarea
             value={value}
             highlight={highlight}
-            onChange={(value) => setValue(value)}
+            onChange={setValue}
             rows="4"
             containerStyle={{ width: "100%" }}
             style={{ width: "100%" }}

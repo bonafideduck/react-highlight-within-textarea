@@ -59,7 +59,7 @@ const ComponentDemo = (props) => {
 };`;
 
 const ToolTip = (props) => {
-  const objects = { contentState: "(...)", children: "(...)" };
+  const objects = { children: "(...)" };
   const content = <pre>{JSON.stringify({ ...props, ...objects }, 0, 1)}</pre>;
   return (
     <Tippy content={content}>

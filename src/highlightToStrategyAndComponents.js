@@ -1,14 +1,7 @@
 import React from "react";
-import { CompositeDecorator } from "draft-js";
 import getType from "./getType.js";
 
-const highlightToCompositeDecorator = (highlight) => {
-  let decorators = highlightToDecorator(highlight, undefined, undefined);
-  const compositeDecorator = new CompositeDecorator(decorators);
-  return compositeDecorator;
-};
-
-const highlightToDecorator = (highlight, className, component) => {
+const highlightToStrategyAndComponents = (highlight, className, component) => {
   const type = getType(highlight);
 
   switch (type) {
@@ -36,7 +29,7 @@ const highlightToDecorator = (highlight, className, component) => {
 
 function arrayToDecorator(highlight, className, component) {
   const decorators = highlight.map((h) =>
-    highlightToDecorator(h, className, component)
+    highlightToStrategyAndComponents(h, className, component)
   );
   return Array.prototype.concat.apply([], decorators);
 }
@@ -51,8 +44,7 @@ function strategyToDecorator(highlight, className, component) {
 }
 
 function regExpToDecorator(highlight, className, component) {
-  const regExpStrategy = (contentBlock, callback, contentState) => {
-    const text = contentBlock.getText();
+  const regExpStrategy = (text, callback) => {
     let matchArr, start;
     while ((matchArr = highlight.exec(text)) !== null) {
       start = matchArr.index;
@@ -69,9 +61,7 @@ function regExpToDecorator(highlight, className, component) {
 }
 
 function stringToDecorator(highlight, className, component) {
-  const stringStrategy = (contentBlock, callback, callbackState) => {
-    const text = contentBlock.getText();
-
+  const stringStrategy = (text, callback) => {
     const textLower = text.toLowerCase();
     const strLower = highlight.toLowerCase();
     let index = 0;
@@ -90,8 +80,7 @@ function stringToDecorator(highlight, className, component) {
 }
 
 function rangeToDecorator(highlight, className, component) {
-  const rangeStrategy = (contentBlock, callback, callbackState) => {
-    const text = contentBlock.getText();
+  const rangeStrategy = (text, callback) => {
     const low = highlight[0];
     const high = highlight[1];
     if (low < high && low >= 0 && high < text.length) {
@@ -111,7 +100,7 @@ function customToDecorator(highlight) {
   let className = highlight.className;
   let component = highlight.component;
   let hl = highlight.highlight;
-  return highlightToDecorator(hl, className, component);
+  return highlightToStrategyAndComponents(hl, className, component);
 }
 
 const hwtComponent = (className, Component) => {
@@ -122,4 +111,4 @@ const hwtComponent = (className, Component) => {
   }
 };
 
-export default highlightToCompositeDecorator;
+export default highlightToStrategyAndComponents;

@@ -1,51 +1,74 @@
 import React from "react";
-import { useState, forwardRef, useMemo } from "react";
+import { useState, forwardRef, useRef, useMemo } from "react";
 import PropTypes from "prop-types";
 import { Editor, EditorState, ContentState } from "draft-js";
-import highlightToCompositeDecorator from "./highlightToCompositeDecorator.js";
+import createDecorator from "./createDecorator.js";
 
-const HighlightWithinTextareaFunc = forwardRef((props, ref) => {
+const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
   const { placeholder, highlight, onChange, value } = props;
-  let [onChangeState, setOnChangeState] = useState({
-    prev: { value: null, editorState: null },
-    next: { value: null, editorState: null },
+  const [, forceUpdate] = React.useState();
+  const ref = useRef({}).current;
+
+  if (!ref.current) {
+    // First time
+    ref.current = EditorState.createWithContent(
+      ContentState.createFromText(value)
+    );
+    ref.pending = null;
+  } else if (
+    ref.pending &&
+    value === ref.pending.getCurrentContent().getPlainText()
+  ) {
+    // The pending value was accepted by parent.
+    ref.current = ref.pending;
+    ref.pending = null;
+  } else if (
+    ref.current &&
+    value === ref.current.getCurrentContent().getPlainText()
+  ) {
+    // The parent blocked the onChange()
+    ref.pending = null;
+  } else {
+    // The parent chose an entirely new value. Update previous.
+    const contentState = ContentState.createFromText(value);
+    ref.current = EditorState.push(
+      ref.current,
+      ContentState,
+      "insert-fragment"
+    );
+    ref.pending = null;
+  }
+
+  const contentState = ref.current.getCurrentContent();
+  const decorator = useMemo(
+    () => createDecorator(contentState, highlight, value),
+    [contentState, highlight, value]
+  );
+
+  ref.current = EditorState.set(ref.current, {
+    decorator: decorator,
   });
 
-  let editorState;
-  if (value === onChangeState.next.value) {
-    editorState = onChangeState.next.editorState;
-  } else if (value === onChangeState.prev.value) {
-    editorState = onChangeState.prev.editorState;
-  } else {
-    const contentState = ContentState.createFromText(value);
-    editorState = EditorState.createWithContent(contentState);
-  }
+  const onDraftChange = (nextEditorState) => {
+    const changeType = nextEditorState.getLastChangeType();
+    if (changeType === null) {
+      // This is a non-textual change.  Just save the new state.
+      ref.current = nextEditorState;
+      forceUpdate({});
+      return;
+    }
 
-  const decorator = useMemo(
-    () => highlightToCompositeDecorator(highlight),
-    [highlight]
-  );
-  if (decorator !== editorState.decorator) {
-    editorState = EditorState.set(editorState, {
-      decorator: decorator,
-    });
-  }
-
-  const onDraftChange = (editorState) => {
-    const value = editorState.getCurrentContent().getPlainText();
-    setOnChangeState({
-      prev: onChangeState.next,
-      next: { value: value, editorState: editorState },
-    });
-    onChange(value);
+    const nextValue = nextEditorState.getCurrentContent().getPlainText();
+    ref.pending = nextEditorState;
+    onChange(nextValue, changeType);
   };
 
   return (
     <Editor
-      editorState={editorState}
+      editorState={ref.current}
       onChange={onDraftChange}
       placeholder={placeholder}
-      ref={ref}
+      ref={fwdRef}
     />
   );
 });

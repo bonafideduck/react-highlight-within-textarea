@@ -1,9 +1,8 @@
 import React from "react";
 import Example from "./Example.js";
 
-const code = `const getSmileyDayString = (contentBlock, callback, contentStat) => {
+const code = `const getSmileyDayString = (text, callback) => {
   const dayStrings = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-  const text = contentBlock.getText();
 
   // Do nothing if there is not a smiley.
   if (text.indexOf(":)") !== -1) {
@@ -27,9 +26,8 @@ const StrategyDemo(props) {
   />;
 }`;
 
-const getSmileyDayString = (contentBlock, callback, contentStat) => {
+const getSmileyDayString = (text, callback) => {
   const dayStrings = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-  const text = contentBlock.getText();
 
   if (text.indexOf(":)") !== -1) {
     const textLower = text.toLowerCase();
@@ -45,12 +43,13 @@ const getSmileyDayString = (contentBlock, callback, contentStat) => {
 
 let text = (
   <span>
-    You can use a strategy for custom logic. It exposes the underlying{" "}
-    <a href="https://draftjs.org/">Draft.js</a>{" "}
+    You can use a strategy for custom logic. It is very similar to the
+    underlying <a href="https://draftjs.org/">Draft.js</a>{" "}
     <a href="https://draftjs.org/docs/advanced-topics-decorators/">
       compositeDecorator
     </a>{" "}
-    strategy.
+    strategy except that the strategy receives the entire string and not the
+    underlying draftjs state.
   </span>
 );
 
