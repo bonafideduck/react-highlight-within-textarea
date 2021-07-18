@@ -43,12 +43,13 @@ const getSmileyDayString = (text, callback) => {
 
 let text = (
   <span>
-    You can use a strategy for custom logic. It exposes the underlying{" "}
-    <a href="https://draftjs.org/">Draft.js</a>{" "}
+    You can use a strategy for custom logic. It is very similar to the
+    underlying <a href="https://draftjs.org/">Draft.js</a>{" "}
     <a href="https://draftjs.org/docs/advanced-topics-decorators/">
       compositeDecorator
     </a>{" "}
-    strategy.
+    strategy except that the strategy receives the entire string and not the
+    underlying draftjs state.
   </span>
 );
 

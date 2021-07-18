@@ -21,65 +21,51 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
   const [, forceUpdate] = React.useState();
   const ref = useRef({}).current;
 
-  // console.log([
-  //   "ocs",
-  //   value,
-  //   onChangeState.prev.value,
-  //   onChangeState.next.value,
-  // ]);
-  console.log("HWTA", value)
   if (!ref.current) {
     // First time
     ref.current = EditorState.createWithContent(
       ContentState.createFromText(value))
     ref.pending = null;
-    console.log("case 0", uid(ref.pending), uid(ref.current));
   } else if (ref.pending && value === ref.pending.getCurrentContent().getPlainText()) {
     // The pending value was accepted by parent.
     ref.current = ref.pending;
     ref.pending = null;
-    console.log("case 1", uid(ref.pending), uid(ref.current));
   } else if (ref.current && value === ref.current.getCurrentContent().getPlainText()) {
     // The parent blocked the onChange()
     ref.pending = null;
-    console.log("case 2", uid(ref.pending), uid(ref.current));
   } else {
     // The parent chose an entirely new value. Update previous.
     const contentState = ContentState.createFromText(value);
     ref.current = EditorState.push(
       ref.current,
       ContentState,
-      "change-block-data"
+      "insert-fragment"
     );
     ref.pending = null;
-    console.log("case 3", uid(ref.pending), uid(ref.current));
   }
 
-  //const contentState = ref.current.getCurrentContent()
-  //
-  // const decorator = useMemo(
-  //   () => createDecorator(contentState, highlight, value),
-  //   [contentState, highlight, value]
-  // );
+  const contentState = ref.current.getCurrentContent()
+  const decorator = useMemo(
+    () => createDecorator(contentState, highlight, value),
+    [contentState, highlight, value]
+  );
 
-  // ref.current = EditorState.set(ref.current, {
-  //   decorator: decorator,
-  // });
+  ref.current = EditorState.set(ref.current, {
+    decorator: decorator,
+  });
 
   const onDraftChange = (nextEditorState) => {
     const changeType = nextEditorState.getLastChangeType()
     if (changeType === null) {
       // This is a non-textual change.  Just save the new state.
-      console.log("onDraftChange: null changetype", uid(ref.pending), uid(ref.current))
       ref.current = nextEditorState
       forceUpdate({});
       return
     }
 
     const nextValue = nextEditorState.getCurrentContent().getPlainText();
-    console.log("onDraftChange called: ", uid(ref.pending), uid(ref.current), nextValue)
     ref.pending = nextEditorState;
-    onChange(nextValue);
+    onChange(nextValue, changeType);
   };
 
   return (
