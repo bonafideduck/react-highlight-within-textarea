@@ -1,64 +1,93 @@
 import React from "react";
-import { useState, forwardRef, useMemo } from "react";
+import { useState, forwardRef, useRef, useMemo } from "react";
 import PropTypes from "prop-types";
 import { Editor, EditorState, ContentState } from "draft-js";
 import createDecorator from "./createDecorator.js";
 
-const HighlightWithinTextareaFunc = forwardRef((props, ref) => {
+let uid = (() => {
+  let map = new Map();
+  return (value) => {
+    let retval = map.get(value);
+    if (retval == undefined) {
+      retval = map.size
+      map.set(value, retval);
+    }
+    return retval;
+  };
+})();
+
+const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
   const { placeholder, highlight, onChange, value } = props;
-  let [onChangeState, setOnChangeState] = useState({
-    prev: { value: null, editorState: null },
-    next: {
-      value: value,
-      editorState: EditorState.createWithContent(
-        ContentState.createFromText(value)
-      ),
-    },
-  });
+  const [, forceUpdate] = React.useState();
+  const ref = useRef({}).current;
 
-  let editorState;
-
-  if (value === onChangeState.next.value) {
-    // Initial call or the parent onChange accepted this new value.
-    editorState = onChangeState.next.editorState;
-  } else if (value === onChangeState.prev.value) {
-    // The parent onChange refused or hasn't yet gotten the new value.
-    editorState = onChangeState.prev.editorState;
+  // console.log([
+  //   "ocs",
+  //   value,
+  //   onChangeState.prev.value,
+  //   onChangeState.next.value,
+  // ]);
+  console.log("HWTA", value)
+  if (!ref.current) {
+    // First time
+    ref.current = EditorState.createWithContent(
+      ContentState.createFromText(value))
+    ref.pending = null;
+    console.log("case 0", uid(ref.pending), uid(ref.current));
+  } else if (ref.pending && value === ref.pending.getCurrentContent().getPlainText()) {
+    // The pending value was accepted by parent.
+    ref.current = ref.pending;
+    ref.pending = null;
+    console.log("case 1", uid(ref.pending), uid(ref.current));
+  } else if (ref.current && value === ref.current.getCurrentContent().getPlainText()) {
+    // The parent blocked the onChange()
+    ref.pending = null;
+    console.log("case 2", uid(ref.pending), uid(ref.current));
   } else {
     // The parent chose an entirely new value. Update previous.
     const contentState = ContentState.createFromText(value);
-    editorState = EditorState.push(
-      onChangeState.prev.editorState,
+    ref.current = EditorState.push(
+      ref.current,
       ContentState,
       "change-block-data"
     );
+    ref.pending = null;
+    console.log("case 3", uid(ref.pending), uid(ref.current));
   }
-  let contentState = editorState.getCurrentContent();
 
-  const decorator = useMemo(
-    () => createDecorator(contentState, highlight, value),
-    [contentState, highlight, value]
-  );
+  //const contentState = ref.current.getCurrentContent()
+  //
+  // const decorator = useMemo(
+  //   () => createDecorator(contentState, highlight, value),
+  //   [contentState, highlight, value]
+  // );
 
-  editorState = EditorState.set(editorState, {
-    decorator: decorator,
-  });
+  // ref.current = EditorState.set(ref.current, {
+  //   decorator: decorator,
+  // });
 
   const onDraftChange = (nextEditorState) => {
-    const nextValue = editorState.getCurrentContent().getPlainText();
-    setOnChangeState({
-      prev: { value: value, editorState: editorState },
-      next: { value: nextValue, editorState: nextEditorState },
-    });
-    onChange(value);
+    const changeType = nextEditorState.getLastChangeType()
+    if (changeType === null) {
+      // This is a non-textual change.  Just save the new state.
+      console.log("onDraftChange: null changetype", uid(ref.pending), uid(ref.current))
+      ref.current = nextEditorState
+      forceUpdate({});
+      return
+    }
+
+    const nextValue = nextEditorState.getCurrentContent().getPlainText();
+    console.log("onDraftChange called: ", uid(ref.pending), uid(ref.current), nextValue)
+    ref.pending = nextEditorState;
+    onChange(nextValue);
   };
 
   return (
     <Editor
-      editorState={editorState}
+      editorState={ref.current}
       onChange={onDraftChange}
       placeholder={placeholder}
-      ref={ref}
+      ref={fwdRef}
     />
   );
 });
