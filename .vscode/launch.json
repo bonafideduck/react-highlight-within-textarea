@@ -11,6 +11,12 @@
       "type": "node-terminal"
     },
     {
+      "command": "yarn test",
+      "name": "Run yarn test",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
       "type": "pwa-chrome",
       "request": "launch",
       "name": "Debug",
