@@ -1,10 +1,10 @@
-import expect from 'expect'
 import React from 'react'
 import {render, unmountComponentAtNode} from 'react-dom'
+import expect from 'expect'
 
-import Component from 'src/'
+import HighlightWithinTextarea from 'src/'
 
-describe('Component', () => {
+describe('HighlightWithinTextarea', () => {
   let node
 
   beforeEach(() => {
@@ -16,7 +16,7 @@ describe('Component', () => {
   })
 
   it('displays a welcome message', () => {
-    render(<Component/>, node, () => {
+    render(<HighlightWithinTextarea value="Welcome to React components"></HighlightWithinTextarea>, node, () => {
       expect(node.innerHTML).toContain('Welcome to React components')
     })
   })
