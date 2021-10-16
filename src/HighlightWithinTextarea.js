@@ -5,67 +5,57 @@ import { Editor, EditorState, ContentState } from "draft-js";
 import createDecorator from "./createDecorator.js";
 
 const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
-  const { placeholder, highlight, onChange, value } = props;
+  const { placeholder, highlight, onChange, onDraftJSChange, value } = props;
   const [, forceUpdate] = React.useState();
-  const ref = useRef({}).current;
+  const nextStateRef = useRef({});
+  let editorState;
 
-  if (!ref.current) {
-    // First time
-    ref.current = EditorState.createWithContent(
-      ContentState.createFromText(value)
-    );
-    ref.pending = null;
-  } else if (
-    ref.pending &&
-    value === ref.pending.getCurrentContent().getPlainText()
-  ) {
-    // The pending value was accepted by parent.
-    ref.current = ref.pending;
-    ref.pending = null;
-  } else if (
-    ref.current &&
-    value === ref.current.getCurrentContent().getPlainText()
-  ) {
-    // The parent blocked the onChange()
-    ref.pending = null;
+  if (typeof (value) == 'string') {
+    const nextValue = nextStateRef.current.nextValue;
+    if (nextValue == value) {
+      // Likely the result of cursor movement.
+      editorState = nextStateRef.current.nextEditorState;
+    } else {
+      editorState = EditorState.createWithContent(
+        ContentState.createFromText(value)
+      );
+    }
   } else {
-    // The parent chose an entirely new value. Update previous.
-    const contentState = ContentState.createFromText(value);
-    ref.current = EditorState.push(
-      ref.current,
-      ContentState,
-      "insert-fragment"
-    );
-    ref.pending = null;
+    // They pulled open the hood and did their own editorState fun.
+    editorState = value;
   }
 
-  const contentState = ref.current.getCurrentContent();
+  const contentState = editorState.getCurrentContent();
   const decorator = useMemo(
     () => createDecorator(contentState, highlight, value),
     [contentState, highlight, value]
   );
 
-  ref.current = EditorState.set(ref.current, {
+  editorState = EditorState.set(editorState, {
     decorator: decorator,
   });
 
   const onDraftChange = (nextEditorState) => {
-    const changeType = nextEditorState.getLastChangeType();
-    if (changeType === null) {
-      // This is a non-textual change.  Just save the new state.
-      ref.current = nextEditorState;
-      forceUpdate({});
-      return;
+    const nextValue = nextEditorState.getCurrentContent().getPlainText();
+    nextStateRef.current = {
+      nextEditorState: nextEditorState,
+      nextValue: nextValue,
     }
 
-    const nextValue = nextEditorState.getCurrentContent().getPlainText();
-    ref.pending = nextEditorState;
-    onChange(nextValue, changeType);
+    if (value == nextValue) {
+      // This is just cursor movement or selection changes.
+      forceUpdate({});
+    } else {
+      onChange(nextValue);
+    }
+    if (onDraftJSChange) {
+      onDraftJSChange(nextEditorState);
+    }
   };
 
   return (
     <Editor
-      editorState={ref.current}
+      editorState={editorState}
       onChange={onDraftChange}
       placeholder={placeholder}
       ref={fwdRef}
@@ -91,7 +81,11 @@ class HighlightWithinTextarea extends React.Component {
 
 HighlightWithinTextarea.propTypes = {
   onChange: PropTypes.func,
-  value: PropTypes.string.isRequired,
+  onDraftJSChange: PropTypes.func,
+  value: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    EditorState,
+  ]),
   highlight: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
