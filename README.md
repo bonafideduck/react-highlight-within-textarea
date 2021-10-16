@@ -2,19 +2,6 @@
 
 > React component for highlighting spans of text within a textarea
 
-## 2.1.0-beta - 18-July-2021
-- Fixed #39, Array of Two Numbers (Range) highlights on multiple rows, when new lines are used in the text
-- [Not backwards compatible] Changed strategy function profile to receive the text and not the draftJS ContentState
-- [Not backwards compatible] Changed parameters supplied to the Decorator Components to not expose draftJS data
-
-## Version 2: A complete re-write using draft.js
-
-Version 1 of react-hightlight-within-textarea used a trick of placing the 
-highlights behind a true textarea.  This had many issues with wrapping
-and font sizes getting the hightlight and textarea out of sync.
-This complete rewrite is a simple wrapper of draft-js to accomplish
-the same end result, but **much** less buggy.
-
 [![NPM](https://img.shields.io/npm/v/react-highlight-within-textarea.svg)](https://www.npmjs.com/package/react-highlight-within-textarea) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) ![Yarn Test](https://github.com/bonafideduck/react-highlight-within-textarea/workflows/Yarn%20Test/badge.svg)
 
 
@@ -36,11 +23,12 @@ import { HighlightWithinTextarea } from 'react-highlight-within-textarea'
 
 const Example = () => {
   const [value, setValue] = useState("X Y Z and then XYZ");
+  const onChange = (value) => setValue(value);
   return (
     <HighlightWithinTextarea
       value={value}
       highlight={/[XYZ]/g}
-      onChange= {event => setValue(event.target.value)}
+      onChange= {onChange}
     />
   );
 };
@@ -55,9 +43,11 @@ along with example code, on the
 
 placeholder, highlight, onChange, value
 
-**value**: In React, you must supply a value and update it within the textarea.
+**value**: This can either be the text value or a DraftJs [EditorState](https://draftjs.org/docs/api-reference-editor-state/#internaldocs-banner).
 
-**onChange**: In React, you must supply an onChange function that updates the value.
+**onChange**: This is called whenever the text value changes.  You must upcate value to accepth this change.
+
+**onDraftJSChange**: Whenever there is any change, including cursor motion, this is called with a EditorState from DraftJS.  This can be used for more advanced interaction with DraftJS.  
 
 **ref**: Standard React ref.
 
@@ -69,12 +59,16 @@ placeholder, highlight, onChange, value
 
 ## Known and Potential Issues
 
-The removal of a real textarea from this code and the switch to use a draft-js div may introduce issues that have not yet been validated.  But the improvements that version 2.0 outweights the potentiall issues and thus 2.0 has been released.  Below is a list of potential issues that still need to be explored.
+The following have not yet been verified to work or have issues.
 
 * Form submit might not work.  To be honest, I don't even know how React works with form submit buttons.
 * Accessible Rich Internet Applications [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) may not be supported.
 * Reference forwarding probably works, but it hasn't been tested.
 * Tab between form elements may not work. I haven't looked into this at all.
+
+## Changes
+
+See [HISTORY.md](https://github.com/bonafideduck/react-highlight-within-textarea/blob/main/HISTORY.md)
 
 ## License
 
@@ -83,4 +77,5 @@ MIT © [bonafideduck](https://github.com/bonafideduck)
 ---
 
 * The 2.0 component was created using [nwb](https://github.com/insin/nwb)
+* This is essentially a wrapper of [Draft.js](https://draftjs.org)
 * This component is a port of the [highlight-within-textarea](https://www.npmjs.com/package/highlight-within-textarea) jquery plugin to React.

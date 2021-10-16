@@ -15,6 +15,11 @@ open demo/dist/index.html
 
 ## Publish New Demo
 
+```
+yarn publish-pages
+```
+* Manually edit each CodeSandbox ReactHighlightWithinTextarea version.
+
 
 ## Publish Update
 
