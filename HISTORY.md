@@ -1,5 +1,9 @@
 # HISTORY
 
+## 2.1.1 - 16-Oct-2021
+
+- Fixed #55, Issues with editing the existing text
+
 ## 2.1.0-beta - 18-July-2021
 - Fixed #39, Array of Two Numbers (Range) highlights on multiple rows, when new lines are used in the text
 - [Not backwards compatible] Changed strategy function profile to receive the text and not the draftJS ContentState
