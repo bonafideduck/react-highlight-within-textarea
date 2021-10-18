@@ -5,24 +5,35 @@ import { Editor, EditorState, ContentState } from "draft-js";
 import createDecorator from "./createDecorator.js";
 
 const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
-  const { placeholder, highlight, onChange, onDraftJSChange, value } = props;
+  const { placeholder, highlight, onChange, onDraftJSChange } = props;
+  let { value } = props;
   const [, forceUpdate] = React.useState();
-  const nextStateRef = useRef({});
+  const ref = useRef({});
   let editorState;
 
-  if (typeof (value) == 'string') {
-    const nextValue = nextStateRef.current.nextValue;
+  if (typeof value == "string") {
+    const { prevValue, prevEditorState, nextValue, nextEditorState } =
+      ref.current;
     if (nextValue == value) {
-      // Likely the result of cursor movement.
-      editorState = nextStateRef.current.nextEditorState;
+      // Change was accepted or there was cursor movement.
+      editorState = nextEditorState;
+    } else if (prevValue == value) {
+      // They blocked the state change.
+      editorState = prevEditorState;
+    } else if (prevEditorState) {
+      // They chose a whole new value.
+      const contentState = ContentState.createFromText(value);
+      const changeType = "change-block-data";
+      editorState = EditorState.push(prevEditorState, contentState, changeType);
     } else {
-      editorState = EditorState.createWithContent(
-        ContentState.createFromText(value)
-      );
+      // First time in here.
+      const contentState = ContentState.createFromText(value);
+      editorState = EditorState.createWithContent(contentState);
     }
   } else {
     // They pulled open the hood and did their own editorState fun.
     editorState = value;
+    value = editorState.getCurrentContent().getPlainText();
   }
 
   const contentState = editorState.getCurrentContent();
@@ -35,12 +46,15 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
     decorator: decorator,
   });
 
+  ref.current = { prevEditorState: editorState, prevValue: value };
+
   const onDraftChange = (nextEditorState) => {
     const nextValue = nextEditorState.getCurrentContent().getPlainText();
-    nextStateRef.current = {
+    ref.current = {
+      ...ref.current,
       nextEditorState: nextEditorState,
       nextValue: nextValue,
-    }
+    };
 
     if (value == nextValue) {
       // This is just cursor movement or selection changes.
@@ -82,10 +96,7 @@ class HighlightWithinTextarea extends React.Component {
 HighlightWithinTextarea.propTypes = {
   onChange: PropTypes.func,
   onDraftJSChange: PropTypes.func,
-  value: PropTypes.oneOfType([
-    PropTypes.string.isRequired,
-    EditorState,
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string.isRequired, EditorState]),
   highlight: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.array,
