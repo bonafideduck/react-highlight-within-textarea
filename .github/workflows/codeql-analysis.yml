@@ -23,6 +23,7 @@ on:
 jobs:
   analyze:
     name: Analyze
+    if: ${{ !env.ACT }}
     runs-on: ubuntu-latest
     permissions:
       actions: read

@@ -13,8 +13,16 @@ const Example = ({
   highlight,
   code,
   codeSandbox,
+  onChange,
+  onDraftJSChange,
 }) => {
   const [value, setValue] = useState(initialValue);
+  const onChange2 = onChange ? (value) => {
+    setValue(onChange(value))
+  } : setValue;
+  const onDraftJSChange2 = onDraftJSChange
+    ? (value) => setValue(onDraftJSChange(value))
+    : undefined;
   code = code || "undefined";
   let style = {
     border: "solid 1pt black",
@@ -31,7 +39,8 @@ const Example = ({
           <HighlightWithinTextarea
             value={value}
             highlight={highlight}
-            onChange={setValue}
+            onChange={onChange2}
+            onDraftJSChange={onDraftJSChange2}
             rows="4"
             containerStyle={{ width: "100%" }}
             style={{ width: "100%" }}

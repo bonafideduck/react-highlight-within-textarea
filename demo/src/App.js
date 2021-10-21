@@ -9,6 +9,7 @@ import Array from "./Array.js";
 import Strategy from "./Strategy.js";
 import CustomObject from "./CustomObject.js";
 import Component from "./Component.js";
+import ChangeValue from "./ChangeValue.js";
 import "./App.css";
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
         <Strategy />
         <CustomObject />
         <Component />
+        <ChangeValue />
       </Container>
     </div>
   );

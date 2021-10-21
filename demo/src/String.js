@@ -21,7 +21,6 @@ const Text = () => {
         title="String"
         text={<span>Note that this is case-insensitive.</span>}
         initialValue="Potato potato tomato potato."
-        highlightText={'"potato"'}
         highlight="potato"
         code={code}
         codeSandbox="rhwta-string-cg4y9"

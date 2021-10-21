@@ -60,7 +60,6 @@ const Strategy = () => {
         title="Strategy"
         text={text}
         initialValue="Sun Mon Tue Wed Thu Fri Sat :) <-- remove the smiley..."
-        highlightText={'"potato"'}
         highlight={getSmileyDayString}
         code={code}
         codeSandbox="rhwta-strategy-y1965"
