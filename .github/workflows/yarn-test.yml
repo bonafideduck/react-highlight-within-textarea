@@ -14,5 +14,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: echo skip yarn install
-      - run: echo skip yarn test
+      - run: yarn install
+      - run: yarn install --dev
+      - run: yarn test

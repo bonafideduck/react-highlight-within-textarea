@@ -15,4 +15,5 @@ jobs:
         with:
           node-version: 12
       - run: yarn install
+      - run: yarn install --dev
       - run: yarn build
