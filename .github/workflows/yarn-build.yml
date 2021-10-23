@@ -14,6 +14,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
+      - run: npm install -g yarn
+      - run: npm install -g nwb
       - run: yarn install
       - run: yarn install --dev
+      - run: ls node_modules
       - run: yarn build
