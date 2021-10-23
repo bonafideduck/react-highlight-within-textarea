@@ -6,4 +6,5 @@
 /umd
 npm-debug.log*
 *.swp
+*.swo
 .DS_Store

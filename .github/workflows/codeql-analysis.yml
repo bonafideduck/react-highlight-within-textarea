@@ -22,10 +22,8 @@ on:
 
 jobs:
   analyze:
-    env:
-      ACT:
-    if: ${{ !env.ACT }}
     name: Analyze
+    if: ${{ !github.event.act }} # skip during local actions testing
     runs-on: ubuntu-latest
     permissions:
       actions: read
