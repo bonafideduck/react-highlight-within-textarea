@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ codeSandbox, style }) => {
+function CodeSandbox({ codeSandbox, style }) {
   if (!codeSandbox) {
     return "";
   }
@@ -14,3 +14,5 @@ export default ({ codeSandbox, style }) => {
     </a>
   );
 };
+
+export { CodeSandbox };

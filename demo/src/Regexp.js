@@ -1,5 +1,5 @@
 import React from "react";
-import Example from "./Example.js";
+import { Example } from "./Example.js";
 
 const code = `<HighlightWithinTextarea
   highlight={/dogs?|cats?|g(oo|ee)se|land\\s+sharks?/gi}
@@ -25,4 +25,4 @@ const Regexp = () => {
   );
 };
 
-export default Regexp;
+export { Regexp };

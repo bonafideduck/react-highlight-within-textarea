@@ -3,8 +3,8 @@ import { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { HighlightWithinTextarea } from "../../src";
-import Code from "./Code";
-import CodeSandbox from "./CodeSandbox";
+import { Code } from "./Code";
+import { CodeSandbox } from "./CodeSandbox";
 
 const Example = ({
   title,
@@ -14,17 +14,23 @@ const Example = ({
   code,
   codeSandbox,
   onChange,
-  onDraftJSChange,
+  onEveryChange,
+  selection,
 }) => {
   const [value, setValue] = useState(initialValue);
-  const onChange2 = onChange ? (value) => {
-    setValue(onChange(value))
-  } : setValue;
-  const onDraftJSChange2 = onDraftJSChange
-    ? (value) => setValue(onDraftJSChange(value))
+  const onChange2 = onChange
+    ? (value, selection) => {
+        setValue(onChange(value, selection));
+      }
+    : setValue;
+  const onEveryChange2 = onEveryChange
+    ? (value, selection, editorState) =>
+        setValue(onEveryChange(value, selection, editorState))
     : undefined;
   code = code || "undefined";
   let style = {
+    marginTop: 8,
+    marginBottom: 8,
     border: "solid 1pt black",
     height: "60px",
     overflow: "scroll",
@@ -40,10 +46,8 @@ const Example = ({
             value={value}
             highlight={highlight}
             onChange={onChange2}
-            onDraftJSChange={onDraftJSChange2}
-            rows="4"
-            containerStyle={{ width: "100%" }}
-            style={{ width: "100%" }}
+            onEveryChange={onEveryChange2}
+            selection={selection}
           />
         </div>
         <div style={{ position: "relative" }}>
@@ -53,9 +57,10 @@ const Example = ({
             codeSandbox={codeSandbox}
           />
         </div>
+        <hr />
       </Col>
     </Row>
   );
 };
 
-export default Example;
+export { Example };

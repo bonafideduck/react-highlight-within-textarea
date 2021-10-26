@@ -1,5 +1,5 @@
 import React from "react";
-import Example from "./Example.js";
+import { Example } from "./Example.js";
 
 const code = `const getSmileyDayString = (text, callback) => {
   const dayStrings = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
@@ -10,7 +10,7 @@ const code = `const getSmileyDayString = (text, callback) => {
     const textLower = text.toLowerCase();
     const dayString = dayStrings[new Date().getDay()];
     let index;
-    // eslint-disable-next-line no-cond-assign
+
     while ((index = textLower.indexOf(dayString, index)) !== -1) {
       callback(index, index + dayString.length);
       index += dayString.length;
@@ -33,7 +33,7 @@ const getSmileyDayString = (text, callback) => {
     const textLower = text.toLowerCase();
     const dayString = dayStrings[new Date().getDay()];
     let index;
-    // eslint-disable-next-line no-cond-assign
+
     while ((index = textLower.indexOf(dayString, index)) !== -1) {
       callback(index, index + dayString.length);
       index += dayString.length;
@@ -68,4 +68,4 @@ const Strategy = () => {
   );
 };
 
-export default Strategy;
+export { Strategy };

@@ -1,5 +1,5 @@
 import React from "react";
-import Example from "./Example.js";
+import { Example } from "./Example.js";
 
 const code = `<HighlightWithinTextarea
   highlight={[
@@ -25,4 +25,4 @@ const Array = () => {
   );
 };
 
-export default Array;
+export { Array };

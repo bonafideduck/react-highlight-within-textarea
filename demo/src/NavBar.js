@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNpm, faGithub } from "@fortawesome/free-brands-svg-icons";
 
-export default function NavBar() {
+function NavBar() {
   // eslint-disable-next-line
   const github =
     "https://github.com/bonafideduck/react-highlight-within-textarea/";
@@ -44,3 +44,5 @@ export default function NavBar() {
     </Navbar>
   );
 }
+
+export { NavBar };
