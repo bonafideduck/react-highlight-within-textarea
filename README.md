@@ -41,13 +41,11 @@ along with example code, on the
 
 ## Properties
 
-placeholder, highlight, onChange, value
+value, onChange, ref, placeholder, highlight, selection
 
 **value**: This can either be the text value or a DraftJs [EditorState](https://draftjs.org/docs/api-reference-editor-state/#internaldocs-banner).
 
-**onChange**: This is called whenever the text value changes.  You must upcate value to accepth this change.
-
-**onDraftJSChange**: Whenever there is any change, including cursor motion, this is called with a EditorState from DraftJS.  This can be used for more advanced interaction with DraftJS.  
+**onChange**: This is called whenever the text value or selection changes.  You must update value to accept this change.  You only have to set the selection property if you want to change the current selection.
 
 **ref**: Standard React ref.
 
@@ -56,6 +54,7 @@ placeholder, highlight, onChange, value
 **highlight**: This specifies what to highlght.  For more info, see the
 [demo page](https://bonafideduck.github.io/react-highlight-within-textarea/).
 
+**selection**: A selection containing `anchor` and `focus` that can be use to place the cursor or set selections.
 
 ## Known and Potential Issues
 

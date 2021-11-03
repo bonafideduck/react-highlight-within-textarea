@@ -1,5 +1,11 @@
 # HISTORY
 
+## 2.1.2 - 6-Nov-2021
+
+- Add Selection and in addition to when the value changes, call onChange when the selection changes.
+
+- exported createDecorator to allow using the highlighting from draft.js directly.
+
 ## 2.1.1 - 16-Oct-2021
 
 - Fixed #55, Issues with editing the existing text
