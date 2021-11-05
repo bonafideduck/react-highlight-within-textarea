@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Example from "./Example.js";
+import { Example } from "./Example.js";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 
@@ -105,4 +105,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export { Component };

@@ -1,5 +1,5 @@
 import React from "react";
-import Example from "./Example.js";
+import { Example } from "./Example.js";
 
 const text = (
   <span>
@@ -44,7 +44,7 @@ const highlight = [
 ];
 // ], [
 
-const Text = () => {
+const CustomObject = () => {
   return (
     <Example
       title="Custom Object with Class Name"
@@ -57,4 +57,4 @@ const Text = () => {
   );
 };
 
-export default Text;
+export { CustomObject };

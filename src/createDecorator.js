@@ -41,7 +41,6 @@ const extractBlockData = (contentState, text) => {
   let blocks = contentState.getBlocksAsArray();
   let blockData = [];
   let blockEnd = 0;
-  let blockNumber = 0;
   for (const block of blocks) {
     let blockLength = block.getLength();
     if (blockLength == 0) {
@@ -108,6 +107,7 @@ const blockSpansToDecorators = (blockSpans) => {
 };
 
 const createDecorator = (contentState, highlight, text) => {
+  text = text || contentState.getPlainText();
   const sc = highlightToStrategyAndComponents(highlight);
   const matches = getMatches(text, sc);
   const blockSpans = breakSpansByBlocks(contentState, matches, text);
@@ -115,4 +115,4 @@ const createDecorator = (contentState, highlight, text) => {
   return new CompositeDecorator(decorators);
 };
 
-export default createDecorator;
+export { createDecorator };

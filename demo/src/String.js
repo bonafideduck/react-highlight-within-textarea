@@ -1,5 +1,5 @@
 import React from "react";
-import Example from "./Example.js";
+import { Example } from "./Example.js";
 
 const code = `function String() {
   const [value, setValue] = useState("Potato potato tomato potato.");
@@ -12,7 +12,7 @@ const code = `function String() {
   );
 }`;
 
-const Text = () => {
+const String = () => {
   return (
     <>
       <h2></h2>
@@ -29,4 +29,4 @@ const Text = () => {
   );
 };
 
-export default Text;
+export { String };
