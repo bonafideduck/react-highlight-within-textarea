@@ -43,7 +43,7 @@ const ChangeValue = () => {
           return value.toUpperCase().replaceAll("TOMATO", "ONION");
         }}
         code={code}
-        codeSandbox="rhwta-string-cg4y99"
+        codeSandbox="rhwta-dynamic-change-t869w"
       />
     </>
   );

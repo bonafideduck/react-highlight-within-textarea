@@ -9,20 +9,25 @@ const code = `const ChangeSelection = () => {
   let [selection, setSelection] = useState(() => new Selection(30, 40));
 
   let anchorMinus = () => {
-    if (selection.anchor > 0) {
-      setSelection(new Selection(selection.anchor - 1, selection.focus));
+    if (state.anchor > 0) {
+      const anchor = state.anchor - 1;
+      const selection = new Selection(anchor, state.focus);
+      setState({ ...state, anchor, selection });
     }
   };
 
   let focusPlus = () => {
-    if (selection.focus < value.length) {
-      setSelection(new Selection(selection.anchor, selection.focus + 1));
+    if (state.focus < state.value.length) {
+      const focus = state.focus + 1;
+      const selection = new Selection(state.anchor, focus);
+      setState({ ...state, focus, selection });
     }
   };
 
   let onChange = (value, selection) => {
-    setSelection(selection);
-    setValue(value);
+    const { anchor, focus } = selection;
+    setState({ ...state, value, anchor, focus, selection: undefined });
+    return value;
   };
 
   return (
@@ -34,8 +39,9 @@ const code = `const ChangeSelection = () => {
         <button onClick={focusPlus}>+</button>
       </div>
       <HighlightWithinTextarea 
-        value={value}
-        selection={selection}
+        value={state.value}
+        highlight={"berry"}
+        selection={state.selection}
         onChange={onChange}
       />
     </>
@@ -55,21 +61,15 @@ const ChangeSelection = () => {
   let anchorMinus = () => {
     if (state.anchor > 0) {
       const anchor = state.anchor - 1;
-      setState({
-        ...state,
-        anchor,
-        selection: new Selection(anchor, state.focus),
-      });
+      const selection = new Selection(anchor, state.focus);
+      setState({ ...state, anchor, selection });
     }
   };
   let focusPlus = () => {
     if (state.focus < state.value.length) {
       const focus = state.focus + 1;
-      setState({
-        ...state,
-        focus,
-        selection: new Selection(state.anchor, focus),
-      });
+      const selection = new Selection(state.anchor, focus);
+      setState({ ...state, focus, selection });
     }
   };
   let onChange = (value, selection) => {
@@ -110,10 +110,10 @@ const ChangeSelection = () => {
           </>
         }
         initialValue={state.value}
-        highlight="TOMAT"
+        highlight=" "
         onChange={onChange}
         code={code}
-        codeSandbox="rhwta-string-cg4y99"
+        codeSandbox="rhwta-selection-lpkld"
         selection={state.selection}
       />
     </>
