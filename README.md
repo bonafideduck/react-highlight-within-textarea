@@ -37,7 +37,7 @@ const Example = () => {
 The highlight property accepts several different types of values to describe 
 what will be highlighted.  You can see the various ways to highlight things, 
 along with example code, on the 
-[demo page](https://bonafideduck.github.io/react-highlight-within-textarea/).
+[documentation and demo page](https://bonafideduck.github.io/react-highlight-within-textarea/).
 
 ## Properties
 
