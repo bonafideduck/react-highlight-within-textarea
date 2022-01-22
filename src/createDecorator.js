@@ -3,10 +3,11 @@ import { CompositeDecorator } from "draft-js";
 import highlightToStrategyAndComponents from "./highlightToStrategyAndComponents.js";
 
 const getMatches = (text, strategyAndComponents) => {
+  // Calls each strategy to get all matches and then filters out overlaps.
   let finds = [];
   for (const sc of strategyAndComponents) {
     sc.strategy(text, (start, end) => {
-      if (start <= end && start >= 0 && end <= text.length) {
+      if (start < end && start >= 0 && end <= text.length) {
         finds.push({
           Component: sc.component,
           matchStart: start,
