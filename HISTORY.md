@@ -1,5 +1,11 @@
 # HISTORY
 
+## 2.1.3 - 22-Jan-2022
+
+- Fix #85, Range highlight does not work if boundary is end of the string
+
+- `yarn upgrade --latest`
+
 ## 2.1.2 - 6-Nov-2021
 
 - Add Selection and in addition to when the value changes, call onChange when the selection changes.
