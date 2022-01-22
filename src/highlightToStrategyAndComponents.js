@@ -81,9 +81,9 @@ function stringToDecorator(highlight, className, component) {
 
 function rangeToDecorator(highlight, className, component) {
   const rangeStrategy = (text, callback) => {
-    const low = highlight[0];
-    const high = highlight[1];
-    if (low < high && low >= 0 && high < text.length) {
+    const low = Math.max(0, highlight[0]);
+    const high = Math.min(highlight[1], text.length);
+    if (low < high) {
       callback(low, high);
     }
   };
