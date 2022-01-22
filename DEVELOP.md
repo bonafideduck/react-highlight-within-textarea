@@ -23,7 +23,12 @@ yarn publish-pages
 
 ## Publish Update
 
+* Merge develop into release on github using 
+[this link](https://github.com/bonafideduck/react-highlight-within-textarea/pull/new/develop)
+
 ```
+git pull
+git checkout main
 yarn upgrade --latest
 yarn build
 vi HISTORY.md
