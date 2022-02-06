@@ -12,6 +12,13 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
   const ref = useRef({});
   let editorState;
 
+  // https://stackoverflow.com/a/53443378/237209
+  const propsRest = (({ 
+    placeholder, highlight, onChange, 
+    value, selection,
+    ...o 
+  }) => o)(props)
+
   const { prevValue, prevEditorState, nextValue, nextEditorState } =
     ref.current;
 
@@ -90,6 +97,7 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
       onChange={onDraftChange}
       placeholder={placeholder}
       ref={fwdRef}
+      {...propsRest}
     />
   );
 });
