@@ -47,7 +47,6 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
     }
   } else {
     // First time in here.
-    // const contentState = ContentState.createFromText(value);
     editorState = EditorState.createWithContent(convertFromRaw({
       entityMap: {},
       blocks: [
