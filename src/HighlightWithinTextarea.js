@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, forwardRef, useRef, useMemo } from "react";
 import PropTypes from "prop-types";
-import { Editor, EditorState, ContentState } from "draft-js";
+import { Editor, EditorState, ContentState, convertFromRaw } from "draft-js";
 import { createDecorator } from "./createDecorator.js";
 import { Selection } from "./Selection.js";
 
@@ -47,8 +47,17 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
     }
   } else {
     // First time in here.
-    const contentState = ContentState.createFromText(value);
-    editorState = EditorState.createWithContent(contentState);
+    editorState = EditorState.createWithContent(convertFromRaw({
+      entityMap: {},
+      blocks: [
+        {
+          text: value,
+          key: 'foo',
+          type: 'unstyled',
+          entityRanges: [],
+        },
+      ],
+    }));
   }
 
   const contentState = editorState.getCurrentContent();
