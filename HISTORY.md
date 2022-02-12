@@ -1,5 +1,10 @@
 # HISTORY
 
+## 2.1.4 - 12-Feb-2022
+
+- Fix #91, Compatibility with Next.JS
+- `yarn upgrade --latest`
+
 ## 2.1.3 - 22-Jan-2022
 
 - Fix #85, Range highlight does not work if boundary is end of the string
