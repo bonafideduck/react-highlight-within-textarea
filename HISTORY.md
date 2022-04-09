@@ -1,5 +1,12 @@
 # HISTORY
 
+## 3.0.0-alpha
+
+- Added typescript
+- Added several DraftJS endpoints
+- May have fixed ref issues
+- Did almost no testing
+
 ## 2.1.3 - 22-Jan-2022
 
 - Fix #85, Range highlight does not work if boundary is end of the string

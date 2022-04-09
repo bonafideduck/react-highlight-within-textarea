@@ -1,25 +1,25 @@
 import { EditorState, SelectionState } from "draft-js";
 
-function editorStateToTextAnchorFocus(editorState) {
+function editorStateToTextAnchorFocus(editorState: EditorState) {
   if (!editorState) {
     return { anchor: 0, focus: 0 };
   }
   let contentState = editorState.getCurrentContent();
   let selection = editorState.getSelection();
   let blocks = contentState.getBlocksAsArray();
-  let anchorKey = selection.anchorKey;
-  let anchorOffset = selection.anchorOffset;
-  let focusKey = selection.focusKey;
-  let focusOffset = selection.focusOffset;
+  let anchorKey = selection.getAnchorKey();
+  let anchorOffset = selection.getAnchorOffset();
+  let focusKey = selection.getFocusKey();
+  let focusOffset = selection.getFocusOffset();
   let blockStart = 0;
   let anchor = undefined;
   let focus = undefined;
 
   for (const block of blocks) {
-    if (block.key == anchorKey) {
+    if (block.getKey() == anchorKey) {
       anchor = blockStart + anchorOffset;
     }
-    if (block.key == focusKey) {
+    if (block.getKey() == focusKey) {
       focus = blockStart + focusOffset;
     }
     if (anchor != undefined && focus != undefined) {
@@ -34,7 +34,7 @@ function editorStateToTextAnchorFocus(editorState) {
   return { anchor, focus };
 }
 
-function forceSelection(editorState, anchor, focus) {
+function forceSelection(editorState: EditorState, anchor: number, focus: number) {
   if (!editorState) {
     throw new ReferenceError("editorState is required");
   }
@@ -52,12 +52,12 @@ function forceSelection(editorState, anchor, focus) {
     blockEnd = blockStart + block.getLength();
 
     if (anchorKey == undefined && blockEnd >= anchor) {
-      anchorKey = block.key;
+      anchorKey = block.getKey();
       anchorOffset = Math.max(0, anchor - blockStart);
     }
 
     if (focusKey == undefined && blockEnd >= focus) {
-      focusKey = block.key;
+      focusKey = block.getKey();
       focusOffset = Math.max(0, focus - blockStart);
     }
 
@@ -67,17 +67,17 @@ function forceSelection(editorState, anchor, focus) {
   }
 
   if (anchorKey == undefined) {
-    anchorKey = block.key;
+    anchorKey = block.getKey();
     anchorOffset = block.getLength();
   }
 
   if (focusKey == undefined) {
-    focusKey = block.key;
+    focusKey = block.getKey();
     focusOffset = block.getLength();
   }
 
-  let selectionState = SelectionState.createEmpty()
-    .set("anchorKey", anchorKey)
+  let selectionState = SelectionState.createEmpty('')
+  selectionState.set("anchorKey", anchorKey)
     .set("anchorOffset", anchorOffset)
     .set("focusKey", focusKey)
     .set("focusOffset", focusOffset);
@@ -88,21 +88,21 @@ function forceSelection(editorState, anchor, focus) {
 class Selection {
   #private;
 
-  constructor(editorStateOrAnchor, focus) {
+  constructor(editorStateOrAnchor: number | EditorState, focus?: number) {
     let editorState = undefined;
     let anchor = undefined;
-    let initFunc = () => undefined;
+    let initFunc = (): void => undefined;
 
     if (typeof editorStateOrAnchor == "number") {
       anchor = editorStateOrAnchor;
       focus = focus == undefined ? anchor : focus;
     } else {
       editorState = editorStateOrAnchor;
-      initFunc = () => {
+      initFunc = (): void => {
         this.#private = {
           ...this.#private,
           ...editorStateToTextAnchorFocus(this.#private.editorState),
-          init: () => undefined,
+          init: (): void => undefined,
         };
       };
     }
@@ -151,13 +151,13 @@ class Selection {
     throw new ReferenceError("end is read only.  use focus instead");
   }
 
-  forceSelection(editorState) {
+  forceSelection(editorState: EditorState) {
     return forceSelection(editorState, this.anchor, this.focus);
   }
 
   getHasFocus() {
     let editorState = this.#private.editorState;
-    return editorState && editorState.getHasFucus();
+    return editorState && editorState.getSelection().getHasFocus();
   }
 }
 

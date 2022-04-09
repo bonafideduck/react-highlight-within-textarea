@@ -1,12 +1,27 @@
-import React from "react";
-import { CompositeDecorator } from "draft-js";
-import highlightToStrategyAndComponents from "./highlightToStrategyAndComponents.js";
+import * as React from 'react'
+import { CompositeDecorator, ContentState, ContentBlock  } from "draft-js";
+import { highlightToStrategyAndComponents, StrategyAndComponent, Component, Strategy, Highlight }  from "./highlightToStrategyAndComponents";
+interface Find {
+  Component: Component,
+  matchStart: number,
+  matchEnd: number,
+  matchText: string,
 
-const getMatches = (text, strategyAndComponents) => {
+}
+interface BlockSpan {
+  block: ContentBlock,
+  spanStart: number,
+  spanEnd: number,
+  blockStart: number,
+  Component: Component
+};
+
+const getMatches = (text: string, strategyAndComponents: StrategyAndComponent[]) => {
   // Calls each strategy to get all matches and then filters out overlaps.
-  let finds = [];
+  let finds: Find[] = [];
   for (const sc of strategyAndComponents) {
-    sc.strategy(text, (start, end) => {
+    const strategy = sc.strategy as Strategy
+    strategy(text, (start: number, end: number) => {
       if (start < end && start >= 0 && end <= text.length) {
         finds.push({
           Component: sc.component,
@@ -38,7 +53,7 @@ const getMatches = (text, strategyAndComponents) => {
   return matches;
 };
 
-const extractBlockData = (contentState, text) => {
+const extractBlockData = (contentState: ContentState, text: string) => {
   let blocks = contentState.getBlocksAsArray();
   let blockData = [];
   let blockEnd = 0;
@@ -60,7 +75,7 @@ const extractBlockData = (contentState, text) => {
   return blockData;
 };
 
-const breakSpansByBlocks = (contentState, matches, text) => {
+const breakSpansByBlocks = (contentState: ContentState, matches: Find[], text: string) => {
   const blockData = extractBlockData(contentState, text);
   let newSpans = [];
   loop: for (const match of matches) {
@@ -88,26 +103,27 @@ const breakSpansByBlocks = (contentState, matches, text) => {
   return newSpans;
 };
 
-const blockSpansToDecorators = (blockSpans) => {
+const blockSpansToDecorators = (blockSpans: BlockSpan[]) => {
   let decorators = [];
   for (const blockSpan of blockSpans) {
     const { block, spanStart, spanEnd, blockStart, Component } = blockSpan;
-    const strategy = (contentBlock, callback, contentState) => {
+    const strategy: Strategy = (contentBlock, callback) => {
       if (contentBlock === block) {
         callback(spanStart - blockStart, spanEnd - blockStart);
       }
     };
-    delete blockSpan.component;
+    delete blockSpan.Component;
     delete blockSpan.block;
-    const component = (props) => (
-      <Component {...blockSpan} children={props.children} />
-    );
+    const component = (props: any) => {
+      const Cpt = Component as ((props: any) => JSX.Element);
+      return <Cpt {...blockSpan} children={props.children} />;
+    };
     decorators.push({ strategy: strategy, component: component });
   }
   return decorators;
 };
 
-const createDecorator = (contentState, highlight, text) => {
+const createDecorator = (contentState: ContentState, highlight: Highlight, text: string) => {
   text = text || contentState.getPlainText();
   const sc = highlightToStrategyAndComponents(highlight);
   const matches = getMatches(text, sc);
