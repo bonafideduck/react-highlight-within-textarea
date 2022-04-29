@@ -5,7 +5,7 @@ import { Editor, EditorState, ContentState } from "draft-js";
 import { createDecorator } from "./createDecorator.js";
 import { Selection } from "./Selection.js";
 
-const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
+const HighlightWithinTextarea = forwardRef((props, fwdRef) => {
   const { highlight, onChange } = props;
   let { value, selection } = props;
   const [, forceUpdate] = useState();
@@ -99,22 +99,6 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
     />
   );
 });
-
-/*
- * For some reason, exporting a FunctionComponent
- * doesn't work when importing in codepen.io, so wrap
- * it in a class component.
- */
-class HighlightWithinTextarea extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { date: new Date() };
-  }
-
-  render() {
-    return <HighlightWithinTextareaFunc {...this.props} />;
-  }
-}
 
 HighlightWithinTextarea.propTypes = {
   onChange: PropTypes.func,
