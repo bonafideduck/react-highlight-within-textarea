@@ -1,7 +1,7 @@
 {
   "name": "react-highlight-within-textarea",
   "description": "React component for highlighting bits of text within a textarea",
-  "version": "2.1.3",
+  "version": "3.0.1-alpha",
   "main": "lib/index.js",
   "module": "es/index.js",
   "files": [
