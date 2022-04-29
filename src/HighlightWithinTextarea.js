@@ -6,7 +6,7 @@ import { createDecorator } from "./createDecorator.js";
 import { Selection } from "./Selection.js";
 
 const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
-  const { placeholder, highlight, onChange } = props;
+  const { highlight, onChange } = props;
   let { value, selection } = props;
   const [, forceUpdate] = useState();
   const ref = useRef({});
@@ -84,11 +84,17 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
     forceUpdate({});
   };
 
+  const newProps = { ...props };
+  delete newProps.highlight;
+  delete newProps.selection;
+  delete newProps.value;
+  delete newProps.onChange;
+
   return (
     <Editor
       editorState={editorState}
       onChange={onDraftChange}
-      placeholder={placeholder}
+      {...newProps}
       ref={fwdRef}
     />
   );
@@ -122,6 +128,25 @@ HighlightWithinTextarea.propTypes = {
   ]),
   placeholder: PropTypes.string,
   selection: PropTypes.instanceOf(Selection),
+  textAlignment: PropTypes.string,
+  textDirectionality: PropTypes.string,
+  autoCapitalize: PropTypes.string,
+  autoComplete: PropTypes.string,
+  autoCorrect: PropTypes.string,
+  readOnly: PropTypes.boolean,
+  spellCheck: PropTypes.boolean,
+  stripPastedStyles: PropTypes.boolean,
+  editorKey: PropTypes.string,
+  handleReturn: PropTypes.func,
+  handleKeyCommand: PropTypes.func,
+  handleBeforeInput: PropTypes.func,
+  handlePastedText: PropTypes.func,
+  handlePastedFiles: PropTypes.func,
+  handleDroppedFiles: PropTypes.func,
+  handleDrop: PropTypes.func,
+  keyBindingFn: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 };
 
 HighlightWithinTextarea.defaultProps = {
