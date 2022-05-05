@@ -35,3 +35,5 @@ vi HISTORY.md
 git commit
 yarn publish
 ```
+
+`yarn publish --tag alpha` for prerelease.
