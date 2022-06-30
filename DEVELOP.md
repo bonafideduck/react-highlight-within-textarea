@@ -8,10 +8,7 @@ yarn start
 
 ## Build and Test
 
-```
-yarn build
-open demo/dist/index.html
-```
+no testing is yet supported
 
 ## Publish New Demo
 

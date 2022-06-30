@@ -1,8 +1,14 @@
 import React from "react";
+interface Props {
+  codeSandbox: string;
+  style: React.CSSProperties;
+}
 
-function CodeSandbox({ codeSandbox, style }) {
+function CodeSandbox(props: Props) {
+  let { codeSandbox, style } = props;
+
   if (!codeSandbox) {
-    return "";
+    return <></>;
   }
   return (
     <a style={style} href={"https://codesandbox.io/s/"+codeSandbox+"?fontsize=14&hidenavigation=1&theme=dark"}>

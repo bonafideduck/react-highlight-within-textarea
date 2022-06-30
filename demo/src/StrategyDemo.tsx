@@ -1,5 +1,6 @@
 import React from "react";
-import { Example } from "./Example.js";
+import { Example } from "./Example";
+import { Strategy } from "react-highlight-within-textarea";
 
 const code = `const getSmileyDayString = (text, callback) => {
   const dayStrings = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
@@ -26,7 +27,7 @@ const StrategyDemo(props) {
   />;
 }`;
 
-const getSmileyDayString = (text, callback) => {
+const getSmileyDayString: Strategy = (text: string, callback) => {
   const dayStrings = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
   if (text.indexOf(":)") !== -1) {
@@ -53,7 +54,7 @@ let text = (
   </span>
 );
 
-const Strategy = () => {
+const StrategyDemo = () => {
   return (
     <>
       <Example
@@ -68,4 +69,4 @@ const Strategy = () => {
   );
 };
 
-export { Strategy };
+export { StrategyDemo };

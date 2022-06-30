@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Example } from "./Example.js";
-import { Selection } from "../../src";
+import { Example } from "./Example";
+import { Selection } from "react-highlight-within-textarea";
 
 const code = `const ChangeSelection = () => {
   const initialValue = "Here's a blueberry. There's a strawberry. Surprise, it's a banananana!";
@@ -48,13 +48,19 @@ const code = `const ChangeSelection = () => {
   );
 }`;
 
+type State = {
+  value: string;
+  selection?: Selection;
+  anchor: number;
+  focus: number;
+};
 const ChangeSelection = () => {
   let initialValue =
     "Here's a blueberry. There's a strawberry. Surprise, it's a banananana!";
 
-  let [state, setState] = useState(() => ({
+  let [state, setState] = useState<State>(() => ({
     value: initialValue,
-    selection: new Selection(30, 40),
+    selection: (new Selection(30, 40) as Selection) || undefined,
     anchor: 30,
     focus: 40,
   }));
@@ -72,15 +78,13 @@ const ChangeSelection = () => {
       setState({ ...state, focus, selection });
     }
   };
-  let onChange = (value, selection) => {
-    const { anchor, focus } = selection;
+  let onChange = (value: string, selection?: Selection) => {
+    const { anchor, focus } = selection || { anchor: 0, focus: 0 };
     setState({ ...state, value, anchor, focus, selection: undefined });
     return value;
   };
   return (
     <>
-      <h2></h2>
-
       <Example
         title="Selection"
         text={

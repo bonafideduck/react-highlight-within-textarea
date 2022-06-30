@@ -75,6 +75,7 @@ MIT © [bonafideduck](https://github.com/bonafideduck)
 
 ---
 
+* The 3.0 component was created using [this blog post](https://prateeksurana.me/blog/react-library-with-typescript/) by Prateek Surana.
 * The 2.0 component was created using [nwb](https://github.com/insin/nwb)
 * This is essentially a wrapper of [Draft.js](https://draftjs.org)
 * This component is a port of the [highlight-within-textarea](https://www.npmjs.com/package/highlight-within-textarea) jquery plugin to React.

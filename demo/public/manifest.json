@@ -1,0 +1,35 @@
+{
+  "short_name": "RHWTA",
+  "name": "React Highlight Within Textarea",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "128x128 96x96 32x32 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "favicon-128x128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "favicon-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "favicon-32x32.png",
+      "type": "image/png",
+      "sizes": "32x32"
+    },
+    {
+      "src": "favicon-16x16.png",
+      "type": "image/png",
+      "sizes": "16x16"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

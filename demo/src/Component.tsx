@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Example } from "./Example.js";
+import { Example } from "./Example";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 
 const text = (
   <span>
-    You can use a component to wrap each highlighted span. 
-    This exposes the underlying{" "}
-    <a href="https://draftjs.org/">Draft.js</a>{" "}
+    You can use a component to wrap each highlighted span. This exposes the
+    underlying <a href="https://draftjs.org/">Draft.js</a>{" "}
     <a href="https://draftjs.org/docs/advanced-topics-decorators/#decorator-components">
       compositeDecorator
     </a>{" "}
-    strategy. 
+    strategy.
   </span>
 );
 
@@ -58,9 +57,11 @@ const ComponentDemo = (props) => {
   );
 };`;
 
-const ToolTip = (props) => {
+const ToolTip = (props: any) => {
   const objects = { children: "(...)" };
-  const content = <pre>{JSON.stringify({ ...props, ...objects }, 0, 1)}</pre>;
+  const content = (
+    <pre>{JSON.stringify({ ...props, ...objects }, null, 1)}</pre>
+  );
   return (
     <Tippy content={content}>
       <mark>{props.children}</mark>
@@ -68,7 +69,7 @@ const ToolTip = (props) => {
   );
 };
 
-const MultiColor = (props) => {
+const MultiColor = (props: any) => {
   const [color, setColor] = useState(0xff8800);
   const colorText = `#${color.toString(16)}`;
 

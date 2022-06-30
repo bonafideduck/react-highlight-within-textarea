@@ -3,7 +3,7 @@ import { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Editor, EditorState, ContentState } from "draft-js";
-import { createDecorator, Selection } from "../../src";
+import { createDecorator, Selection } from "react-highlight-within-textarea";
 import { Code } from "./Code";
 import { CodeSandbox } from "./CodeSandbox";
 
@@ -44,7 +44,7 @@ const Unwrapped = () => {
     return EditorState.createWithContent(contentState);
   });
 
-  const highlight = ["orange", /ba(na)*/gi, [0, 5]];
+  const highlight = ["orange", /ba(na)*/gi, [0, 5] as [number, number]];
   const contentState = editorState.getCurrentContent();
   const decorator = createDecorator(contentState, highlight);
   editorState = EditorState.set(editorState, {
@@ -53,7 +53,7 @@ const Unwrapped = () => {
 
   const value = contentState.getPlainText();
   const selection = new Selection(editorState);
-  while ((value[selection.anchor] || " ") != " ") {
+  while ((value[selection.anchor] || " ") !== " ") {
     selection.anchor += 1;
     selection.focus += 1;
     editorState = selection.forceSelection(editorState);

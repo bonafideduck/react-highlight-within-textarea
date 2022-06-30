@@ -1,5 +1,5 @@
 import React from "react";
-import { Example } from "./Example.js";
+import { Example } from "./Example";
 
 const code = `function UpperCaseHateTomatoes() {
   const [value, setValue] = useState("POTATO TOMAT <- add an O here");
@@ -18,8 +18,6 @@ const code = `function UpperCaseHateTomatoes() {
 const ChangeValue = () => {
   return (
     <>
-      <h2></h2>
-
       <Example
         title="Dynamically Changing Value"
         text={

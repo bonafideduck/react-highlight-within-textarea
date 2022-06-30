@@ -1,5 +1,8 @@
+import { Highlight } from './highlightToStrategyAndComponents'
+
+
 // returns identifier strings that aren't necessarily "real" JavaScript types
-export default function getType(instance) {
+export default function getType(instance?: Highlight) {
   let type = typeof instance;
   if (!instance) {
     return "falsey";

@@ -2,31 +2,41 @@ import React from "react";
 import { useState } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { HighlightWithinTextarea } from "../../src";
+import {
+  HighlightWithinTextarea,
+  Selection,
+  Highlight,
+} from "react-highlight-within-textarea";
 import { Code } from "./Code";
 import { CodeSandbox } from "./CodeSandbox";
 
-const Example = ({
-  title,
-  text,
-  initialValue,
-  highlight,
-  code,
-  codeSandbox,
-  onChange,
-  onEveryChange,
-  selection,
+const Example = (props: {
+  title: string;
+  text: JSX.Element | string;
+  initialValue: string;
+  highlight: Highlight;
+  code: string;
+  codeSandbox: string;
+  onChange?: (nextValue: string, selection?: Selection) => void;
+  selection?: Selection;
 }) => {
-  const [value, setValue] = useState(initialValue);
-  const onChange2 = onChange
-    ? (value, selection) => {
-        setValue(onChange(value, selection));
-      }
-    : setValue;
-  const onEveryChange2 = onEveryChange
-    ? (value, selection, editorState) =>
-        setValue(onEveryChange(value, selection, editorState))
-    : undefined;
+  let {
+    title,
+    text,
+    initialValue,
+    highlight,
+    code,
+    codeSandbox,
+    onChange,
+    selection,
+  } = props;
+  const [value, setValue] = useState<string>(initialValue);
+  const onChange2 = (value: string, selection?: Selection) => {
+    if (onChange) {
+      onChange(value, selection);
+    }
+    setValue(value);
+  };
   code = code || "undefined";
   let style = {
     marginTop: 8,
@@ -46,7 +56,6 @@ const Example = ({
             value={value}
             highlight={highlight}
             onChange={onChange2}
-            onEveryChange={onEveryChange2}
             selection={selection}
           />
         </div>

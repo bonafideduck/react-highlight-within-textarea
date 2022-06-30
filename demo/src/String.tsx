@@ -1,5 +1,5 @@
 import React from "react";
-import { Example } from "./Example.js";
+import { Example } from "./Example";
 
 const code = `function String() {
   const [value, setValue] = useState("Potato potato tomato potato.");
@@ -15,8 +15,6 @@ const code = `function String() {
 const String = () => {
   return (
     <>
-      <h2></h2>
-
       <Example
         title="String"
         text={<span>Note that this is case-insensitive.</span>}

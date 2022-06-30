@@ -1,10 +1,14 @@
 /coverage
-/demo/dist
 /es
 /lib
 /node_modules
+/demo/node_modules
+/demo/dist
+/demo/build
 /umd
 npm-debug.log*
 *.swp
 *.swo
 .DS_Store
+yarn.lock
+yarn-error.log

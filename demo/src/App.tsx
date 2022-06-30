@@ -1,16 +1,16 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import { NavBar } from "./NavBar.js";
-import { String } from "./String.js";
-import { Regexp } from "./Regexp.js";
-import { Range } from "./Range.js";
-import { Array } from "./Array.js";
-import { Strategy } from "./Strategy.js";
-import { CustomObject } from "./CustomObject.js";
-import { Component } from "./Component.js";
-import { ChangeValue } from "./ChangeValue.js";
-import { ChangeSelection } from "./ChangeSelection.js";
-import { Unwrapped } from "./Unwrapped.js";
+import { NavBar } from "./NavBar";
+import { String } from "./String";
+import { Regexp } from "./Regexp";
+import { Range } from "./Range";
+import { Array } from "./Array";
+import { StrategyDemo } from "./StrategyDemo";
+import { CustomObject } from "./CustomObject";
+import { Component } from "./Component";
+import { ChangeValue } from "./ChangeValue";
+import { ChangeSelection } from "./ChangeSelection";
+import { Unwrapped } from "./Unwrapped";
 import "./App.css";
 
 const App = () => {
@@ -31,7 +31,7 @@ const App = () => {
         <Regexp />
         <Range />
         <Array />
-        <Strategy />
+        <StrategyDemo />
         <CustomObject />
         <Component />
         <ChangeValue />
@@ -42,4 +42,4 @@ const App = () => {
   );
 };
 
-export { App };
+export default App;
