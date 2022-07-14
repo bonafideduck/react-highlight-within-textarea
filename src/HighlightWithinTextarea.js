@@ -6,7 +6,7 @@ import { createDecorator } from "./createDecorator.js";
 import { Selection } from "./Selection.js";
 
 const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
-  const { placeholder, highlight, onChange } = props;
+  const { placeholder, highlight, onChange, ...restProps } = props;
   let { value, selection } = props;
   const [, forceUpdate] = useState();
   const ref = useRef({});
@@ -99,6 +99,7 @@ const HighlightWithinTextareaFunc = forwardRef((props, fwdRef) => {
       onChange={onDraftChange}
       placeholder={placeholder}
       ref={fwdRef}
+      {...restProps}
     />
   );
 });
