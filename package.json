@@ -16,7 +16,8 @@
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs",
     "publish-pages": "cd demo && yarn publish-pages",
-    "create-icons": "npx icongenie generate -p demo/icongenie.json"
+    "create-icons": "npx icongenie generate -p demo/icongenie.json",
+    "test:ci": "cd demo && CI=true yarn test --all"
   },
   "peerDependencies": {
     "draft-js": ">=0.11.7",
