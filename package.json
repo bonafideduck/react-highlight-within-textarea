@@ -27,10 +27,10 @@
   "devDependencies": {
     "@types/draft-js": ">=0.11.9",
     "concurrently": "^7.2.2",
-    "typescript": "^4.6.3",
     "draft-js": ">=0.11.7",
     "react": ">=0.14.0",
-    "react-dom": ">=0.14.0"
+    "react-dom": ">=0.14.0",
+    "typescript": "^4.6.3"
   },
   "files": [
     "/lib"

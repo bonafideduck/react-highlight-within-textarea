@@ -1,5 +1,9 @@
 # HISTORY
 
+## 3.0.4-alpha.6
+
+- A complete rebuild of RHWTA adding typescript and DraftJS properties
+
 ## 2.1.3 - 22-Jan-2022
 
 - Fix #85, Range highlight does not work if boundary is end of the string

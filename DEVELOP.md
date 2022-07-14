@@ -20,17 +20,18 @@ yarn publish-pages
 
 ## Publish Update
 
-* Merge develop into release on github using 
-[this link](https://github.com/bonafideduck/react-highlight-within-textarea/pull/new/develop)
+In a branch off of main, do the following:
 
-```
-git pull
-git checkout main
+```sh
 yarn upgrade --latest
-yarn build
 vi HISTORY.md
 git commit
-yarn publish
+npm version patch # minor major 'name'
+git push --follow-tags
+yarn build
+yarn publish # --tag alpha # for prerelease
 ```
+* Merge this publish branch into release on github using 
+[this link](https://github.com/bonafideduck/react-highlight-within-textarea/pull/new/develop)
 
-`yarn publish --tag alpha` for prerelease.
+
