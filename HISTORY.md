@@ -1,6 +1,6 @@
 # HISTORY
 
-## 3.0.4-alpha.6
+## 3.0.4-alpha.7
 
 - A complete rebuild of RHWTA adding typescript and DraftJS properties
 

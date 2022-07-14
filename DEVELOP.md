@@ -26,11 +26,11 @@ In a branch off of main, do the following:
 yarn upgrade --latest
 vi HISTORY.md
 git commit
-npm version patch # minor major 'name'
-git push --follow-tags
 yarn build
-yarn publish # --tag alpha # for prerelease
+yarn publish --bug # --minor --major --new-version # --tag alpha # for prerelease
+git push --follow-tags
 ```
+
 * Merge this publish branch into release on github using 
 [this link](https://github.com/bonafideduck/react-highlight-within-textarea/pull/new/develop)
 
