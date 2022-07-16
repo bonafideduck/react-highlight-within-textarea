@@ -108,12 +108,12 @@ const HighlightWithinTextarea = React.forwardRef<Editor, HWTAProps>(
 
     const contentState = editorState.getCurrentContent();
     let decorator;
-    if (highlight) {
-      decorator = useMemo(
-        () => createDecorator(contentState, highlight as Highlight, value),
-        [contentState, highlight, value]
-      );
-    }
+    decorator = useMemo(
+      () =>
+        highlight &&
+        createDecorator(contentState, highlight as Highlight, value),
+      [contentState, highlight, value]
+    );
 
     editorState = EditorState.set(editorState, {
       decorator: decorator,
@@ -149,7 +149,7 @@ const HighlightWithinTextarea = React.forwardRef<Editor, HWTAProps>(
     delete newProps.selection;
     delete newProps.placeholder;
     delete newProps.onChange;
-    delete (newProps as {value?: string}).value;
+    delete (newProps as { value?: string }).value;
 
     return (
       <Editor
