@@ -1,5 +1,8 @@
 # HISTORY
 
+## 2.1.5 - 16-July-2022
+- Fix #143, Pass unused parameters to Draft Editor
+
 ## 2.1.4 - 12-Feb-2022
 
 - Fix #91, Compatibility with Next.JS
