@@ -5,10 +5,10 @@
 /demo/node_modules
 /demo/dist
 /demo/build
+demo/yarn.lock
 /umd
 npm-debug.log*
 *.swp
 *.swo
 .DS_Store
-yarn.lock
 yarn-error.log
