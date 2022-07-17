@@ -47,14 +47,37 @@ value, onChange, ref, placeholder, highlight, selection
 
 **onChange**: This is called whenever the text value or selection changes.  You must update value to accept this change.  You only have to set the selection property if you want to change the current selection.
 
-**ref**: Standard React ref.
-
-**placeholder**: The placeholder text to print when no value is set.
-
 **highlight**: This specifies what to highlght.  For more info, see the
 [demo page](https://bonafideduck.github.io/react-highlight-within-textarea/).
 
 **selection**: A selection containing `anchor` and `focus` that can be use to place the cursor or set selections.
+
+**ref**: This returns a forwardRef to the underlying [Draft.js](https://draftjs.org) [Editor Component](https://draftjs.org/docs/api-reference-editor).
+
+## Properties passed directly to Draft.js Editor Component
+
+The following properties are passed unmodified directly to the [Draft.js](https://draftjs.org) [Editor Component](https://draftjs.org/docs/api-reference-editor).
+
+[autoCapitalize](https://draftjs.org/docs/api-reference-editor#autocapitalize)
+[autoComplete](https://draftjs.org/docs/api-reference-editor#autocomplete)
+[autoCorrect](https://draftjs.org/docs/api-reference-editor#autocorrect)
+[editorKey](https://draftjs.org/docs/api-reference-editor#editorkey)
+[handleBeforeInput](https://draftjs.org/docs/api-reference-editor#handlebeforeinput)
+[handleDrop](https://draftjs.org/docs/api-reference-editor#handledrop)
+[handleDroppedFiles](https://draftjs.org/docs/api-reference-editor#handledroppedfiles)
+[handleKeyCommand](https://draftjs.org/docs/api-reference-editor#handlekeycommand)
+[handlePastedFiles](https://draftjs.org/docs/api-reference-editor#handlepastedfiles)
+[handlePastedText](https://draftjs.org/docs/api-reference-editor#handlepastedtext)
+[handleReturn](https://draftjs.org/docs/api-reference-editor#handlereturn)
+[keyBindingFn](https://draftjs.org/docs/api-reference-editor#keybindingfn)
+[onBlur](https://draftjs.org/docs/api-reference-editor#onblur)
+[onFocus](https://draftjs.org/docs/api-reference-editor#onfocus)
+[placeholder](https://draftjs.org/docs/api-reference-editor#placeholder)
+[readOnly](https://draftjs.org/docs/api-reference-editor#readonly)
+[spellCheck](https://draftjs.org/docs/api-reference-editor#spellcheck)
+[stripPastedStyles](https://draftjs.org/docs/api-reference-editor#strippastedstyles)
+[textAlignment](https://draftjs.org/docs/api-reference-editor#textalignment)
+[textDirectionality](https://draftjs.org/docs/api-reference-editor#textdirectionality)
 
 ## Known and Potential Issues
 

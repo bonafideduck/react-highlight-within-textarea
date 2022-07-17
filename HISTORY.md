@@ -1,5 +1,9 @@
 # HISTORY
 
+## 3.1 - 17-Jul-2022
+
+- Version 3.0.4-alpha.7 released as an official build.
+
 ## 3.0.4-alpha.7
 
 - A complete rebuild of RHWTA adding typescript and DraftJS properties
