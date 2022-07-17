@@ -41,7 +41,8 @@ along with example code, on the
 
 ## Properties
 
-value, onChange, ref, placeholder, highlight, selection
+The following properties are used directly by this library.  Additional properties are passed 
+unmodified directly to the [Draft.js](https://draftjs.org) [Editor Component](https://draftjs.org/docs/api-reference-editor).
 
 **value**: This can either be the text value or a DraftJs [EditorState](https://draftjs.org/docs/api-reference-editor-state/#internaldocs-banner).
 
