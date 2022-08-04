@@ -30,7 +30,7 @@
     "build": "(cd .. && yarn build) && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "publish-pages": "yarn build && gh-pages --dist=demo/dist"
+    "publish-pages": "yarn build && gh-pages --dist=dist"
   },
 
   "eslintConfig": {

@@ -114,7 +114,7 @@ const ChangeSelection = () => {
           </>
         }
         initialValue={state.value}
-        highlight=" "
+        highlight="berry"
         onChange={onChange}
         code={code}
         codeSandbox="rhwta-selection-lpkld"
