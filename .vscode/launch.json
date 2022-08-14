@@ -6,29 +6,27 @@
   "configurations": [
     {
       "command": "yarn start",
-      "name": "Run yarn start",
+      "name": "yarn start",
       "request": "launch",
       "type": "node-terminal"
     },
     {
       "command": "yarn test",
-      "name": "Run yarn test",
+      "name": "yarn test",
       "request": "launch",
       "type": "node-terminal"
     },
     {
-      "type": "pwa-chrome",
+      "type": "chrome",
+      "name": "attach",
       "request": "launch",
-      "name": "Debug",
-      "url": "http://localhost:3000",
-      "sourceMaps": true,
-      "webRoot": "${workspaceFolder}",
-      "sourceMapPathOverrides": {
-        "webpack:///*": "${webRoot}/*",
-        "webpack:///./*": "${webRoot}/*",
-        "webpack:///src/*": "${webRoot}/*",
-        "webpack:///./~/*": "${webRoot}/node_modules/*"
-      }
+      "url": "http://localhost:3000/"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "yarn start and attach",
+      "configurations": ["yarn start", "attach"]
     }
   ]
 }
