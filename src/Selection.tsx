@@ -15,6 +15,10 @@ function editorStateToTextAnchorFocus(editorState?: EditorState) {
   let anchor = undefined;
   let focus = undefined;
 
+  if (anchorKey == "" && focusKey == "") {
+    return { anchor: 0, focus: 0 };
+  }
+
   for (const block of blocks) {
     if (block.getKey() == anchorKey) {
       anchor = blockStart + anchorOffset;
@@ -34,7 +38,11 @@ function editorStateToTextAnchorFocus(editorState?: EditorState) {
   return { anchor, focus };
 }
 
-function forceSelection(editorState: EditorState, anchor: number, focus: number) {
+function forceSelection(
+  editorState: EditorState,
+  anchor: number,
+  focus: number
+) {
   if (!editorState) {
     throw new ReferenceError("editorState is required");
   }
@@ -67,7 +75,7 @@ function forceSelection(editorState: EditorState, anchor: number, focus: number)
   }
 
   if (block == undefined) {
-    throw ("Unexpected undefined block");
+    throw "Unexpected undefined block";
   }
 
   if (anchorKey == undefined) {
@@ -80,8 +88,9 @@ function forceSelection(editorState: EditorState, anchor: number, focus: number)
     focusOffset = block.getLength();
   }
 
-  let selectionState = SelectionState.createEmpty('')
-  selectionState.set("anchorKey", anchorKey)
+  let selectionState = SelectionState.createEmpty("");
+  selectionState
+    .set("anchorKey", anchorKey)
     .set("anchorOffset", anchorOffset)
     .set("focusKey", focusKey)
     .set("focusOffset", focusOffset);
@@ -145,7 +154,9 @@ class Selection {
   }
 
   set start(value) {
-    throw new ReferenceError(`start (${value}) is read only.  use anchor instead`);
+    throw new ReferenceError(
+      `start (${value}) is read only.  use anchor instead`
+    );
   }
 
   get end() {
