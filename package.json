@@ -1,6 +1,6 @@
 {
   "name": "react-highlight-within-textarea",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "React component for highlighting text within a textarea",
   "homepage": "https://bonafideduck.github.io/react-highlight-within-textarea/",
   "repository": "git@github.com:bonafideduck/react-highlight-within-textarea.git",
