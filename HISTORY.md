@@ -1,5 +1,9 @@
 # HISTORY
 
+3.1.1 - 17-Aug-2022
+
+- Fix #157 where a crash happened when changing value with no focus
+
 ## 3.1 - 17-Jul-2022
 
 - Version 3.0.4-alpha.7 released as an official build.

@@ -23,12 +23,17 @@ yarn publish-pages
 In a branch off of main, do the following:
 
 ```sh
+checkout main
 yarn upgrade --latest
 vi HISTORY.md
 git commit
 yarn build
 yarn publish --bug # --minor --major --new-version # --tag alpha # for prerelease
 git push --follow-tags
+
+checkout release-3.x.x
+git merge origin/main
+git push
 ```
 
 * Merge this publish branch into release on github using 
