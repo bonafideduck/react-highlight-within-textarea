@@ -25,12 +25,12 @@
     "react-dom": ">=0.14.0"
   },
   "devDependencies": {
-    "@types/draft-js": ">=0.11.9",
-    "concurrently": "^7.2.2",
+    "@types/draft-js": ">=0.11.10",
+    "concurrently": "^8.0.1",
     "draft-js": ">=0.11.7",
-    "react": ">=0.14.0",
-    "react-dom": ">=0.14.0",
-    "typescript": "^4.6.3"
+    "react": ">=18.2.0",
+    "react-dom": ">=18.2.0",
+    "typescript": "^5.0.4"
   },
   "files": [
     "/lib"
