@@ -17,6 +17,13 @@ yarn publish-pages
 ```
 * Manually edit each CodeSandbox ReactHighlightWithinTextarea version.
 
+## Update the dependencies
+
+```
+rm yarn.lock demo/yarn.lock
+npx npm-check-updates -u --dep dev && yarn
+(cd demo && npx npm-check-updates -u && yarn)
+```
 
 ## Publish Update
 
