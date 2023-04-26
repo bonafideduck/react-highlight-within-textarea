@@ -1,4 +1,4 @@
-import { Highlight } from './highlightToStrategyAndComponents'
+import { Highlight } from './types'
 
 
 // returns identifier strings that aren't necessarily "real" JavaScript types
