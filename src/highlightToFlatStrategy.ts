@@ -1,37 +1,19 @@
-import * as React from "react";
+import {
+  Highlight,
+  Strategy,
+  Callback,
+  FlatStrategy,
+  CustomObject,
+  Range,
+  Component
+} from "./types";
 
-export type Callback = (start: number, end: number) => void;
-export type Strategy = (text: any, callback: Callback) => void;
-export type Range = [start: number, end: number];
-export type Component =
-  | Element
-  | JSX.Element
-  | ((props: any) => Element)
-  | ((props: any) => JSX.Element);
-export type CustomObject = {
-  highlight: Highlight;
-  component?: Component;
-  className?: string;
-};
-export type Highlight =
-  | string
-  | RegExp
-  | Strategy
-  | CustomObject
-  | Range
-  | Highlight[];
-
-export type StrategyAndComponent = {
-  strategy: Strategy;
-  component: Component;
-};
-
-export const highlightToStrategyAndComponents = (
+export const highlightToFlatStrategy = (
   highlight: Highlight,
   classHint?: string,
   componentHint?: Component
-): StrategyAndComponent[] => {
-  let result: StrategyAndComponent[];
+): FlatStrategy[] => {
+  let result: FlatStrategy[];
 
   if (highlight instanceof RegExp) {
     result = [regExpToSAndC(highlight as RegExp, classHint, componentHint)];
@@ -69,9 +51,9 @@ function arrayToSAndCs(
   highlight: Highlight[],
   className?: string,
   component?: Component
-): StrategyAndComponent[] {
+): FlatStrategy[] {
   const sAndCs = highlight.map((h) =>
-    highlightToStrategyAndComponents(h, className, component)
+    highlightToFlatStrategy(h, className, component)
   );
   return Array.prototype.concat.apply([], sAndCs);
 }
@@ -80,10 +62,11 @@ function strategyToSAndC(
   strategy: Strategy,
   className?: string,
   component?: Component
-): StrategyAndComponent {
+): FlatStrategy {
   return {
-    strategy: strategy,
-    component: hwtComponent(className, component),
+    strategy,
+    component,
+    className,
   };
 }
 
@@ -91,7 +74,7 @@ function regExpToSAndC(
   highlight: RegExp,
   className?: string,
   component?: Component
-): StrategyAndComponent {
+): FlatStrategy {
   const regExpStrategy = (text: string, callback: Callback) => {
     let matchArr, start;
     while ((matchArr = highlight.exec(text)) !== null) {
@@ -102,7 +85,8 @@ function regExpToSAndC(
 
   return {
     strategy: regExpStrategy,
-    component: hwtComponent(className, component),
+    className,
+    component: component,
   };
 }
 
@@ -110,7 +94,7 @@ function stringToSAndC(
   highlight: string,
   className?: string,
   component?: Component
-): StrategyAndComponent {
+): FlatStrategy {
   const stringStrategy = (text: string, callback: Callback) => {
     const textLower = text.toLowerCase();
     const strLower = highlight.toLowerCase();
@@ -123,7 +107,8 @@ function stringToSAndC(
 
   return {
     strategy: stringStrategy,
-    component: hwtComponent(className, component),
+    component,
+    className,
   };
 }
 
@@ -131,7 +116,7 @@ function rangeToSAndC(
   highlight: Range,
   className?: string,
   component?: Component
-): StrategyAndComponent {
+): FlatStrategy {
   const rangeStrategy = (text: string, callback: Callback) => {
     const low = Math.max(0, highlight[0]);
     const high = Math.min(highlight[1], text.length);
@@ -142,7 +127,8 @@ function rangeToSAndC(
 
   return {
     strategy: rangeStrategy,
-    component: hwtComponent(className, component),
+    component,
+    className,
   };
 }
 
@@ -152,16 +138,7 @@ function customToSAndCs(
   component?: Component
 ) {
   const hl = highlight.highlight;
-  className = 'className' in highlight ? highlight.className : className;
-  component = 'component' in highlight ? highlight.component : component;
-  return highlightToStrategyAndComponents(hl, className, component);
+  className = "className" in highlight ? highlight.className : className;
+  component = "component" in highlight ? highlight.component : component;
+  return highlightToFlatStrategy(hl, className, component);
 }
-
-const hwtComponent = (className?: string, Component?: Component): Component => {
-  if (Component) {
-    const Cmp = Component as (props: any) => JSX.Element;
-    return (props: any) => <Cmp className={className} {...props} />;
-  } else {
-    return (props: any) => <mark className={className}>{props.children}</mark>;
-  }
-};

@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root mark {
+  background-color: #d0bfff;
+}
+
+#root mark.blue {
+  background-color: #a3daff;
+}
+
+#root mark.red {
+  background-color: #ffc9c9;
+}
+
+#root mark.yellow {
+  background-color: #ffec99;
+}

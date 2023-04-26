@@ -20,12 +20,13 @@
       "type": "chrome",
       "name": "attach",
       "request": "launch",
+      "cwd": "${workspaceFolder}/demo",
       "url": "http://localhost:3000/"
     }
   ],
   "compounds": [
     {
-      "name": "yarn start and attach",
+      "name": "start & debug",
       "configurations": ["yarn start", "attach"]
     }
   ]

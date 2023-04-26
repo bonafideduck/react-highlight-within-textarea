@@ -47,3 +47,76 @@ git push
 [this link](https://github.com/bonafideduck/react-highlight-within-textarea/pull/new/develop)
 
 
+# Code Notes
+
+## createDecorator
+
+### highlightToFlatStrategy
+
+Takes the highlights and breaks it down into a list of strategy 
+and components.  Returns FlatStrategy[].
+
+```
+export type FlatStrategy = {
+  strategy: Strategy;
+  component?: Component;
+  className?: string;
+};
+```
+
+### getMatches
+
+Takes text and the strategy/component highlights and returns 
+a nonoverlapping array of matched spans. Returns Finds[];
+```
+interface Find {
+  component?: Component;
+  className?: string;
+  matchStart: number;
+  matchEnd: number;
+  matchText: string;
+}
+```
+
+### breakSpansByBlocks
+
+Breaks anything flowing over a newline and splits it over the newlines.
+Returns BlockSpan[].
+
+```
+export interface BlockSpan {
+  text: string,
+  blockStart: number,
+  blockEnd: number,
+  blockText: string,
+  blockKey: string,
+  spanStart: number;
+  spanEnd: number;
+  spanText: string,
+  component?: Component;
+  className?: string;
+  matchStart: number;
+  matchEnd: number;
+  matchText: string;
+}
+```
+
+### blockSpansToDecorators
+
+Changes every single match into a Decorator.  Blockspans with the
+same `component` and `classname` and strategy will be placed in 
+the same decorator.  If a component is not specified, it will
+be created. The props pased to the component (if supplied)
+will be BlockSpan (todo: move this to an exported type?);
+Returns something like this:
+
+```
+{
+  strategy: (contentBlock, callback) => void;
+  component: (props: BlockSpan) => ReactElement;
+}[];
+```
+
+### CompositeDecorator
+
+draft-js function that takes the above decorator

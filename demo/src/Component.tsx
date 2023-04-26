@@ -94,11 +94,13 @@ const highlight = [
 ];
 
 const Component = () => {
+  const initialValue = "Here's a blueberry. Hover over this strawberry.  Rasp-\n" +
+    "berry was matched once, but split into two spans.";
   return (
     <Example
       title={"Custom Object with Decorator Components"}
       text={text}
-      initialValue="Here's a blueberry. Hover over this strawberry."
+      initialValue={initialValue}
       highlight={highlight}
       code={code}
       codeSandbox="rhwta-component-wzhfr"

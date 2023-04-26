@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useRef, useMemo } from "react";
 import { Editor, EditorState, ContentState, SelectionState } from "draft-js";
-import { createDecorator } from "./createDecorator";
 import { Selection } from "./Selection";
-import { Highlight } from "./highlightToStrategyAndComponents";
+import { Highlight } from "./types";
+import { DecoratorFactory } from "./DecoratorFactory";
 interface MyRef {
   prevValue: string;
   prevEditorState: EditorState;
@@ -65,6 +65,7 @@ const HighlightWithinTextarea = React.forwardRef<Editor, HWTAProps>(
     } = props;
     const [, forceUpdate] = useState({});
     const myRef: any = useRef({});
+    const decoratorFactory = useRef(new DecoratorFactory());
     let editorState;
 
     const { prevValue, prevEditorState, nextValue, nextEditorState } =
@@ -111,7 +112,7 @@ const HighlightWithinTextarea = React.forwardRef<Editor, HWTAProps>(
     decorator = useMemo(
       () =>
         highlight &&
-        createDecorator(contentState, highlight as Highlight, value),
+        decoratorFactory.current.create(contentState, highlight as Highlight, value),
       [contentState, highlight, value]
     );
 
