@@ -123,7 +123,6 @@ export class DecoratorFactory {
           this.decoratorCache.set(component, c);
           c.set(className, decorator);
         }
-        console.log(decorator);
         decorators.push(decorator);
       }
     }

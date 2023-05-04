@@ -17,7 +17,7 @@ const Example = (props: {
   highlight: Highlight;
   code: string;
   codeSandbox: string;
-  onChange?: (nextValue: string, selection?: Selection) => void;
+  onChange?: (nextValue: string, selection?: Selection) => string;
   selection?: Selection;
 }) => {
   let {
@@ -32,10 +32,11 @@ const Example = (props: {
   } = props;
   const [value, setValue] = useState<string>(initialValue);
   const onChange2 = (value: string, selection?: Selection) => {
+    let newValue = value;
     if (onChange) {
-      onChange(value, selection);
+      newValue = onChange(value, selection);
     }
-    setValue(value);
+    setValue(newValue);
   };
   code = code || "undefined";
   let style = {
