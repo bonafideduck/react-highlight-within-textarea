@@ -49,6 +49,8 @@ git push
 
 # Code Notes
 
+**Fixme**: This has been replaced by DecoratorFactory()
+
 ## createDecorator
 
 ### highlightToFlatStrategy
