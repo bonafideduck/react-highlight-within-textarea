@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import { Performance } from "./Performance";
+import { DraftPerf } from "./DraftPerf";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/performance",
     element: <Performance />,
+  },
+  {
+    path: "/draftperf",
+    element: <DraftPerf />,
   },
 ]);
 
