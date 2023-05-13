@@ -1,6 +1,10 @@
 # HISTORY
 
-3.1.1 - 17-Aug-2022
+## 3.2.0
+
+- Fix #175 improving performance by adding DecoratorFactory to cache previous decorators.
+
+## 3.1.1 - 17-Aug-2022
 
 - Fix #157 where a crash happened when changing value with no focus
 
