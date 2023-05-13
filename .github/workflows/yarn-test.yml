@@ -1,0 +1,32 @@
+# This workflow will run tests using node
+
+name: Yarn Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ main, develop ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          check-latest: true
+          cache: 'yarn'
+          cache-dependency-path: |
+            yarn.lock
+            demo/yarn.lock
+      - name: yarn install
+        run: yarn install --frozen-lockfile
+      - name: yarn-install-demo    
+        working-directory: demo
+        run: yarn install --frozen-lockfile
+      - name: yarn build
+        run: yarn run build
+      - name: yarn-test-demo
+        run: yarn test:ci
