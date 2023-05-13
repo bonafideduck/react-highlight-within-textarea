@@ -1,8 +1,12 @@
 # HISTORY
 
-## 3.2.0
+## 3.2.1
 
 - Fix #175 improving performance by adding DecoratorFactory to cache previous decorators.
+
+## 3.2.0
+
+- Mistakenly published version.
 
 ## 3.1.1 - 17-Aug-2022
 
