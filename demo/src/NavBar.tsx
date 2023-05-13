@@ -24,7 +24,7 @@ function NavBar() {
         <Nav.Link href={npmjs}>
           <FontAwesomeIcon
             icon={faNpm}
-            style={{ color: "white", fontSize: "2em" }}
+            style={{ color: "white", fontSize: "2em", paddingLeft: "14px" }}
           />
         </Nav.Link>
       </div>
@@ -37,7 +37,7 @@ function NavBar() {
         <Nav.Link href={github}>
           <FontAwesomeIcon
             icon={faGithub}
-            style={{ color: "white", fontSize: "2em" }}
+            style={{ color: "white", fontSize: "2em", paddingRight: "14px" }}
           />
         </Nav.Link>
       </div>
