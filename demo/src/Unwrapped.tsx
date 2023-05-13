@@ -1,9 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { Editor, EditorState, ContentState } from "draft-js";
-import { createDecorator, Selection } from "react-highlight-within-textarea";
+import { DecoratorFactory, Selection } from "react-highlight-within-textarea";
 import { Code } from "./Code";
 import { CodeSandbox } from "./CodeSandbox";
 
@@ -14,16 +14,18 @@ const code = `const Unwrapped = () => {
     return EditorState.createWithContent(contentState);
   });
 
-  const highlight = ["orange", /ba(na)*/gi, [0, 5]];
+  const highlight = ["orange", /ba(na)*/gi, [0, 5] as [number, number]];
   const contentState = editorState.getCurrentContent();
-  const decorator = createDecorator(contentState, highlight);
+  const decoratorFactory = useRef(new DecoratorFactory()).current;
+  const decorator = decoratorFactory.create(contentState, highlight);
+
   editorState = EditorState.set(editorState, {
     decorator: decorator,
   });
 
   const value = contentState.getPlainText();
   const selection = new Selection(editorState);
-  while ((value[selection.anchor] || ' ') != ' ') {
+  while ((value[selection.anchor] || " ") !== " ") {
     selection.anchor += 1;
     selection.focus += 1;
     editorState = selection.forceSelection(editorState);
@@ -46,7 +48,9 @@ const Unwrapped = () => {
 
   const highlight = ["orange", /ba(na)*/gi, [0, 5] as [number, number]];
   const contentState = editorState.getCurrentContent();
-  const decorator = createDecorator(contentState, highlight);
+  const decoratorFactory = useRef(new DecoratorFactory()).current;
+  const decorator = decoratorFactory.create(contentState, highlight);
+
   editorState = EditorState.set(editorState, {
     decorator: decorator,
   });
@@ -75,8 +79,9 @@ const Unwrapped = () => {
         be used directly by <a href="https://draftjs.org/">Draft.js</a>{" "}
         <ul>
           <li>
-            <b>createDecorator</b> creates a decorator using the supplied
-            highlight and text extracted the EditorState.
+            <b>DecoratorFactory</b> contains a cache of previously created
+            memoized decorators.  Use this to generate new decorators based
+            on the text and highlight.
           </li>
           <li>
             <b>Selection</b> extracts the text anchor and focus and changes these
