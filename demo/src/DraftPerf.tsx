@@ -1,8 +1,6 @@
 import React from "react";
 import { useState, useEffect, memo } from "react";
-import { Editor, EditorState, ContentState, ContentBlock, SelectionState, CompositeDecorator } from "draft-js";
-
-import HighlightWithinTextarea from "react-highlight-within-textarea";
+import { Editor, EditorState, ContentState, ContentBlock, CompositeDecorator } from "draft-js";
 
 const style = {
   margin: 8,
