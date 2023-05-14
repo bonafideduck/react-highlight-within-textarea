@@ -4,7 +4,9 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import { Performance } from "./Performance";
 import { DraftPerf } from "./DraftPerf";
+import { QuillPerf } from "./QuillPerf";
 import reportWebVitals from "./reportWebVitals";
+import "./App.css"
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -22,6 +24,10 @@ const router = createHashRouter([
   {
     path: "/draftperf",
     element: <DraftPerf />,
+  },
+  {
+    path: "/quillperf",
+    element: <QuillPerf />,
   },
 ]);
 

@@ -11,7 +11,6 @@ import { Component } from "./Component";
 import { ChangeValue } from "./ChangeValue";
 import { ChangeSelection } from "./ChangeSelection";
 import { Unwrapped } from "./Unwrapped";
-import "./App.css";
 
 const App = () => {
   return (

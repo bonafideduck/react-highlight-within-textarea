@@ -28,6 +28,7 @@ const strategy = (
         end += 1;
       }
       callback(start, end);
+      start = end;
     }
   }
 };
