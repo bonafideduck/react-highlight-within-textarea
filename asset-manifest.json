@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "https://bonafideduck.github.io/react-highlight-within-textarea/static/css/main.e0984b35.css",
-    "main.js": "https://bonafideduck.github.io/react-highlight-within-textarea/static/js/main.dd736bce.js",
+    "main.css": "https://bonafideduck.github.io/react-highlight-within-textarea/static/css/main.44db900f.css",
+    "main.js": "https://bonafideduck.github.io/react-highlight-within-textarea/static/js/main.de1e9924.js",
     "static/js/496.2622d464.chunk.js": "https://bonafideduck.github.io/react-highlight-within-textarea/static/js/496.2622d464.chunk.js",
     "index.html": "https://bonafideduck.github.io/react-highlight-within-textarea/index.html",
-    "main.e0984b35.css.map": "https://bonafideduck.github.io/react-highlight-within-textarea/static/css/main.e0984b35.css.map",
-    "main.dd736bce.js.map": "https://bonafideduck.github.io/react-highlight-within-textarea/static/js/main.dd736bce.js.map",
+    "main.44db900f.css.map": "https://bonafideduck.github.io/react-highlight-within-textarea/static/css/main.44db900f.css.map",
+    "main.de1e9924.js.map": "https://bonafideduck.github.io/react-highlight-within-textarea/static/js/main.de1e9924.js.map",
     "496.2622d464.chunk.js.map": "https://bonafideduck.github.io/react-highlight-within-textarea/static/js/496.2622d464.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e0984b35.css",
-    "static/js/main.dd736bce.js"
+    "static/css/main.44db900f.css",
+    "static/js/main.de1e9924.js"
   ]
 }
