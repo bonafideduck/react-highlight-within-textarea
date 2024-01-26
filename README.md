@@ -9,10 +9,14 @@
 
 ```bash
 npm install --save react-highlight-within-textarea
+npm install --save draft-js
 ```
 ```
 yarn add react-highlight-within-textarea
+yarn add draft-js
 ```
+
+Note: This has a peer dependency of draft-js.
 
 ## Usage
 
