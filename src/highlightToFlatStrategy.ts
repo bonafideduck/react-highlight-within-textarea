@@ -5,7 +5,7 @@ import {
   FlatStrategy,
   CustomObject,
   Range,
-  Component
+  Component,
 } from "./types";
 
 export const highlightToFlatStrategy = (
@@ -80,6 +80,9 @@ function regExpToSAndC(
     while ((matchArr = highlight.exec(text)) !== null) {
       start = matchArr.index;
       callback(start, start + matchArr[0].length);
+      if (highlight.lastIndex == 0) {
+        break;
+      }
     }
   };
 
