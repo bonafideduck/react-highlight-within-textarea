@@ -1,5 +1,9 @@
 # HISTORY
 
+## 3.2.2
+
+- Fix #189 Infinite lag error on certain regex values
+
 ## 3.2.1
 
 - Fix #175 improving performance by adding DecoratorFactory to cache previous decorators.
