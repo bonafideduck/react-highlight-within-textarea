@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from "react";
 import { ContentBlock, ContentState, CompositeDecorator } from "draft-js";
 import { Component, Highlight, BlockSpan, Strategy } from "./types";
 import { highlightToFlatStrategy } from "./highlightToFlatStrategy";
@@ -21,7 +21,7 @@ type ThisMap = Map<
 >;
 type DecoratorCache = Map<
   Function | undefined,
-  Map<ClassName | undefined, { component: Function; strategy: Strategy }>
+  Map<ClassName | undefined, { component: FC; strategy: Strategy }>
 >;
 
 export class DecoratorFactory {
@@ -57,11 +57,7 @@ export class DecoratorFactory {
           children?: Array<React.ReactNode>;
           decoratedText: string;
         }) => {
-          return (
-            <mark className={className}>
-              {props.children}
-            </mark>
-          );
+          return <mark className={className}>{props.children}</mark>;
         },
         (a, b) => a.decoratedText == b.decoratedText
       );
